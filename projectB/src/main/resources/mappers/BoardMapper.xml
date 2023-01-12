@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="edu.study.mapper.boardMapper">
+ 	<select id="list" parameterType="scri" resultType="boardVo">
+ 		SELECT bidx
+ 			, title
+ 			, content
+ 			, wdate
+ 			, hit
+ 			, uidx
+ 			, delyn
+ 			FROM boardtb
+ 			WHERE bidx = ${bidx}
+ 			AND delyn = 'N' 
+ 	</select>
+	 
+	 
+	<select id="listCount" resultType="int">
+		SELECT COUNT(bidx)
+			FROM boardtb
+			<include refid="search"></include>
+			WHERE bidx>0
+	</select> 
+	
+	<select id="listSearch" parameterType="scri" resultType="boardVo">
+			 	
+	 	SELECT * FROM (
+	 	SELECT ROWNUM AS rnum, A.* FROM (
+	 	SELECT * FROM boardtb
+	 		<include refid="search"></include>
+	 		ORDER BY BIDX DESC
+	 	) A
+	 	) WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+	</select>
+		
+	<sql id="search">
+		<if test="searchType == 'title'">where title like '%'||#{keyWord}||'%'</if>	
+		<if test="searchType == 'content'">where content like '%'||#{keyWord}||'%'</if>
+	</sql>
+	 
+	 <select id="selectByBidx" parameterType="int" resultType="boardVo">
+		 SELECT bidx
+		 		, title
+		 		, content
+		 		, wdate
+		 		, hit
+		 		, uidx
+		 		, delyn
+		 	FROM boardtb
+		 	WHERE bidx = #{bidx}
+	 </select>
+	 
+	 <insert id="insert" parameterType="boardVo">
+	 	<![CDATA[
+	 	INSERT INTO boardtb(	
+	 		bidx
+	 		, title
+	 		, content
+	 		, wdate
+	 		, hit
+	 		, uidx
+	 		, delyn
+	 		)VALUES(
+	 			bidx_seq.nextval
+	 			, #{title}
+	 			, #{content}
+	 			, sysdate
+	 			, 0
+	 			, #{uidx} 
+	 			, 'N'
+	 )	 
+	 ]]>
+	  <selectKey  resultType="int" keyProperty="bidx" order="AFTER">
+	 	SELECT MAX(bidx)
+	 		from boardtb
+	 </selectKey>	
+	 </insert>
+	 	 
+	 <update id="updateByBidx" parameterType="boardVo" >
+	 	UPDATE boardtb
+	 		SET title = #{title}
+	 			, content = #{content}
+	 		WHERE bidx = #{bidx}
+	 </update>
+	 
+	 <update id="delete" parameterType="boardVo">
+	 	<![CDATA[
+		 	UPDATE boardtb
+		 		SET DELYN = 'Y'
+		 		WHERE bidx = #{bidx}
+		 		
+		 ]]> 		
+	 </update>
+	 
+	 
+	 
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="edu.study.mapper.userMapper">
+	 <select id="list" resultType="userVo">
+	 	SELECT uidx
+	 		, id
+	 		, password
+	 		, name
+	 		, addr
+	 		, phone
+	 		, rdate
+	 		FROM usertb
+	 </select>
+	 <select id="selectByUidx" parameterType="int" resultType="userVo">
+	 	SELECT uidx
+	 		, id
+	 		, password
+	 		, name
+	 		, addr
+	 		, phone
+	 		, rdate
+	 	FROM usertb
+	 	WHERE uidx = #{uidx}
+	 </select>
+	 
+	 <update id="updateByUidx" parameterType="userVo">
+	 	UPDATE usertb
+	 		SET id = #{id}
+	 			, addr = #{addr}
+	 		WHERE uidx = #{uidx}
+	 </update>
+	 
+	 <select id="login" parameterType="userVo" resultType="userVo">
+	 	SELECT uidx
+		 		, id
+		 		, name		 		
+	 		FROM usertb
+	 		WHERE id = #{id}
+	 			AND password = #{password}
+	 </select>
+	 
+	 <select id="idCheck" parameterType="String" resultType="int">
+		SELECT COUNT(id) 
+			FROM usertb 
+			WHERE id= #{id}
+	</select>
+	 
+	 <insert id="join" parameterType="userVo">
+	 	INSERT INTO usertb(
+	 		uidx
+	 		, id
+	 		, password
+	 		, name
+	 		, addr
+	 		, phone
+	 		, rdate
+	 		)VALUES(
+	 			uidx_seq.nextval
+	 			, #{id}
+	 			, #{password}
+	 			, #{name}
+	 			, #{addr}
+	 			, #{phone}
+	 			, sysdate 
+	 )	 
+	 </insert>
+	 
+	
+	 
+	 
+</mapper>
