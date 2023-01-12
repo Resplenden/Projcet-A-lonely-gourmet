@@ -5,10 +5,7 @@
  
 <mapper namespace="edu.study.mapper.replyMapper">
 	
-	
-
-
- 	<select id="list" parameterType="int" resultType="replyVo">
+	<select id="list" parameterType="int" resultType="replyVo">
 	  SELECT 
 	  ridx
 	  , contents
