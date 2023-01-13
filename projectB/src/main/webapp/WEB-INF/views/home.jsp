@@ -12,7 +12,7 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
-<a href="<%= request.getContextPath()%>/test.do">test 경로 이동!</a>
+<a href="<%= request.getContextPath()%>/test.do">test 경로 이동!!!</a>
 <!-- 위 링크를 클릭햇을 대 views 폴더에 있는 sample.jsp가 포워드 되도록 구현하세요. -->
 <hr>
 ${uin}님 환영합니다.
