@@ -110,7 +110,8 @@ public class findPwdController {
 	public String pw_new(MemberVo vo, HttpSession session){
 		int result = memberService.updatePw(vo);
 		if(result == 1) {
-			return "/main";
+			
+			return "redirect:/";
 		}
 		else {
 			System.out.println("pw_update"+ result);
