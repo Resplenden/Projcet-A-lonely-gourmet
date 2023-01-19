@@ -23,7 +23,8 @@
       <h1>&nbsp;인증번호 입력</h1>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <p>이메일이 발송되었습니다. 인증번호를 입력하세요.</p>
-      <form action="pwdConfirm.css" method="post" id="pwdConfirm">
+      <form action="findPwd-sec.do" method="post" id="pwdConfirm">
+      <input type="hidden" name ="num" value="${num}">
         <input
           type="password"
           name="confirmNum"

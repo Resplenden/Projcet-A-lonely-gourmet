@@ -23,23 +23,27 @@
       <h1>&nbsp;비밀번호 초기화</h1>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <p>새 비밀번호를 입력하세요.</p>
-      <form action="newPwd.do" method="post" id="newPwd">
+      <form action="findPwd-thd.do" method="post" id="newPwd">
+      
         <input
           type="password"
-          name="newPwd"
+          name="password"
           class="newPwd"
           placeholder="새 비밀번호"
         />
         <br />
         <input
           type="password"
-          name="newPwdCk"
+          name="password2"
           class="newPwdCk"
-          placeholder="비밀번호 확인"
+          onchange="isSame();"	
+          placeholder="비밀번호 확인"          
         />
-        <button type="submit" name="pwdInit" class="pwdInit">
+        <span id=same></span>
+        <button type="submit" name="pwdInit" class="pwdInit">        
           비밀번호 변경
         </button>
+        <input type="hidden" name="email" value="${email}">
       </form>
       <!--end: form-->
       <p class="companyInfo">
