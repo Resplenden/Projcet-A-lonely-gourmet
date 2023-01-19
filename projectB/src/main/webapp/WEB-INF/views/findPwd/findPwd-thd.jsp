@@ -14,11 +14,29 @@
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js" ></script>
     <script type="text/javascript">
     	function check(){
-    		alert("비밀번호가 변경되었습니다.");
     		
+    		if(thd.password.value ==""){
+    			alert("새 비밀번호를 입력해주세요.");
+    			thd.password.focus();
+    			return;
+    		}
+    		if(thd.password2.value == ""){
+    			alert("비밀번호 확인을 입력해주세요.");
+    			thd.password2.focus();
+    			return;
+    		}    		
+    		if(thd.password.value != thd.password2.value){
+    			alert("비밀번호가 일치하지 않습니다.")
+    			return;
+    		}else{
+    			alert("비밀번호가 변경되었습니다.");
+    		}
+    		    		
     		thd.action = "<%=request.getContextPath()%>/findPwd/findPwd-thd.do";
     		thd.method = "post"; //감춰서 넘기는 방식 Post
     		thd.submit();
+    		
+    		return;
     	}
 		
     </script>
@@ -48,10 +66,10 @@
           type="password"
           name="password2"
           class="newPwdCk"
-          onchange="isSame();"	
+         
           placeholder="비밀번호 확인"          
         />
-        <span id=same></span>
+        
         <button type="button" onclick="check()" name="pwdInit" class="pwdInit">        
           비밀번호 변경
         </button>

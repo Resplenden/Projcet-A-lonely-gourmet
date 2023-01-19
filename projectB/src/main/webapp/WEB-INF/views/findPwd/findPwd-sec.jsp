@@ -11,6 +11,24 @@
     />
     <!--파비콘-->
     <link href="${pageContext.request.contextPath}/resources/css/findPwd.css" rel="stylesheet" />
+    <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js" ></script>
+    <script type="text/javascript">
+    	function check(){
+    		
+    		if(sec.confirmNum.value == ""){
+    			alert("인증번호를 입력해주세요.");
+    			return;
+    		}
+    		
+    		sec.action = "<%=request.getContextPath()%>/findPwd/findPwd-sec.do";
+    		sec.method = "post"; //감춰서 넘기는 방식 Post
+    		sec.submit();
+    		
+    		return;
+    	}
+    
+    
+    </script>
 </head>
 <body>
 <div id="inner">
@@ -23,7 +41,7 @@
       <h1>&nbsp;인증번호 입력</h1>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <p>이메일이 발송되었습니다. 인증번호를 입력하세요.</p>
-      <form action="findPwd-sec.do" method="post" id="pwdConfirm">
+      <form action="findPwd-sec.do" name="sec" method="post" id="pwdConfirm">
       <input type="hidden" name ="num" value="${num}">
         <input
           type="password"
@@ -31,7 +49,7 @@
           class="confirmNum"
           placeholder="인증번호"
         />
-        <button type="submit" name="findPwd" class="findPwd">
+        <button type="button" onclick="check()" name="findPwd" class="findPwd">
           인증번호 확인
         </button>
       </form>
