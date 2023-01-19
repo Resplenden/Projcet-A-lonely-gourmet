@@ -1,0 +1,181 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+    padding: 0;
+    text-decoration: none;
+    font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
+      "Arial";
+    -webkit-user-select: none;
+    -ms-use-select: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+  
+body {
+    font-family: "Pretendard-Regular";
+  }
+
+  input:focus {
+    outline: none;
+    border: 2px solid rgb(250, 71, 48);
+    border-radius: 3px;
+    background-color: rgb(255, 247, 237);
+  }
+
+  select:focus {
+    outline: none;
+    border: 2px solid rgb(250, 71, 48);
+    border-radius: 3px;
+    background-color: rgb(255, 247, 237);
+  }
+
+#inner {
+    width: 600px;
+    height: 1650px;
+    margin: 0 auto;
+  }
+
+img {
+    margin-top: 70px;
+    margin-left: 143px;
+    padding-bottom: 50px;
+  }
+
+  button {
+    background-color: salmon;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+  }
+
+  button:hover {
+    background-color:#ff523e;}
+
+form {
+    margin: 0 auto;
+    width: 350px;
+    height: 1550px;
+    text-align: center;
+}
+
+form label {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+form ul {
+    text-align: left;
+}
+
+.id {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    width: 224px;
+    height: 30px;
+}
+
+.idCheck {
+    margin-left: 13px;
+    padding: 15px 10.5px 15px 10.5px;
+    font-size: 14px;
+}
+
+.idCheck p {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+
+.password, .passwordCfm, .name, .nickname, .birthday, .email {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    width: 326px;
+    height: 30px;
+}
+
+.phone {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    width: 82.5px !important;
+    height: 30px;
+}
+
+
+select {
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+}
+
+.join {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+}
+
+footer {
+    width: 700px;
+    height: 250px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#footerMenu {
+    display: flex;
+    margin: 0 auto;
+    width: 500px;
+    height: 70px;
+  }
+  
+  
+#footerMenu ul{
+    display: flex;
+    width: 500px;
+  }
+
+
+#footerMenu a {
+    color: rgb(85, 85, 85);
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#footerMenu a:hover {
+    color: salmon;
+}
+
+  .companyInfo {
+    display: inline-block;
+    width: 700px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: rgb(109, 109, 109);
+  }
+
+  
+

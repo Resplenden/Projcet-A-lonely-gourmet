@@ -1,0 +1,194 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+    padding: 0;
+    text-decoration: none;
+    font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
+      "Arial";
+    -webkit-user-select: none;
+    -ms-use-select: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+  
+body {
+    font-family: "Pretendard-Regular";
+  }
+
+  
+#inner {
+    width: 600px;
+    height: 850px;
+    margin: 0 auto;
+  }
+
+img {
+    margin-top: 80px;
+    margin-left: 143px;
+    padding-bottom: 40px;
+  }
+
+  form {
+    width: 350px;
+    height: 400px;
+    background-color: rgb(255, 247, 237);
+    border: none;
+    border-radius: 25px;
+    padding: 30px 140px 0 140px;
+  }
+
+  .id, .password{
+    display: inline-block;
+    padding: 10px 10px 10px 13px;
+    font-size: 16px;
+    width: 326px;
+    height: 30px;
+    border: 1px solid rgb(160, 160, 160);
+  }
+
+  .id {
+    border-bottom: 0px solid rgb(160, 160, 160);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .password{
+    border-top: 0.3px solid rgb(160, 160, 160);
+    border-radius: 0 0  8px 8px ;
+  }
+
+  .id:focus {
+    outline: none;
+    border: 1.5px solid rgb(250, 71, 48);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .password:focus {
+    outline: none;
+    border: 1.5px solid rgb(250, 71, 48);
+    border-radius: 0 0  8px 8px ;
+  }
+
+  .chkId {
+    margin-top: 15px;
+    accent-color: rgb(255, 73, 73);
+}
+
+input[type=checkbox] {
+    border: 5px;
+}
+
+label {
+    font-size: 15px;
+    color: rgb(105, 105, 105);
+}
+
+
+  
+ .login {
+    background-color: salmon;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+  }
+
+  
+.login:hover {
+    background-color:#ff523e;}
+
+.kakaoLogin {
+  background-color: #fee500;
+  cursor: pointer;
+  color: #423630;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 16px;
+  width: 350px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+
+ul{
+    display: flex;
+    width: 350px;
+    justify-content: space-around;
+  }
+
+  .subMenu a {
+    color: grey;
+  }
+
+  .subMenu a:hover {
+    color: salmon;
+    font-weight: bold;
+  }
+
+  footer {
+    width: 630px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 30px;
+    text-align: center;
+}
+
+#footerMenu {
+    display: flex;
+    margin: 0 auto;
+    width: 500px;
+    height: 70px;
+  }
+  
+  
+#footerMenu ul{
+    display: flex;
+    width: 500px;
+  }
+
+
+#footerMenu a {
+    color: rgb(85, 85, 85);
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#footerMenu a:hover {
+    color: salmon;
+}
+
+  .companyInfo {
+    display: inline-block;
+    width: 630px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: rgb(109, 109, 109);
+  }
+
+  p {
+    color: red;
+    font-size: 14.5px;
+  }
+

@@ -1,0 +1,192 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+    padding: 0;
+    text-decoration: none;
+    font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
+      "Arial";
+    -webkit-user-select: none;
+    -ms-use-select: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+  
+body {
+    font-family: "Pretendard-Regular";
+  }
+
+  
+#inner {
+    width: 600px;
+    height: 850px;
+    margin: 0 auto;
+  }
+
+img {
+    margin-top: 80px;
+    margin-left: 143px;
+    padding-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 44px;
+    color: salmon;
+    display: inline-block;
+  }
+
+  p {
+    font-size: 16px;
+    color: grey;
+    display: inline-block;
+  }
+
+  #findPwd{
+    width: 350px;
+    height: 290px;
+    background-color: rgb(255, 247, 237);
+    border: none;
+    border-radius: 25px;
+    padding: 36px 140px 0 140px;
+  }
+
+  #pwdConfirm{
+    width: 350px;
+    height: 200px;
+    background-color: rgb(255, 247, 237);
+    border: none;
+    border-radius: 25px;
+    padding: 36px 140px 0 140px;
+  }
+
+  #newPwd{
+    width: 350px;
+    height: 240px;
+    background-color: rgb(255, 247, 237);
+    border: none;
+    border-radius: 25px;
+    padding: 36px 140px 0 140px;
+  }
+
+  .id, .name, .email, .newPwd, .newPwdCk{
+    display: inline-block;
+    padding: 10px 10px 10px 13px;
+    font-size: 16px;
+    width: 326px;
+    height: 30px;
+    border: 1px solid rgb(160, 160, 160);
+  }
+
+  .name{
+    border-bottom: 0px solid rgb(160, 160, 160);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .newPwd {
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .email{
+    border-top: 0px solid rgb(160, 160, 160);
+    border-radius: 0 0  8px 8px ;
+  }
+
+  .newPwdCk{
+    border-top: 1px solid rgb(160, 160, 160);
+    border-radius: 0 0  8px 8px ;
+  }
+
+
+  .confirmNum {
+    display: inline-block;
+    padding: 10px 10px 10px 13px;
+    font-size: 16px;
+    width: 326px;
+    height: 30px;
+    border: 1px solid rgb(160, 160, 160);
+    border-radius: 8px;
+  }
+
+  .name:focus, .newPwd:focus {
+    outline: none;
+    border: 1.5px solid rgb(250, 71, 48);
+    border-radius: 8px 8px 0 0;
+  }
+
+  .id:focus {
+    outline: none;
+    border: 1.5px solid rgb(250, 71, 48);
+  }
+
+  .email:focus, .newPwdCk:focus {
+    outline: none;
+    border: 1.5px solid rgb(250, 71, 48);
+    border-radius: 0 0  8px 8px ;
+  }
+
+  .confirmNum:focus {
+    outline: none;
+    border: 1.5px solid rgb(250, 71, 48);
+    border-radius: 8px;
+  }
+
+  
+ .findPwd {
+    background-color: salmon;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+  }
+
+  
+.findPwd:hover {
+    background-color:#ff523e;}
+
+ .pwdInit {
+    background-color: salmon;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+  }
+
+  
+  .pwdInit:hover {
+    background-color:#ff523e;}
+
+    
+  .companyInfo {
+    display: inline-block;
+    width: 630px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: rgb(109, 109, 109);
+    text-align: center;
+    margin-top: 50px;
+  }
