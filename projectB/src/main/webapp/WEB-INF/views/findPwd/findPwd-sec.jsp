@@ -21,7 +21,7 @@
     		}
     		
     		if(sec.confirmNum.value != sec.num.value){
-    			alert("인정번호가 일치하지 않습니다.");
+    			alert("인증번호가 일치하지 않습니다.");
     			return;
     		}
     		
