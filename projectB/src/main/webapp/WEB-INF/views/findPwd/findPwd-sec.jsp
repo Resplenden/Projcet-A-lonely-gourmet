@@ -20,6 +20,11 @@
     			return;
     		}
     		
+    		if(sec.confirmNum.value != sec.num.value){
+    			alert("인정번호가 일치하지 않습니다.");
+    			return;
+    		}
+    		
     		sec.action = "<%=request.getContextPath()%>/findPwd/findPwd-sec.do";
     		sec.method = "post"; //감춰서 넘기는 방식 Post
     		sec.submit();
