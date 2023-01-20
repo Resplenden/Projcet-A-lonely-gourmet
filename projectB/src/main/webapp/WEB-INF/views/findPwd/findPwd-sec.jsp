@@ -24,6 +24,9 @@
     			alert("인증번호가 일치하지 않습니다.");
     			return;
     		}
+    		if(sec.confirmNum.value == sec.num.value){
+    			alert("인증번호가 일치합니다.");
+    		}
     		
     		sec.action = "<%=request.getContextPath()%>/findPwd/findPwd-sec.do";
     		sec.method = "post"; //감춰서 넘기는 방식 Post
@@ -46,13 +49,14 @@
       <h1>&nbsp;인증번호 입력</h1>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <p>이메일이 발송되었습니다. 인증번호를 입력하세요.</p>
-      <form action="findPwd-sec.do" name="sec" method="post" id="pwdConfirm">
+      <form  name="sec" id="pwdConfirm" onsubmit="return false;">
       <input type="hidden" name ="num" value="${num}">
         <input
           type="password"
           name="confirmNum"
           class="confirmNum"
           placeholder="인증번호"
+          onkeyup="if(window.event.keyCode==13){check()}"
         />
         <button type="button" onclick="check()" name="findPwd" class="findPwd">
           인증번호 확인

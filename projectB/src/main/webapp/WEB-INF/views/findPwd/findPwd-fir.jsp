@@ -16,6 +16,7 @@
 	<script type="text/javascript">
 
 		function check(){
+			
 			var name = $("#name").val();
 			var id = $("#id").val();
 			var email = $("#email").val();
@@ -30,28 +31,41 @@
 				dataType : "json", 
 				 
 				success:function(json_data){
-		
+															
 					if(json_data.name == 0){
-						alert("등록되지 않은 이름입니다.");	
-						return;
-					}else{
-						$("#id").focus();
+						alert("등록되지 않은 이름입니다.");
+						$("#name").focus();
 						
+						return;
+						
+					}else{
+						
+						$("#id").focus();
 					}
+															
 					if(json_data.id == 0){
 						alert("등록되지 않은 아이디입니다.");
+						$("#id").focus();
+						
 						return;
 					}else{
-						$("#email").focus();
+						
+						$("#email").focus();					
 					}
+										
 					if(json_data.email == 0){
 						alert("등록되지 않은 이메일 입니다.");
+						$("#email").focus();
+						
 						return;
+						
 					}else{
+						alert("이메일로 인증번호를 발송하였습니다.")
 						$("#findPwd").submit();
 					}
 				}
 			});
+			
 		}
 	</script>
     
@@ -68,12 +82,12 @@
       &nbsp;&nbsp;&nbsp;&nbsp;
       <p>정보를 입력하시면 이메일로 인증번호를 발송합니다.</p>
       
-      <form action="findPwd-fir.do" method="post" id="findPwd" name="findPwd">
-        <input type="text" id="name" name="name" class="name" placeholder="이름" />
+      <form action="findPwd-fir.do"  method="post" id="findPwd" name="findPwd">
+        <input type="text" id="name" onkeyup="if(window.event.keyCode==13){check()}" name="name" class="name" placeholder="이름" />
         <br />
-        <input type="text" id="id" name="id" class="id" placeholder="아이디" />
+        <input type="text" id="id" onkeyup="if(window.event.keyCode==13){check()}" name="id" class="id" placeholder="아이디" />
         <br />
-        <input type="text" id="email" name="email" class="email" placeholder="이메일" />
+        <input type="text" id="email" onkeyup="if(window.event.keyCode==13){check()}" name="email" class="email" placeholder="이메일" />
         <button type="button" onclick="check()" name="findPwd" class="findPwd">
           인증번호 받기
         </button>

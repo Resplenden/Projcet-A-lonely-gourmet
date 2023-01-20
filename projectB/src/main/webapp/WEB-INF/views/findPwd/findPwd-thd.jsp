@@ -54,20 +54,21 @@
       <h1>&nbsp;비밀번호 초기화</h1>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <p>새 비밀번호를 입력하세요.</p>
-      <form action="findPwd-thd.do" name="thd" method="post" id="newPwd">      
+      <form  name="thd" id="newPwd">      
         <input
           type="password"
           name="password"
           class="newPwd"
           placeholder="새 비밀번호"
+          onkeyup="if(window.event.keyCode==13){check()}"
         />
         <br />
         <input
           type="password"
           name="password2"
           class="newPwdCk"
-         
-          placeholder="비밀번호 확인"          
+		  placeholder="비밀번호 확인"
+		  onkeyup="if(window.event.keyCode==13){check()}"          
         />
         
         <button type="button" onclick="check()" name="pwdInit" class="pwdInit">        
