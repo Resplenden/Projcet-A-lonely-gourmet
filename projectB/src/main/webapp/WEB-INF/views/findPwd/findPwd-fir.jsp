@@ -31,18 +31,32 @@
 				dataType : "json", 
 				 
 				success:function(json_data){
-															
+					if($("#name").val() == ""){
+						alert("이름을 입력해 주세요.");
+						$("#name").focus();
+						return;
+					}			
+					
 					if(json_data.name == 0){
 						alert("등록되지 않은 이름입니다.");
-						$("#name").focus();
 						
+						$("#name").focus();						
 						return;
 						
-					}else{
+					}
+					
+					if(json_data.name == 1){
 						
 						$("#id").focus();
+												
 					}
-															
+					
+					if($("#id").val() == ""){
+						alert("아이디를 입력해 주세요.");
+						$("#id").focus();
+						return;
+					}	
+					
 					if(json_data.id == 0){
 						alert("등록되지 않은 아이디입니다.");
 						$("#id").focus();
@@ -50,9 +64,16 @@
 						return;
 					}else{
 						
-						$("#email").focus();					
+						$("#email").focus();	
+						
 					}
-										
+					
+					if($("#email").val() == ""){
+						alert("이메일을 입력해 주세요.");
+						$("#email").focus();
+						return;
+					}
+					
 					if(json_data.email == 0){
 						alert("등록되지 않은 이메일 입니다.");
 						$("#email").focus();
@@ -62,6 +83,7 @@
 					}else{
 						alert("이메일로 인증번호를 발송하였습니다.")
 						$("#findPwd").submit();
+						return;
 					}
 				}
 			});
