@@ -39,7 +39,7 @@
         <input type="checkbox" class="chkId" name="chk_id" />
         <label for="chk_id">아이디 저장</label>
         <button type="submit" name="login" class="login">로그인</button>
-        <button name="kakaoLogin" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=0c4af53abdedaf0c73af2ec8b352e10c&redirect_uri=http://192.168.0.14:8090/controller/member/logindone.do&response_type=code';" class="kakaoLogin">
+        <button name="kakaoLogin" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=0c4af53abdedaf0c73af2ec8b352e10c&redirect_uri=http://192.168.0.20:8090/controller/member/logindone.do&response_type=code';" class="kakaoLogin">
           <i class="xi-kakaotalk xi-2x"></i>&nbsp;&nbsp;&nbsp;카카오톡으로
           로그인
         </button>
