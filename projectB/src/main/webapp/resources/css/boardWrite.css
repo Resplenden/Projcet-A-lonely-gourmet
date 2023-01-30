@@ -1,0 +1,252 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
+    "Arial";
+  -webkit-user-select: none;
+  -ms-use-select: none;
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+}
+
+body {
+  font-family: "Pretendard-Regular";
+}
+
+
+#topMenu {
+  width: 1920px;
+  height: 165px;
+  background-color: salmon;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+}
+
+
+.leftElement {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    /* margin-right: 1380px; */
+    margin-left: 170px;
+}
+
+.logo {
+    filter: brightness(500%);
+}
+
+h1 {
+    float: right;
+    color: white;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.rightElement {
+    width: 450px;
+    text-align: center;
+    margin-right: 200px; 
+}
+
+
+.cancel {
+    font-size: 17px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    float: right;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cancel:hover {
+    text-decoration: none !important;
+    background-color: white !important;
+    color: salmon;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+.write {
+    font-size: 17px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    float: right;
+    color: white;
+    font-weight: bold;
+    background: none;
+    margin-right: 23px;
+}
+
+.write:hover {
+    background-color: white !important;
+    color: salmon;
+    transition: all 0.2s ease-in-out;
+}
+
+
+main {
+    width: 1500px;
+    height: 860px;
+    text-align: left;
+    margin-top: 90px;
+}
+
+
+#title {
+    width: 1498px;
+    height: 60px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+}
+
+.category {
+    width: 110px;
+    padding-left: 10px;
+    height: 45px;
+    font-size: 17px;
+    border-radius: 3px;
+}
+
+.category:focus {
+   outline: none;
+   border: 1px solid rgb(250, 71, 48); 
+}
+
+.title {
+    width: 1200px;
+    height: 63px;
+    border: none;
+    border-bottom: 1px solid grey;
+    margin-left: 30px;
+    font-size: 35px;
+    color:rgb(65, 65, 65);
+    margin-bottom: 6px;
+}
+
+.title::placeholder {
+    color: rgb(167, 167, 167);
+}
+
+.title:focus {
+    outline: none;
+}
+
+.title span {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+footer {
+    width: 1920px;
+    height: 250px;
+    background-color: rgb(56, 56, 56);
+    padding: 50px 160px 30px 180px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  #slogan {
+    width: 620px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-basis: 50px;
+    padding-bottom: 30px;
+    margin: 0;
+  }
+  
+  footer img {
+    filter: invert(0.5);
+    margin-bottom: 10px;
+    margin-left: 15px;
+  }
+  
+  footer p {
+    display: inline-block;
+    color: rgb(99, 99, 99);
+  }
+  
+  #footerMenu {
+    margin: 0;
+    width: 600px;
+  }
+  
+  #footerMenu ul {
+    margin: 0;
+    display: flex;
+    width: 600px;
+    padding-bottom: 30px;
+  }
+  
+  #footerMenu a {
+    color: rgb(99, 99, 99);
+  }
+  
+  #footerMenu a:hover {
+    color: salmon;
+  }
+  
+  .companyInfo {
+    margin-left: 30px;
+    width: 620px;
+  }
+  
+  #sns {
+    width: 500px;
+  }
+  
+  #sns ul {
+    display: flex;
+    position: absolute;
+    right: 220px;
+    bottom: 50px;
+  }
+  
+  #sns li:nth-child(2) {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  
+  #sns a {
+    padding: 25px 10px 10px 10px;
+    border: 1px solid rgb(99, 99, 99);
+    border-radius: 25%;
+    color: rgb(99, 99, 99);
+  }
+  
+  #sns a:visited {
+    color: rgb(99, 99, 99);
+  }
+  
+  #sns a:hover {
+    color: salmon;
+    border: 1px solid salmon;
+  }
+  

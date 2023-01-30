@@ -11,11 +11,20 @@
     />
     <!--파비콘-->
     <link href="${pageContext.request.contextPath}/resources/css/memberJoin.css" rel="stylesheet" />
+	<script>
+		
+		function main() {
+			if(confirm("메인으로 돌아가시겠습니까? 작성하신 내용은 저장되지 않습니다.")){
+				location.href="<%=request.getContextPath()%>";
+			}else {
+				return false;
+			}
+		}
+	</script>
 </head>
 <body>
     <div id="inner">
-      <a href="${pageContext.request.contextPath}"
-        ><img
+      <a onclick="main()" href="#"><img
           src="../resources/img/사본_-혼밥의고수_로고_초안_대지_1_사본-removebg-preview.png"
           width="350px"
         />

@@ -1,0 +1,487 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTTtangsbudaejjigaeB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
+    "Arial";
+  -webkit-user-select: none;
+  -ms-use-select: none;
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+}
+
+body {
+  font-family: "Pretendard-Regular";
+}
+
+nav {
+  width: 1920px;
+  height: 191px;
+  z-index: 12010;
+  box-shadow: 5px 5px 5px rgb(216, 216, 216);
+}
+
+
+#topMenu {
+  display: flex;
+  width: 1600px;
+  height: 140px;
+  background-color: white;
+  align-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.logo {
+  margin-right: 170px;
+}
+
+#searchBar {
+  display: flex;
+  width: 666px;
+  height: 49px;
+  border: 3px solid salmon;
+  margin-top: 10px;
+  margin-right: 220px;
+}
+
+#searchBar input {
+  width: 597px;
+  height: 47px;
+  padding-left: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  font-family: "Pretendard-Regular";
+}
+
+#searchBar input:focus {
+  outline: none;
+}
+
+#searchBar input::placeholder {
+  font-size: 20px;
+  color: rgb(182, 182, 182);
+}
+
+.searchBtn {
+  border: none;
+  color: salmon;
+  padding: 8.5px 16px 7px 7px;
+  background: none;
+}
+
+.searchBtn:hover {
+  color: rgb(250, 71, 48);
+  cursor: pointer;
+}
+
+.searchBtn i {
+  display: inline-block;
+}
+
+.loginInfo a {
+  text-decoration: none;
+  color: black;
+  margin-top: 14px;
+}
+
+.login {
+  display: inline-block;
+  padding: 10px 25px 10px 25px;
+  margin-right: 10px;
+  border-radius: 30px;
+}
+
+.login p {
+  color: salmon;
+  font-weight: bold;
+}
+
+.login p:hover {
+  color: rgb(250, 71, 48);
+  font-weight: bold;
+}
+
+.join {
+  display: inline-block;
+  padding: 10px 25px 10px 25px;
+  background: salmon;
+  border-radius: 5px;
+}
+
+.join:hover {
+  background-color: rgb(250, 71, 48);
+}
+
+.join p {
+  color: white;
+}
+
+hr {
+  background: rgb(182, 182, 182);
+  height: 1px;
+  border: none;
+}
+
+#bottMenu {
+  width: 1652px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+}
+
+#bottMenu ul {
+  display: flex;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+#bottMenu li {
+  font-size: 18px;
+  flex-basis: 100px;
+  margin-top: 12px;
+}
+
+#bottMenu li a {
+  color: salmon;
+}
+
+#bottMenu li a:hover {
+  color: rgb(250, 71, 48);
+  font-weight: bold;
+}
+/*end: nav*/
+
+main {
+    width: 1522.39px;
+    height: 2050px;
+    margin-top: 100px;
+  }
+
+  main h1 {
+    font-size: 44px;
+    color: salmon;
+    padding: 10px;
+  }
+
+  #inner {
+    width: 1300px;
+    height: 1785px;
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .boardSet {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+.boardSearch {
+  margin-left: 536px;
+} 
+
+.boardSearch select {
+    padding: 4px;
+    font-size: 15px;
+    outline: none;
+    font-family: "Pretendard-Regular";
+    margin-right: 12px;
+    background: none;
+}
+
+.boardSearch select:hover {
+    border: 1px solid rgb(250, 71, 48);
+    border-radius: 3px;
+}
+
+
+  .boardSearch input[type=text] {
+    width: 268px;
+    padding: 10px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid salmon;
+    font-family: "Pretendard-Regular";
+    background: none;
+}
+
+  .bSearchBtn {
+    margin-left: 20px;
+    padding: 10px 17px;
+    background-color: salmon;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Pretendard-Regular";
+    cursor: pointer;
+  }
+
+  .bSearchBtn:hover {
+    background-color: rgb(250, 71, 48);
+  }
+
+  /*end: .boardSearch*/
+
+
+  .boardSelect select {
+    padding: 8px;
+    font-size: 15px;
+    outline: none;
+    margin-right: 10px;
+    font-family: "Pretendard-Regular";
+    display: inline-block;
+  }
+
+  .boardSelect select:focus {
+    border: 1px solid rgb(250, 71, 48);
+    border-radius: 3px;
+  }
+/*end: .boardSelect*/
+
+  .boardList {
+    width: 1200px;
+    height: 1485px;
+  }
+
+  .boardList ul {
+   text-align: left;
+   padding-top: 15px;
+  }
+
+  .boardList li {
+    border-top: none;
+    border-bottom: 1px solid rgb(136, 136, 136);
+    padding-top: 20px;
+    line-height: 50px;
+  }
+
+
+  .boardList li:last-child {
+    border-bottom: none !important;
+  }
+  
+  .boardList a {
+    width: 635px;
+    height: 55px;
+    font-size: 32px;
+    color: rgb(54, 54, 54);
+    text-align: left;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+    .boardList a:hover {
+      color: salmon;
+    }
+
+
+  .boardContent {
+    float: right;
+  }
+
+  .boardContent span {
+    height: 20px;
+    border: 1px solid rgb(177, 177, 177);
+    padding: 4px 10px;
+    background-color: rgb(243, 243, 243);
+    color:rgb(56, 56, 56);
+    font-size: 18px;
+    filter: opacity(0.9);
+  }
+
+  .boardContent p {
+    display: inline-block;
+    font-size: 16px;
+    color:rgb(70, 70, 70);
+    margin-left: 15px;
+  }
+  
+  .pager {
+    width: 1300px;
+    height: 64px;
+    background-color: rgb(192, 192, 192);
+    text-align: center;
+    padding-top: 40px;
+  }
+
+  .btnBar {
+    width: 1300px;
+    height: 64px;
+}
+
+  .btnBar a {
+    font-size: 17px;
+    padding: 10px 20px;
+    border: 1px solid salmon;
+    border-radius: 5px;
+    float: right;
+    color: salmon;
+    font-weight: bold;
+  }
+
+  .btnBar a:hover {
+    background-color: salmon;
+    color: white;
+    transition: all 0.2s ease-in-out;
+  }
+
+  
+footer {
+    width: 1613px;
+    height: 250px;
+    background-color: rgb(56, 56, 56);
+    padding: 50px 160px 30px 130px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  #slogan {
+    width: 620px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-basis: 50px;
+    padding-bottom: 30px;
+    margin: 0;
+  }
+  
+  footer img {
+    filter: invert(0.5);
+    margin-bottom: 10px;
+  }
+  
+  footer p {
+    display: inline-block;
+    color: rgb(99, 99, 99);
+  }
+  
+  #footerMenu {
+    margin: 0;
+    width: 600px;
+  }
+  
+  #footerMenu ul {
+    margin: 0;
+    display: flex;
+    width: 600px;
+    padding-bottom: 30px;
+  }
+  
+  #footerMenu a {
+    color: rgb(99, 99, 99);
+  }
+  
+  #footerMenu a:hover {
+    color: salmon;
+  }
+  
+  .companyInfo {
+    margin-left: 15px;
+    width: 620px;
+  }
+  
+  #sns {
+    width: 500px;
+  }
+  
+  #sns ul {
+    display: flex;
+    position: absolute;
+    right: 160px;
+    bottom: 100px;
+  }
+  
+  #sns li:nth-child(2) {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  
+  #sns a {
+    padding: 25px 10px 10px 10px;
+    border: 1px solid rgb(99, 99, 99);
+    border-radius: 25%;
+    color: rgb(99, 99, 99);
+  }
+  
+  #sns a:visited {
+    color: rgb(99, 99, 99);
+  }
+  
+  #sns a:hover {
+    color: salmon;
+    border: 1px solid salmon;
+  }
+  
+  /*end: footer*/
+  
+  #topBtn {
+    background-color: white;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 3px 3px 3px rgb(182, 182, 182);
+    cursor: pointer;
+    bottom: 40px;
+    right: 40px;
+    position: fixed;
+  }
+
+  #topBtn p {
+    position: absolute;
+    text-align: center;
+    left: 19px;
+    top: 8px;
+    color:rgb(128, 128, 128);
+    font-size: 13px;
+  }
+   
+  #topBtn i {
+    color: salmon;
+  }
+
+/*end: #topBtn*/
+  

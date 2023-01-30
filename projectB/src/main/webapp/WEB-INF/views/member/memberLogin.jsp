@@ -44,7 +44,7 @@
           로그인
         </button>
         <ul class="subMenu">
-          <li><a href="#">회원가입</a></li>
+          <li><a href="<%=request.getContextPath()%>/member/memberJoin.do">회원가입</a></li>
           <li><a href="#">아이디 찾기</a></li>
           <li><a href="<%=request.getContextPath()%>/findPwd/findPwd-fir.do">비밀번호 찾기</a></li>
         </ul>

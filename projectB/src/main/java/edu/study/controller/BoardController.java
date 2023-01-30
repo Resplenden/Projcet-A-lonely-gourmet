@@ -35,24 +35,24 @@ public class BoardController {
 	private ReplyService replyService;
 	
 	//메소드 부분을 빼면 한번밖에 쓰지 못한다.
-	@RequestMapping(value="/list.do",method=RequestMethod.GET)
-	public String listSearch(SearchCriteria scri, Model model) {
-		
-		List<BoardVo> list = boardService.list(scri);
-		
-		model.addAttribute("list", list);
-		System.out.println(scri.toString());
-		for (BoardVo item : list)
-		{
-			System.out.println(item.getBidx());
-		}
-		
-		PageVo pageVo = new PageVo();
-		pageVo.setScri(scri);
-		pageVo.setTotalCount(boardService.listCount(scri));
-		model.addAttribute("page", pageVo);
-		
-		return "board/l";
+//	@RequestMapping(value="/list.do",method=RequestMethod.GET)
+//	public String listSearch(SearchCriteria scri, Model model) {
+//		
+//		List<BoardVo> list = boardService.list(scri);
+//		
+//		model.addAttribute("list", list);
+//		System.out.println(scri.toString());
+//		for (BoardVo item : list)
+//		{
+//			System.out.println(item.getBidx());
+//		}
+//		
+//		PageVo pageVo = new PageVo();
+//		pageVo.setScri(scri);
+//		pageVo.setTotalCount(boardService.listCount(scri));
+//		model.addAttribute("page", pageVo);
+//		
+//		return "board/l";
 		
 		/*
 		 * List<BoardVo> list = new ArrayList<BoardVo>();
@@ -73,36 +73,53 @@ public class BoardController {
 		 * list.add(vo3);
 		 * 
 		 * model.addAttribute("datalist", list);
-		 */
+		 */	
 		
 		
-		
-		
+	
+	@RequestMapping(value="/boardList.do", method=RequestMethod.GET)
+	public String list() {
+		return "board/boardList";
 	}
 	
-	@RequestMapping(value="/view.do",method=RequestMethod.GET)
-	public String view(int bidx, Model model) {	
-		//DB 상세데이터 조회
-		BoardVo vo = boardService.selectByBidx(bidx);
-		
-		model.addAttribute("vo", vo);
-		
-		List<ReplyVo> reply = null;
-		reply = replyService.list(bidx);
-		model.addAttribute("reply", reply);	
-		
-		return "board/v";
+//	@RequestMapping(value="/view.do",method=RequestMethod.GET)
+//	public String view(int bidx, Model model) {	
+//		//DB 상세데이터 조회
+//		BoardVo vo = boardService.selectByBidx(bidx);
+//		
+//		model.addAttribute("vo", vo);
+//		
+//		List<ReplyVo> reply = null;
+//		reply = replyService.list(bidx);
+//		model.addAttribute("reply", reply);	
+//		
+//		return "board/v";
+//	}
+//	
+	@RequestMapping(value="/noticeList.do", method=RequestMethod.GET)
+	public String notice() {
+		return "board/noticeList";
 	}
 	
-
+	@RequestMapping(value="/eventList.do", method=RequestMethod.GET)
+	public String event() {
+		return "board/eventList";
+	}
 	
+	@RequestMapping(value="/boardContent.do",method=RequestMethod.GET)
+	public String content() {
+		
+		return "board/boardContent";
+	}
 	
-	@RequestMapping(value="/write.do",method=RequestMethod.GET)
+	@RequestMapping(value="/boardWrite.do",method=RequestMethod.GET)
 	public String write() {
 		
-		return "board/w";
+		return "board/boardWrite";
 	}
 	//가상경로당 메소드 하나기 때문에 한번에 RequestMapping를 할수 없다.
+	
+	
 	
 	@RequestMapping(value="/write.do",method=RequestMethod.POST)
 	public String write(BoardVo vo, HttpSession session) {//매개변수과 같이 같아야 한다.

@@ -13,10 +13,6 @@ import edu.study.service.KakaoService;
 
 
 
-
-
-
-
 @RequestMapping(value="/member")
 @Controller
 public class KakaoController {
@@ -38,5 +34,6 @@ public class KakaoController {
 		return "redirect:/";
 	
 	}
+
 	
 }

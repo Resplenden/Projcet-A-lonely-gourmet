@@ -126,5 +126,6 @@ public class mainController {
 		return "";
 		// origin은 upload기준 파일명 real은 실제 저장한 파일명
 	}
+
 	
 }
