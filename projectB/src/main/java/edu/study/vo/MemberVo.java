@@ -4,15 +4,18 @@ public class MemberVo {
 	
 	private int midx;
 	private String id;
-	private String password;
+	private String pwd;
 	private String name;
-	private String birthday;
-	private String phone;
+	private String birth;
 	private String nickname;
-	private String email;
-	private String rdate;
-	private String delyn;
 	private String gender;
+	private String email;
+	private String phone;
+	private String orgname;
+	private String wdate;
+	private String delyn;
+	private String stname;
+	
 	public int getMidx() {
 		return midx;
 	}
@@ -25,11 +28,11 @@ public class MemberVo {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getName() {
 		return name;
@@ -37,17 +40,11 @@ public class MemberVo {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getBirthday() {
-		return birthday;
+	public String getBirth() {
+		return birth;
 	}
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setBirth(String birth) {
+		this.birth = birth;
 	}
 	public String getNickname() {
 		return nickname;
@@ -55,17 +52,35 @@ public class MemberVo {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getRdate() {
-		return rdate;
+	public String getPhone() {
+		return phone;
 	}
-	public void setRdate(String rdate) {
-		this.rdate = rdate;
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getOrgname() {
+		return orgname;
+	}
+	public void setOrgname(String orgname) {
+		this.orgname = orgname;
+	}
+	public String getWdate() {
+		return wdate;
+	}
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
 	}
 	public String getDelyn() {
 		return delyn;
@@ -73,19 +88,22 @@ public class MemberVo {
 	public void setDelyn(String delyn) {
 		this.delyn = delyn;
 	}
-	public String getGender() {
-		return gender;
+	public String getStname() {
+		return stname;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setStname(String stname) {
+		this.stname = stname;
 	}
 	
 	@Override
 	public String toString() {
-		return "MemberVo [midx=" + midx + ", id=" + id + ", password=" + password + ", name=" + name + ", birthday="
-				+ birthday + ", phone=" + phone + ", nickname=" + nickname + ", email=" + email + ", rdate=" + rdate
-				+ ", delyn=" + delyn + ", gender=" + gender + "]";
+		return "MemberVo [midx=" + midx + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", birth=" + birth
+				+ ", nickname=" + nickname + ", gender=" + gender + ", email=" + email + ", phone=" + phone
+				+ ", orgname=" + orgname + ", wdate=" + wdate + ", delyn=" + delyn + ", stname=" + stname + "]";
 	}
+	
+	
+	
 	
 	
 	

@@ -57,6 +57,18 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.join(vo);
 	}
 
+	@Override
+	public MemberVo login(MemberVo vo) {
+		
+		return memberDAO.login(vo);
+	}
+
+	@Override
+	public MemberVo find_id(MemberVo vo) {
+		
+		return memberDAO.find_id(vo);
+	}
+
 	
 	
 	

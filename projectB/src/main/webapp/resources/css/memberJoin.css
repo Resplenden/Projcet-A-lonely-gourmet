@@ -83,7 +83,7 @@ form ul {
     text-align: left;
 }
 
-.id {
+.id, .nickname,  .email{
     display: inline-block;
     padding: 10px;
     font-size: 16px;
@@ -91,32 +91,24 @@ form ul {
     height: 30px;
 }
 
-.idCheck {
+.idCheck,.nickCheck, .emailCheck {
     margin-left: 13px;
     padding: 15px 10.5px 15px 10.5px;
     font-size: 14px;
 }
 
-.idCheck p {
+.idCheck p, .nickCheck p, .emailCheck p{
     margin: 0;
     padding: 0;
     font-size: 15px;
 }
 
 
-.password, .passwordCfm, .name, .nickname, .birthday, .email {
+.password, .passwordCfm, .name, .birthday, .phone  {
     display: inline-block;
     padding: 10px;
     font-size: 16px;
     width: 326px;
-    height: 30px;
-}
-
-.phone {
-    display: inline-block;
-    padding: 10px;
-    font-size: 16px;
-    width: 82.5px !important;
     height: 30px;
 }
 
