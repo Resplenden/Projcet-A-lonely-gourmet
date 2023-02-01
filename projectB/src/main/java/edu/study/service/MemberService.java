@@ -22,4 +22,9 @@ public interface MemberService {
 	int nameCheck(String name);
 	
 	int emailCheck(String email);
+	
+	MemberVo login(MemberVo vo); //로그인
+	
+	MemberVo find_id(MemberVo vo); //아이디찾기
+	
 }

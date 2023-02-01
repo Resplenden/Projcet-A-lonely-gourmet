@@ -16,7 +16,7 @@
 	 
 	<update id = "updatePw" parameterType="memberVo">
 		UPDATE member
-		SET password=#{password} 
+		SET pwd=#{pwd} 
 		WHERE email= #{email}
 	</update>
 	 	 	 
@@ -37,6 +37,59 @@
 			FROM member 
 			WHERE email= #{email}
 	</select>	
+	
+	<select id="nickCheck" parameterType="String" resultType="int">
+		SELECT COUNT(nickname) 
+			FROM member 
+			WHERE nickname= #{nickname}
+	</select> 
+	
+	<!-- 로그인  -->
+	<select id="login" parameterType="memberVo" resultType="memberVo">
+		SELECT id
+			,pwd
+			,name
+		FROM member
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="memberVo">
+		INSERT INTO member (
+			midx
+			,id
+			,pwd
+			,name
+			,birth
+			,nickname
+			,gender	
+			,email
+			,phone
+			,wdate
+			,delyn
+			) VALUES (
+				midx_seq.nextval
+				,#{id}
+				,#{pwd}
+				,#{name}
+				,#{birth}
+				,#{nickname}
+				,#{gender}
+				,#{email}
+				,#{phone}
+				,sysdate	
+				,'N'
+			)
+	</insert>
+	
+	<!-- 아이디 찾기 -->
+	<select id="find_id" parameterType="String" resultType="memberVo">
+		SELECT id
+			FROM member
+			WHERE name = #{name}
+			AND email = #{email}
+	</select>
+	
 	 
 	 
 </mapper>
