@@ -36,8 +36,8 @@ public class findPwdController {
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
 	
-	/* 아이디 찾기 */
-	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) /*아이디 찾기 홈페이지로 넘어감*/
+	/* �븘�씠�뵒 李얘린 */
+	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) /*�븘�씠�뵒 李얘린 �솃�럹�씠吏�濡� �꽆�뼱媛�*/
 	public String find_id() {
 
 		return "findPwd/find_id";
@@ -93,17 +93,17 @@ public class findPwdController {
 				
 		if(vo != null) {
 		Random r = new Random();
-		int num = r.nextInt(999999); // ������������
+		int num = r.nextInt(999999); // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
 		
 		if (vo.getName().equals(name)&vo.getId().equals(id)) {
 			session.setAttribute("email", vo.getEmail());
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("name", vo.getName());
 			String setfrom = "kbs5697@naver.com"; // naver 
-			String tomail = vo.getEmail(); //�޴»��
-			String title = "��й�ȣ���� ���� �̸��� �Դϴ�"; 
-			String content = System.getProperty("line.separator") + "�ȳ��ϼ��� ȸ����" + System.getProperty("line.separator")
-					+ "��й�ȣã��(����) ������ȣ�� " + num + " �Դϴ�." + System.getProperty("line.separator"); // 
+			String tomail = vo.getEmail(); //占쌨는삼옙占�
+			String title = "비밀번호변경 인증 이메일 입니다"; 
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
+					+ "비밀번호찾기(변경) 인증번호는 " + num + " 입니다" + System.getProperty("line.separator"); // 
 
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
@@ -149,7 +149,7 @@ public class findPwdController {
 			else {
 				return "findPwd/findPwd-sec";
 			}
-	} //�̸��� ������ȣ Ȯ��
+	} //占싱몌옙占쏙옙 占쏙옙占쏙옙占쏙옙호 확占쏙옙
 	
 	@RequestMapping(value = "/findPwd-thd.do", method = RequestMethod.POST)
 	public String pw_new(MemberVo vo, HttpSession session){
