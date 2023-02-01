@@ -43,8 +43,8 @@ public class memberController {
 		System.out.println("passMatch"+passMatch);
 		
 		if (loginVO != null && passMatch) {
-			//성공
-			//일치하는 회원 정보가 있다면 회원 정보를 세션에 담는다
+			//�꽦怨�
+			//�씪移섑븯�뒗 �쉶�썝 �젙蹂닿� �엳�떎硫� �쉶�썝 �젙蹂대�� �꽭�뀡�뿉 �떞�뒗�떎
 			model.addAttribute("msg", true);
 			session.setAttribute("login", loginVO);
 			
@@ -58,7 +58,7 @@ public class memberController {
 		
 	}
 	
-	/* 로그아웃 */
+	/* 濡쒓렇�븘�썐 */
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -76,16 +76,16 @@ public class memberController {
 	public String join(MemberVo vo) {
 		
 		String inputPwd = vo.getPwd();
-		String pwd = passEncoder.encode(inputPwd); //암호화
+		String pwd = passEncoder.encode(inputPwd); //�븫�샇�솕
 		
-		vo.setPwd(pwd); //vo에 저장
+		vo.setPwd(pwd); //vo�뿉 ���옣
 
-		memberService.join(vo); //db에 보낸다
+		memberService.join(vo); //db�뿉 蹂대궦�떎
 		
 		return "member/memberLoin";
 	}
 	
-	/*  중복검사  */
+	/*  以묐났寃��궗  */
 	@ResponseBody
 	@RequestMapping(value="/checkId.do", method=RequestMethod.POST)
 	public String checkId(String id) {
@@ -98,7 +98,7 @@ public class memberController {
 		}
 	} 
 	
-	/* 닉네임 중복검사 */
+	/* �땳�꽕�엫 以묐났寃��궗 */
 	@ResponseBody
 	@RequestMapping(value="/checkNick.do", method=RequestMethod.POST)
 	public String checkNick(String nickname) {
@@ -111,7 +111,7 @@ public class memberController {
 		}
 	}
 	
-	/* 이메일 중복검사 */
+	/* �씠硫붿씪 以묐났寃��궗 */
 	@ResponseBody
 	@RequestMapping(value="/checkEmail.do", method=RequestMethod.POST)
 	public String checkEmail(String email) {
