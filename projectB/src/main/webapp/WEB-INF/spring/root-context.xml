@@ -26,7 +26,7 @@
 		<property name="host" value="smtp.naver.com" />
 		<property name="port" value="465" />
 		<property name="username" value="kbs5697" />
-		<property name="password" value="rla18854" />
+		<property name="password" value="rla18854#" />
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="javaMailProperties">
 			<props>
