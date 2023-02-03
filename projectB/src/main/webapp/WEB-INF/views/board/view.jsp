@@ -181,7 +181,7 @@
   	function modifyBtn(ridx,content){
 
   		var reply = "";
-  		reply += "<textarea rows='3' cols='30' name='replyContent' class='reply'>";
+  		reply += "<textarea rows='3' cols='30' name='replyContent' class='commentWrite reply'>";
   		reply += content;
   		reply += "</textarea><br>";
   		reply += "<button type='button' class='reply' onclick='modifyReply(";
@@ -242,7 +242,7 @@
   			location.href="/member/memberLogin.do";
   		}
   		var rereply="";
-  		rereply += "<textarea rows='3' cols='30' id='rereplyContent' class='rereply' placeholder='답글 폼 생성'></textarea><br>";
+  		rereply += "<textarea rows='3' cols='30' id='rereplyContent' class='commentWrite rereply' placeholder='답글 폼 생성'></textarea><br>";
   		rereply += "<button type='button' class='rereply' onclick='rereplyWrite(";
   		rereply += ridx;
   		rereply += ",";
