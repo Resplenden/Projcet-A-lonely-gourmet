@@ -58,7 +58,7 @@ public class memberController {
 		loginVO.setMidx(loginVo2.getMidx());
 		loginVO.setOrgname(loginVo2.getOrgfilename());
 		loginVO.setStname(loginVo2.getStoredname());
-		System.out.println("vo : "+loginVO);
+		System.out.println("vo : "+ vo);
 		System.out.println("vo2 : "+ loginVo2);
 		System.out.println("passMatch"+passMatch);
 		

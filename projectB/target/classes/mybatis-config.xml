@@ -11,6 +11,12 @@
 		<typeAlias type="edu.study.vo.ReplyVo" alias = "replyVo" />	
 		<typeAlias type="edu.study.vo.MemberVo" alias = "memberVo" />
 		<typeAlias type="edu.study.vo.MemberFileVo" alias = "mfileVo" />				
+		<typeAlias type="edu.study.vo.ReplyLikeVo" alias="replyLikeVo"/>
+		<typeAlias type="edu.study.vo.ReplyPageMaker" alias="replyPageMaker"/>
+		<typeAlias type="edu.study.vo.PageMaker" alias="pageMaker"/>
+		<typeAlias type="edu.study.vo.SearchVo" alias="searchVo"/>
+		<typeAlias type="edu.study.vo.LikeVo" alias="likeVo"/>		
+
     </typeAliases>	
 </configuration>
 

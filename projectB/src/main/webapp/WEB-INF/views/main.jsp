@@ -67,7 +67,7 @@
       <div id="bottMenu">
         <ul>
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/boardList.do">자유게시판</a></li>
+          <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
           <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
           <li><a href="<%=request.getContextPath()%>/board/eventList.do">이벤트</a></li>
         </ul>

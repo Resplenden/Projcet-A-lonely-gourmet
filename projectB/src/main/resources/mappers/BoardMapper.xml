@@ -2,99 +2,186 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
 <mapper namespace="edu.study.mapper.boardMapper">
- 	<select id="list" parameterType="scri" resultType="boardVo">
- 		SELECT bidx
- 			, title
- 			, content
- 			, wdate
- 			, hit
- 			, uidx
- 			, delyn
- 			FROM boardtb
- 			WHERE bidx = ${bidx}
- 			AND delyn = 'N' 
- 	</select>
-	 
-	 
-	<select id="listCount" resultType="int">
-		SELECT COUNT(bidx)
-			FROM boardtb
-			<include refid="search"></include>
-			WHERE bidx>0
-	</select> 
 	
-	<select id="listSearch" parameterType="scri" resultType="boardVo">
-			 	
-	 	SELECT * FROM (
-	 	SELECT ROWNUM AS rnum, A.* FROM (
-	 	SELECT * FROM boardtb
-	 		<include refid="search"></include>
-	 		ORDER BY BIDX DESC
-	 	) A
-	 	) WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-	</select>
-		
+	<!-- 검색 조건 -->
 	<sql id="search">
-		<if test="searchType == 'title'">where title like '%'||#{keyWord}||'%'</if>	
-		<if test="searchType == 'content'">where content like '%'||#{keyWord}||'%'</if>
+		<if test="searchType == 'title'">
+		and title like '%'||#{searchVal}||'%'
+		</if>
+		<if test="searchType == 'writer'">
+		and writer like '%'||#{searchVal}||'%'
+		</if>
+		<if test="searchType == 'content'">
+		and content like '%'||#{searchVal}||'%'
+		</if>
 	</sql>
-	 
-	 <select id="selectByBidx" parameterType="int" resultType="boardVo">
-		 SELECT bidx
-		 		, title
-		 		, content
-		 		, wdate
-		 		, hit
-		 		, uidx
-		 		, delyn
-		 	FROM boardtb
-		 	WHERE bidx = #{bidx}
-	 </select>
-	 
-	 <insert id="insert" parameterType="boardVo">
-	 	<![CDATA[
-	 	INSERT INTO boardtb(	
-	 		bidx
-	 		, title
-	 		, content
-	 		, wdate
-	 		, hit
-	 		, uidx
-	 		, delyn
-	 		)VALUES(
-	 			bidx_seq.nextval
-	 			, #{title}
-	 			, #{content}
-	 			, sysdate
-	 			, 0
-	 			, #{uidx} 
-	 			, 'N'
-	 )	 
-	 ]]>
-	  <selectKey  resultType="int" keyProperty="bidx" order="AFTER">
-	 	SELECT MAX(bidx)
-	 		from boardtb
-	 </selectKey>	
-	 </insert>
-	 	 
-	 <update id="updateByBidx" parameterType="boardVo" >
-	 	UPDATE boardtb
-	 		SET title = #{title}
-	 			, content = #{content}
-	 		WHERE bidx = #{bidx}
-	 </update>
-	 
-	 <update id="delete" parameterType="boardVo">
-	 	<![CDATA[
-		 	UPDATE boardtb
-		 		SET DELYN = 'Y'
-		 		WHERE bidx = #{bidx}
-		 		
-		 ]]> 		
-	 </update>
-	 
-	 
-	 
+	
+	<!-- 카테고리 변경 -->
+	<sql id="category">
+		<if test="category == '자유'">
+		and category = '자유'
+		</if>
+		<if test="category == '후기'">
+		and category = '후기'
+		</if>
+	</sql>
+	
+	<!-- 순서 변경 -->
+	<sql id="order">
+		<if test="order == '최신순' ">
+		</if>
+		<if test="order == '조회순'">
+		hit desc,
+		</if>
+		<if test="order == '댓글순'">
+		replyCnt desc,
+		</if>
+		<if test="order == '추천순'">
+		likeCnt desc,
+		</if>
+	</sql>
+	
+  	<!-- 글 목록 + 페이징 -->
+  	<select id="listPage" parameterType="searchVo" resultType="boardVo">
+	
+		SELECT * FROM(
+		SELECT ROWNUM as RN,A.* FROM (
+		select * from board
+		where 1=1
+		<include refid="search"></include>
+		<include refid="category"></include>
+		order by <include refid="order"></include>bidx desc
+		)A
+		)WHERE RN between #{start} and #{end}
+ 	</select>
+	
+	<!-- 검색조건에 맞는 게시물 총 갯수 조회 -->
+	<select id="count" parameterType="searchVo" resultType="int">
+		select count(*)
+		  from board
+		  where 1=1
+		  <include refid="search"></include>
+		  <include refid="category"></include>
+	</select>
+	
+  	<!-- 글쓰기  -->
+  	<insert id="write" parameterType="boardVo">
+  		insert into board(
+  				bidx
+  			,	title
+  			,	content
+  			,	writer
+  			,	category
+  			,	hit
+  			,	likeCnt
+  			,	midx
+  			,	filename
+  			,	wdate
+  			,	delyn
+  		)values(
+  				bidx_seq.nextval
+  			,	#{title}
+  			,	#{content}
+  			,	#{writer}
+  			,	#{category}
+  			,	#{hit}
+  			,	#{likeCnt}
+  			,	#{midx}
+  			,	#{filename}
+  			,	sysdate
+  			,	'N'
+  		)
+  	</insert>
+
+	<!-- 글번호 선택하기 -->
+	<select id="selectByBidx" parameterType="int" resultType="boardVo">
+		select *
+  		 from  board
+  		where  bidx = #{bidx}
+	</select>
+
+	<!-- 조회수  -->
+	<update id="hitCnt" parameterType="int">
+		update board
+		set hit = hit+1
+		where bidx = #{bidx}
+	</update>
+
+	<!-- 글 수정하기 -->
+	<update id="updateByBidx" parameterType="boardVo">
+		update board
+		   set title = #{title}
+			,  content = #{content}
+			,  category = #{category}
+		where  bidx = #{bidx}
+	</update>
+
+	<!-- 글 삭제하기 -->
+	<delete id="deleteByBidx" parameterType="int">
+		delete 
+		 from board
+		 where bidx = #{bidx}
+	</delete>
+
+	<!-- 게시글 추천 클릭시 boardtb의 likeCnt 업데이트 -->
+	<update id="updateLikeCnt" parameterType="int">
+		update board
+		   set likeCnt = likeCnt+1
+		 where bidx = #{bidx}
+	</update>	
+ 	
+ 	<!-- 게시글 비추천 클릭시 boardtb의 hateCnt 업데이트 -->
+	<update id="updateHateCnt" parameterType="int">
+		update board
+		   set hateCnt = hateCnt+1
+		 where bidx = #{bidx}
+	</update>	
+
+	<!-- 추천이나 비추천 클릭시 liketb에 insert -->
+	<insert id="insertLiketb" parameterType="likeVo">
+		insert into liketb(
+				lidx
+			,	id
+			,	bidx
+		)values(
+				lidx_seq.nextval
+			,	#{id}
+			,	#{bidx}
+		)
+	</insert>
+
+	<!-- 추천 클릭시 likeCheck를 1로 만들어서 중복 방지 -->
+	<update id="updateByLikeCheck" parameterType="likeVo">
+		update liketb
+		   set likeCheck = 1
+		 where bidx = #{bidx}
+		   and id = #{id}
+ 	</update>
+
+	<!-- 비추천 클릭시 hateCheck를 1로 만들어서 중복 방지 -->
+	<update id="updateByHateCheck" parameterType="likeVo">
+		update liketb
+		   set hateCheck = 1
+		 where bidx = #{bidx}
+		   and id = #{id}
+ 	</update>
+
+ 	<!-- 게시글 추천 or비추천 중복방지 -->
+ 	<select id="likeCheck" parameterType="likeVo" resultType="int">
+ 		select count(*)
+ 		  from liketb
+ 		 where bidx = #{bidx}
+ 		   and id = #{id}
+ 	</select>
+
+ 	<!-- 댓글 개수 수정 -->
+ 	<update id="updateReplyCnt" parameterType="int">
+ 		update board
+ 		   set replyCnt = (select count(ridx) from replytb where bidx = #{bidx})
+ 		 where bidx = #{bidx}
+ 	</update>
+	
 </mapper>
+	

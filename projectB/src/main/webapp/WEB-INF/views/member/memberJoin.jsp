@@ -211,6 +211,10 @@
 				$("#id").focus();
 				checkIdFlag = false;
 				return false;
+<<<<<<< HEAD
+=======
+				
+>>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 			} else if(!checkIdFlag) {
 				alert("아이디 중복확인을 해주세요.");
 				checkIdFlag = false;

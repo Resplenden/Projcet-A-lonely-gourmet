@@ -53,6 +53,8 @@
 			,nickname
 			,stname
 	 		,orgname
+			,nickname
+			,midx
 		FROM member
 		WHERE id = #{id}
 		
