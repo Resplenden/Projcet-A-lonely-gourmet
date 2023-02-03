@@ -153,7 +153,14 @@ public class findPwdController {
 	
 	@RequestMapping(value = "/findPwd-thd.do", method = RequestMethod.POST)
 	public String pw_new(MemberVo vo, HttpSession session){
+		
+		String inputPwd = vo.getPwd();
+		String pwd = passEncoder.encode(inputPwd); //암호화
+		
+		vo.setPwd(pwd); //vo에 저장
+		
 		int result = memberService.updatePw(vo);
+		
 		if(result == 1) {
 			
 			return "redirect:/";
