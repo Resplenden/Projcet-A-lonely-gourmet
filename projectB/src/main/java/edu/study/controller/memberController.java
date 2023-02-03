@@ -82,7 +82,7 @@ public class memberController {
 
 		memberService.join(vo); //db�뿉 蹂대궦�떎
 		
-		return "member/memberLoin";
+		return "member/memberLogin";
 	}
 	
 	/*  以묐났寃��궗  */
@@ -123,8 +123,6 @@ public class memberController {
 			return "0";
 		}
 	}
-	
-	
 	
 	
 	

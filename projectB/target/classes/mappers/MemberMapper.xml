@@ -49,6 +49,7 @@
 		SELECT id
 			,pwd
 			,name
+			,nickname
 		FROM member
 		WHERE id = #{id}
 	</select>

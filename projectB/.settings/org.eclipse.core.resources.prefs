@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/java/edu/study/controller/findPwdController.java=UTF-8
+=======
+>>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 encoding//src/main/java/edu/study/controller/memberController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/board/noticeList.jsp=UTF-8

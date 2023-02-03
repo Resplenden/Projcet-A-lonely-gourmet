@@ -11,6 +11,11 @@
       rel="shortcut icon"
     />
     <!--파비콘-->
+      <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
+    />
+    <!--카메라 버튼 아이콘-->
     <link href="${pageContext.request.contextPath}/resources/css/memberJoin.css" rel="stylesheet" />
 
 	<script>
@@ -33,49 +38,66 @@
       </a>
       <form action="join.do" method="post">
         <ul>
+          <li id="prof">
+            <label for="profile"></label><br />
+            <div class="memberImage">
+              <label class="profileImg" for="profileImg">
+                <i class="xi-camera xi-2x"></i>
+              </label>
+              <input type="file" id="profileImg" />
+            </div>
+            <!--div: 프로필 이미지가 들어갈 자리-->
+            <!--label: 파일 찾기 버튼을 감싸는 태그-->
+            <!--iTag: 아이콘 태그-->
+          </li>
           <li>
-            <label for="id">아이디</label><br />
+            <label for="id">아이디<br /><br />
             <input type="text" id="id" name="id" class="id" />
             <button type="button" name="idCheck" class="idCheck" onclick="checkId()">
               <p>중복확인</p>
             </button>
+            </label>
             <span id="id_check"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="pwd">비밀번호</label><br />
+            <label for="pwd">비밀번호<br /><br />
             <input type="password" id="pwd" name="pwd" class="password" />
+            </label>
             <span id="pwd_check" class="error_msg"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="pwdCfm">비밀번호 확인</label><br />
+            <label for="pwdCfm">비밀번호 확인<br /><br />
             <input type="password" id ="pwdCfm" name="pwdCfm" class="passwordCfm" />
+            </label>
           	<span id="pwdCk_check" class="error_msg"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="name">이름</label><br />
+            <label for="name">이름<br /><br />
             <input type="text" id="name" name="name" class="name" />
+            </label>
             <span id="name_check" class="error_msg"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="nickname">닉네임</label><br />
+            <label for="nickname">닉네임<br /><br />
             <input type="text" id="nickname" name="nickname" class="nickname" />
              <button type="button" name="nickCheck" class="nickCheck" onclick="checkNick()">
               <p>중복확인</p>
             </button>
+            </label>
           	<span id="nick_check" class="error_box"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="birth">생일</label><br />
+            <label for="birth">생일<br /><br />
             <input
               type="date"
               name="birth"
@@ -85,34 +107,47 @@
               min="1910-01-01"
               value="sysdate"
             />
+            </label>
             <span id="birth_check" class="error_msg"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="gender">성별</label><br />
+            <label for="gender">성별<br /><br />
             <select name="gender" class="gender" id="gender">
               <option value="">선택하세요</option>
               <option value="man">남자</option>
               <option value="woman">여자</option>
               <option value="notSelect">선택 안함</option>
             </select>
+            </label>
           </li>
           <br />
           <br />
           <li>
-            <label for="phone">연락처</label><br />
-            <input type="tel" id="phone" name="phone" class="phone" placeholder="- 없이 번호를 입력하세요. (ex: 01012345678)"/>
+            <label for="phone">연락처<br /><br />
+            <input type="text" id="phone" name="phone" class="phone" placeholder="(ex: 01012345678)"/>
+            <button type="button" onclick="phChk()" class="phoneCheck"><p>인증번호 전송</p></button><br>
+            </label>
           	<span id="phone_check" class="error_msg"></span>
           </li>
           <br />
           <br />
           <li>
-            <label for="email">이메일</label><br />
-            <input type="email" id="email" name="email" class="email" />
+          <label for="phone2">인증번호<br /><br />
+          <input type="text" name="phone2" id="phone2" class="phone2">
+          <button type="button" onclick="phChk2()" id="phoneChk" class="phone2Check"><p>인증하기</p></button>
+			</label>          
+          </li>
+            <br />
+          <br />
+          <li>
+            <label for="email">이메일<br /><br />
+            <input type="email" id="email" name="email" class="email" placeholder="(ex: example@email.com)"/>
              <button type="button" name="emailCheck" class="emailCheck" onclick="checkEmail()">
               <p>중복확인</p>
             </button>
+            </label>
             <span id="email_check" class="error_box"></span>
           </li>
           <br />
@@ -155,9 +190,7 @@
   var checkPwdFlag = false;
   var checkpwdCfmFlag = false;
   var checkNameFlag = false;
-  var checkPhone1Flag = false;
-  var checkPhone2Flag = false;
-  var checkPhone3Flag = false;
+  var checkPhoneFlag = false;
   var checkBirthFlag = false;
   var checkNickFlag = false;
   var checkEmailFlag = false;
@@ -179,7 +212,7 @@
 				checkIdFlag = false;
 				return;
 			} else if(!checkIdFlag) {
-				alert("아이디 중복확인을 하세요");
+				alert("아이디 중복확인을 해주세요.");
 				checkIdFlag = false;
 				return false;
 			}
@@ -207,7 +240,7 @@
 			/* 이름 */
 			var name = $.trim($("#name").val());
 			if(name == "") {
-				alert("이름을 입력하세요");
+				alert("이름을 입력하세요.");
 				$("#name").focus();
 				checkNameFlag = false;
 				return false;
@@ -216,11 +249,11 @@
 			/* 닉네임  */
 			var nick = $.trim($("#nickname").val());
 			if(nick == "") {
-				alert("닉네임을 입력하세요");
+				alert("닉네임을 입력하세요.");
 				checkNickFlag = false;
 				return false;
 			} else if(!checkNickFlag) {
-				alert("닉네임 중복확인을 하세요");
+				alert("닉네임 중복확인을 해주세요.");
 				checkNickFlag = false;
 				return false;
 			} 
@@ -246,7 +279,7 @@
 			
 			
 			if(phone == "") {
-				alert("핸드폰 번호를 입력하세요");
+				alert("핸드폰 번호를 입력하세요.");
 				checkPhoneFlag = false;
 				return false;
 			} 
@@ -254,11 +287,11 @@
 			/* 이메일 */
 			var email = $("#email").val();
 			if(email == "") {
-				alert("이메일을 입력하세요");
+				alert("이메일을 입력하세요.");
 				checkEmailFlag = false;
 				return false;
 			} else if(!checkEmailFlag) {
-				alert("이메일 중복확인을 하세요");
+				alert("이메일 중복확인을 해주세요.");
 				checkEmailFlag = false;
 				return false;
 			} 
@@ -296,12 +329,7 @@ function checkId(){
 				checkIdFlag = true;
 				checkIdVal = idval;
 				
-			} /*if(data == 0 && idval == "") {
-				alert("아이디를 입력해주세요.");
-				id.focus();
-				checkIdFlag = false;
-				checkIdVal = "";
-			}*/
+			}
 
 		}
 	});	
@@ -352,9 +380,11 @@ function checkNick(){
 					$('#email_check').css('color', 'red');
 					checkEmailFlag = false;
 					checkEmailVal ="";
-					$("#nickname").focus();
+					$("#email").focus();
 					return;
 				} else {
+					$('#email_check').text("사용가능한 이메일입니다.");
+					$('#email_check').css('color', 'green');
 					checkEmailFlag = true;
 					checkEmailVal = emailVal;
 				}
@@ -368,7 +398,7 @@ $('#id').on(function(){
 	var id =  $("#id").val();
 	 
 	if(id == "") {
-		$('#id').text('id를 입력하세요');
+		$('#id').text('id를 입력하세요.');
 	    $('#id_check').css('color', 'red');
 	    $("#id").focus();
 	    return;
@@ -383,7 +413,7 @@ $("#id").on("input",function(){
 	
 	if(id == null) {
 		//아이디가 공백일 경우
-		$('#id_check').text('아이디를 입력해주세요');
+		$('#id_check').text('아이디를 입력해주세요.');
 		$('#id_check').css('color', 'red');
 		checkIdFlag = false; //아이디를 체크했는지 확인하는 변수
 	} else {
@@ -392,11 +422,11 @@ $("#id").on("input",function(){
 		if (idReg.test($(this).val())) {
 			//이름이 형식에 맞다면
 			console.log(idReg.test($(this).val()));
-			$("#id_check").text("사용가능한 id입니다. 중복체크를 해주세요");
+			$("#id_check").text("사용가능한 id입니다. 중복체크를 해주세요.");
 			checkIdFlag = true; 
 		} else {
 			//아이디가 형식에 맞지 않은 경우
-			$('#id_check').text('아이디는 4~10자 소문자, 숫자를 사용하세요');
+			$('#id_check').text('아이디는 4~10자 소문자, 숫자를 사용하세요.');
 			$('#id_check').css('color', 'red');
 			//$("#id").focus();
 			checkIdFlag = false;
@@ -432,21 +462,21 @@ $("#pwd").blur(function(){
 	var pwdReg =/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,8}$/;
 	
 	if(pwd == null) {
-		//아이디가 공백일 경우
-		$('#pwd_check').text('비밀번호를 입력해주세요');
+		//비밀번호가 공백일 경우
+		$('#pwd_check').text('비밀번호를 입력해주세요.');
 		$('#pwd_check').css('color', 'red');
 		checkPwdFlag = false; //아이디를 체크했는지 확인하는 변수
 	} else {
-		//아이디 입력
+		//비밀번호 입력
 		//정규식 검사를 함
 		if (pwdReg.test($(this).val())) {
 			//alert("알맞은 형식입니다");
-			//이름이 형식에 맞다면
+			//비밀번호가 형식에 맞다면
 			checkPwdFlag = true; 
 		} else {
-			//아이디가 형식에 맞지 않은 경우
+			//비밀번호가 형식에 맞지 않은 경우
 			//alert("비밀번호는 4자리 이상 8자리 소문자,숫자, 특수문자를 이용해 만들어주세요");
-			$('#pwd_check').text('비밀번호는 4자리 이상 8자리 소문자,숫자, 특수문자를 이용해 만들어주세요');
+			$('#pwd_check').text('비밀번호는 4자리 이상 8자리 소문자, 숫자, 특수문자를 이용해 만들어주세요.');
 			$('#pwd_check').css('color', 'red');
 			//$("#pwd").focus();
 			checkPwdFlag = false;
@@ -465,7 +495,7 @@ $("#name").blur(function(){
 			
 	if(name == "") {
 		//이름을 입력했는지
-		$('#name_check').text('이름을 입력해주세요');
+		$('#name_check').text('이름을 입력해주세요.');
 		$('#name_check').css('color', 'red');
 	} else {
 		//이름을 입력
@@ -475,7 +505,7 @@ $("#name").blur(function(){
 			$("#name_check").text('');
 		} else {
 			//이름이 형식에 맞지 않은 경우
-			$('#name_check').text('이름을 확인해주세요');
+			$('#name_check').text('이름을 확인해주세요.');
 			$('#name_check').css('color', 'red');
 			$("#name").focus();
 			checkNameFlag = false;
@@ -487,8 +517,8 @@ $("#name").blur(function(){
 //생년월일
 
 //핸드폰번호
-$("#phone1").blur(function(){
-	var phone = $("#phone1").val();
+$("#phone").blur(function(){
+	var phone = $("#phone").val();
 
 	var phoneReg = /^01\d\d{3,4}\d{4}$/;
 
@@ -499,7 +529,7 @@ $("#phone1").blur(function(){
 		checkPhoneFlag = true;
 	} else {
 		//alert("형식에 맞지 않습니다");
-		$('#phone_check').text('번호를 확인해주세요');
+		$('#phone_check').text('번호를 확인해주세요.');
 		$('#phone_check').css('color', 'red');
 		checkPhone1Flag = false;
 		$("#phone").focus();
@@ -522,11 +552,11 @@ $("#email").blur(function(){
 		
 	} else {
 		//alert("형식에 맞지 않습니다");
-		$('#email_check').text('이메일을 확인해주세요');
+		$('#email_check').text('이메일을 확인해주세요.');
 		$('#email_check').css('color', 'red');
 		$("#email").focus();
 		checkEmailFlag = false;
-		return;
+		return;ㄴ
 	}	
 });
 
