@@ -46,11 +46,21 @@
           </button>
         </div>
         <!--end: #searchBar-->
+        <c:if test="${login == null}">
         <div class="loginInfo">
           <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
           <a href="<%=request.getContextPath()%>/member/memberJoin.do" class="join"><p>회원가입</p></a>
         </div>
         <!--end:.loginInfo-->
+        </c:if>
+        <c:if test="${login != null}">
+        <div class="loginInfo">
+                  <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 환영합니다!</p>
+          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+        </div>
+        <!--end:.loginInfo-->
+        </c:if>
       </div>
       <!--end: #topMenu-->
       <hr />

@@ -30,26 +30,25 @@ body {
     outline: none;
     border: 2px solid rgb(250, 71, 48);
     border-radius: 3px;
-    background-color: rgb(255, 247, 237);
   }
 
   select:focus {
     outline: none;
     border: 2px solid rgb(250, 71, 48);
     border-radius: 3px;
-    background-color: rgb(255, 247, 237);
   }
 
 #inner {
     width: 600px;
-    height: 1650px;
+    min-height: 2300px;
+    max-height: 3000px;
     margin: 0 auto;
   }
 
 img {
     margin-top: 70px;
     margin-left: 143px;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
   }
 
   button {
@@ -58,7 +57,7 @@ img {
     font-weight: bold;
     cursor: pointer;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
   }
 
   button:hover {
@@ -76,35 +75,57 @@ form label {
     font-size: 18px;
     margin-right: 10px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    position: relative;
 }
 
 form ul {
     text-align: left;
 }
 
-.id {
-    display: inline-block;
-    padding: 10px;
-    font-size: 16px;
-    width: 224px;
-    height: 30px;
+
+
+#prof { 
+  display: flex;
+  justify-content: center
 }
 
-.idCheck {
-    margin-left: 13px;
-    padding: 15px 10.5px 15px 10.5px;
-    font-size: 14px;
+.memberImage {
+  border: none;
+  border-radius: 100%;
+  height: 180px;
+  width: 180px;
+  background: url("../img/프로필이미지.png") center/100% auto no-repeat;
+  display: inline-block;
+  position: relative;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 
-.idCheck p {
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
+input[type="file"] {
+  display: none;
 }
 
+.profileImg {
+  display: inline-block;
+  border: 5px solid white;
+  padding: 10px;
+  border-radius: 100%;
+  background-color: salmon;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0px;
+  right: -13px;
+}
 
-.password, .passwordCfm, .name, .nickname, .birthday, .email {
+.profileImg i {
+  color: white;
+}
+
+/*end: prof*/
+
+
+.id, .nickname,  .email, .phone, .phone2{
     display: inline-block;
     padding: 10px;
     font-size: 16px;
@@ -112,12 +133,29 @@ form ul {
     height: 30px;
 }
 
-.phone {
+.idCheck, .nickCheck, .emailCheck, .phoneCheck, .phone2Check  {
+    padding: 8px 10.5px 8px 10.5px;
+    font-size: 13px;
+    position: absolute;
+    top: 52px;
+    right: 10px;
+}
+
+
+.idCheck p, .nickCheck p, .emailCheck p, .phoneCheck p, .phone2Check p {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+}
+
+
+.password, .passwordCfm, .name, .birthday {
     display: inline-block;
     padding: 10px;
     font-size: 16px;
-    width: 82.5px !important;
+    width: 326px;
     height: 30px;
+    margin-bottom: 7px;
 }
 
 

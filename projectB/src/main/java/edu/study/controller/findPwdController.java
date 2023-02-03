@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import edu.study.service.MemberService;
 import edu.study.vo.MemberVo;
 
 
-@RequestMapping(value="/findPwd")
+@RequestMapping(value="/find")
 @Controller
 public class findPwdController {
 	
@@ -31,6 +32,50 @@ public class findPwdController {
 	
 	@Autowired 
 	private JavaMailSender mailSender;
+	
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
+	
+	/* ì•„ì´ë”” ì°¾ê¸° */
+	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) /*ì•„ì´ë”” ì°¾ê¸° í™ˆí˜ì´ì§€ë¡œ ë„˜ì–´ê°*/
+	public String find_id() {
+
+		return "findPwd/find_id";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="/findingID.do") 
+	public String findingID( String name, String email) {
+		System.out.println(name);
+		System.out.println(email);
+		int result = memberService.nameCheck(name);
+		int em = memberService.emailCheck(email);
+		String value = "{ \"name\": \""+result+"\"  , \"email\":\""+em+"\"}";
+		
+		return value;
+	
+	}
+
+	
+	@RequestMapping(value="/find_id.do", method=RequestMethod.POST)
+	public String find_id(MemberVo vo,  Model model) {
+		
+		MemberVo result = memberService.find_id(vo);
+		System.out.println("vo:"+vo);
+		
+		if(result != null) {
+			model.addAttribute("id", result.getId());
+			model.addAttribute("name", vo.getName());
+			System.out.println("name:"+vo.getName());
+		} else {
+			model.addAttribute("msg", false);
+		}
+	
+		return "findPwd/find_id_result";
+	}	
+		
+	
 	
 	@RequestMapping(value="/findPwd-fir", method=RequestMethod.GET)
 	public String findPwd1(){
@@ -48,17 +93,17 @@ public class findPwdController {
 				
 		if(vo != null) {
 		Random r = new Random();
-		int num = r.nextInt(999999); // ·£´ı³­¼ö¼³Á¤
+		int num = r.nextInt(999999); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		if (vo.getName().equals(name)&vo.getId().equals(id)) {
 			session.setAttribute("email", vo.getEmail());
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("name", vo.getName());
 			String setfrom = "kbs5697@naver.com"; // naver 
-			String tomail = vo.getEmail(); //¹Ş´Â»ç¶÷
-			String title = "ºñ¹Ğ¹øÈ£º¯°æ ÀÎÁõ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù"; 
-			String content = System.getProperty("line.separator") + "¾È³çÇÏ¼¼¿ä È¸¿ø´Ô" + System.getProperty("line.separator")
-					+ "ºñ¹Ğ¹øÈ£Ã£±â(º¯°æ) ÀÎÁõ¹øÈ£´Â " + num + " ÀÔ´Ï´Ù." + System.getProperty("line.separator"); // 
+			String tomail = vo.getEmail(); //ï¿½Ş´Â»ï¿½ï¿½
+			String title = "ï¿½ï¿½Ğ¹ï¿½È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô´Ï´ï¿½"; 
+			String content = System.getProperty("line.separator") + "ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½" + System.getProperty("line.separator")
+					+ "ï¿½ï¿½Ğ¹ï¿½È£Ã£ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ " + num + " ï¿½Ô´Ï´ï¿½." + System.getProperty("line.separator"); // 
 
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
@@ -104,7 +149,7 @@ public class findPwdController {
 			else {
 				return "findPwd/findPwd-sec";
 			}
-	} //ÀÌ¸ŞÀÏ ÀÎÁõ¹øÈ£ È®ÀÎ
+	} //ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ È®ï¿½ï¿½
 	
 	@RequestMapping(value = "/findPwd-thd.do", method = RequestMethod.POST)
 	public String pw_new(MemberVo vo, HttpSession session){

@@ -49,4 +49,18 @@ public class MemberDAO {
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.emailCheck", email);
 	}
 	
+	//로그인
+	public MemberVo login(MemberVo vo) {
+			 
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.login", vo);
+	}
+		
+	//아이디찾기
+	public MemberVo find_id(MemberVo vo) {
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.find_id", vo);
+	}
+	
+	
+	
+	
 }
