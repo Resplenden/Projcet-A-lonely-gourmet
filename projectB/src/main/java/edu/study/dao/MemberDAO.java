@@ -1,5 +1,6 @@
 package edu.study.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.study.vo.BoardVo;
 import edu.study.vo.CriteriaVo;
+import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
 import edu.study.vo.SearchCriteria;
 
@@ -45,22 +47,33 @@ public class MemberDAO {
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.nameCheck", name);
 	}
 	
+	public int nickCheck(String nickname) {
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.nameCheck", nickname);
+	}
+	
 	public int emailCheck(String email) {
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.emailCheck", email);
 	}
 	
-	//로그인
+	//濡쒓렇�씤
 	public MemberVo login(MemberVo vo) {
 			 
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.login", vo);
 	}
 		
-	//아이디찾기
+	//�븘�씠�뵒李얘린
 	public MemberVo find_id(MemberVo vo) {
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.find_id", vo);
 	}
 	
+	public int fileInsert(HashMap<String, Object> mfFile) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("edu.study.mapper.memberMapper.fileInsert", mfFile);
+	}
 	
+	public MemberFileVo file(int midx){		
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.file", midx);
+	}
 	
 	
 }

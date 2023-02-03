@@ -46,41 +46,49 @@
 	
 	<!-- 로그인  -->
 	<select id="login" parameterType="memberVo" resultType="memberVo">
-		SELECT id
+		SELECT midx 
+			,id
 			,pwd
 			,name
 			,nickname
+			,stname
+	 		,orgname
 		FROM member
 		WHERE id = #{id}
+		
 	</select>
 	
 	<!-- 회원가입 -->
 	<insert id="join" parameterType="memberVo">
-		INSERT INTO member (
-			midx
-			,id
-			,pwd
-			,name
-			,birth
-			,nickname
-			,gender	
-			,email
-			,phone
-			,wdate
-			,delyn
-			) VALUES (
-				midx_seq.nextval
-				,#{id}
-				,#{pwd}
-				,#{name}
-				,#{birth}
-				,#{nickname}
-				,#{gender}
-				,#{email}
-				,#{phone}
-				,sysdate	
-				,'N'
-			)
+		<![CDATA[
+			INSERT INTO member (
+				midx
+				,id
+				,pwd
+				,name				
+				,nickname
+				,birth
+				,gender					
+				,phone
+				,email
+				
+				) VALUES (
+					midx_seq.nextval
+					,#{id}
+					,#{pwd}
+					,#{name}
+					,#{nickname}
+					,#{birth}					
+					,#{gender}
+					,#{phone}
+					,#{email}
+					
+				)
+		]]>	 	
+		<selectKey  resultType="int" keyProperty="midx" order="AFTER">
+	 	SELECT MAX(midx)
+	 		from member
+	 	</selectKey>
 	</insert>
 	
 	<!-- 아이디 찾기 -->
@@ -91,6 +99,29 @@
 			AND email = #{email}
 	</select>
 	
-	 
+	<!-- 이미지 파일 MemberFileVo에 넣기 -->
+	<insert id="fileInsert" parameterType="HashMap">
+		INSERT INTO memberfile(
+	 		mfidx, 
+			midx,
+			orgfilename,
+			storedname
+		)VALUES(
+	  		mfidx_seq.nextval,
+			#{midx},
+			#{orgfilename},
+			#{storedname}
+		)
+	</insert>
+	
+	<select id="file" parameterType="int" resultType="mfileVo">
+	 	SELECT
+	 		mfidx 
+	 		, midx
+	 		, orgfilename
+	 		, storedname	 		
+	 	FROM memberfile	 
+	 	WHERE midx=#{midx}
+	 </select> 
 	 
 </mapper>

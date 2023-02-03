@@ -36,7 +36,7 @@
           width="350px"
         />
       </a>
-      <form action="join.do" method="post">
+      <form action="join.do" method="post" enctype = "multipart/form-data">
         <ul>
           <li id="prof">
             <label for="profile"></label><br />
@@ -44,7 +44,7 @@
               <label class="profileImg" for="profileImg">
                 <i class="xi-camera xi-2x"></i>
               </label>
-              <input type="file" id="profileImg" />
+              <input type="file" id="profileImg" name="profileImg" />
             </div>
             <!--div: 프로필 이미지가 들어갈 자리-->
             <!--label: 파일 찾기 버튼을 감싸는 태그-->
@@ -102,7 +102,7 @@
               type="date"
               name="birth"
               class="birthday"
-              id="date"
+              id="birth"
               max="2099-12-31"
               min="1910-01-01"
               value="sysdate"
@@ -195,8 +195,8 @@
   var checkNickFlag = false;
   var checkEmailFlag = false;
   var checkGenderFlag = false;
-  
-  
+  var checkphChkFlag = false;
+  var checkphChk2Flag = false;
   var checkIdVal = "";
   var checkNickVal = "";
   var checkEmailVal = "";
@@ -210,7 +210,7 @@
 				alert("아이디를 입력하세요.");
 				$("#id").focus();
 				checkIdFlag = false;
-				return;
+				return false;
 			} else if(!checkIdFlag) {
 				alert("아이디 중복확인을 해주세요.");
 				checkIdFlag = false;
@@ -229,10 +229,10 @@
 			
 			/* 비밀번호 확인  */
 			var pwdCfm = $.trim($("#pwdCfm").val());
-			if(pwdCk == ""){
+			if(pwdCfm == ""){
 				alert("비밀번호 확인을 입력하세요.");
 				$("#pwdCfm").focus();
-				checkpwdCfmkFlag = false;
+				checkpwdCfmFlag = false;
 				return false;
 			}
 		
@@ -250,6 +250,7 @@
 			var nick = $.trim($("#nickname").val());
 			if(nick == "") {
 				alert("닉네임을 입력하세요.");
+				$("#nickname").focus();
 				checkNickFlag = false;
 				return false;
 			} else if(!checkNickFlag) {
@@ -275,12 +276,19 @@
 			} 
 			
 			/* 핸드폰번호 */
-			var phone = $("#phone1").val();
-			
-			
+			var phone = $("#phone").val();
+						
 			if(phone == "") {
-				alert("핸드폰 번호를 입력하세요.");
+				alert("연락처를 입력해주세요.");
 				checkPhoneFlag = false;
+				return false;
+			} 
+			
+			var phone2 = $("#phone2").val();
+			
+			if(phone2 == "") {
+				alert("인증번호를 입력해주세요.");
+				checkphChk2Flag = false;
 				return false;
 			} 
 			
@@ -334,7 +342,36 @@ function checkId(){
 		}
 	});	
 }
-
+/* 휴대폰 문자 인증 */
+ var code2="" 
+	function phChk(){
+		alert('인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.');
+		var phone = $("#phone").val();
+		 $.ajax({
+		        type:"POST", // post 형식으로 발송
+		        url:"<%=request.getContextPath()%>/member/sendSMS1.do", // controller 위치
+		        data: {phone:phone}, // 전송할 데이터값
+		        cache : false,
+		        success:function(data){
+		            if(data == "error"){ //실패시 
+		                alert("휴대폰 번호가 올바르지 않습니다.")
+		            }else{            //성공시        
+		                alert("인증번호가 전송되엇습니다.")
+		                code2 = data; // 성공하면 데이터저장
+		            }
+		        }
+		        
+		    });
+		};
+	function phChk2(){
+		 if($("#phone2").val() == code2){ // 위에서 저장한값을 ㅣ교함
+	           alert('인증성공')
+	      }else{
+	          alert('인증실패')
+	      }
+	}
+ 
+ 
 
  /* 닉네임 중복검사 */
 function checkNick(){

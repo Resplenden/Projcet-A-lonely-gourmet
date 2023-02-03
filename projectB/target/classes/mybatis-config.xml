@@ -9,7 +9,8 @@
 		<typeAlias type="edu.study.vo.SearchCriteria" alias="scri"/>
 		<typeAlias type="edu.study.vo.CriteriaVo" alias="criVo" />
 		<typeAlias type="edu.study.vo.ReplyVo" alias = "replyVo" />	
-		<typeAlias type="edu.study.vo.MemberVo" alias = "memberVo" />		
+		<typeAlias type="edu.study.vo.MemberVo" alias = "memberVo" />
+		<typeAlias type="edu.study.vo.MemberFileVo" alias = "mfileVo" />				
     </typeAliases>	
 </configuration>
 

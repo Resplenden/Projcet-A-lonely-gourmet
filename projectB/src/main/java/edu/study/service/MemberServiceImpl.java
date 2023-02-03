@@ -1,10 +1,12 @@
 package edu.study.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.study.dao.MemberDAO;
+import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
 
 
@@ -67,6 +69,24 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVo find_id(MemberVo vo) {
 		
 		return memberDAO.find_id(vo);
+	}
+
+	@Override
+	public int fileInsert(HashMap<String, Object> mfFile) {
+		// TODO Auto-generated method stub
+		return memberDAO.fileInsert(mfFile);
+	}
+
+	@Override
+	public int nickCheck(String nickname) {
+		// TODO Auto-generated method stub
+		return memberDAO.nickCheck(nickname);
+	}
+
+	@Override
+	public MemberFileVo file(int midx) {
+		// TODO Auto-generated method stub
+		return memberDAO.file(midx);
 	}
 
 	
