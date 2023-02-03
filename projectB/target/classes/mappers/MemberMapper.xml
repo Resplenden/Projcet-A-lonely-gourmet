@@ -50,10 +50,7 @@
 			,pwd
 			,name
 			,nickname
-<<<<<<< HEAD
 			,midx
-=======
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 		FROM member
 		WHERE id = #{id}
 	</select>
