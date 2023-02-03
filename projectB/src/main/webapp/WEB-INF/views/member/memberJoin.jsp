@@ -177,7 +177,8 @@
 				alert("아이디를 입력하세요.");
 				$("#id").focus();
 				checkIdFlag = false;
-				return;
+				return false;
+				
 			} else if(!checkIdFlag) {
 				alert("아이디 중복확인을 하세요");
 				checkIdFlag = false;

@@ -1,7 +1,6 @@
 package edu.study.controller;
 
 
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,189 +9,196 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.study.service.BoardService;
 import edu.study.service.ReplyService;
 import edu.study.vo.BoardVo;
-import edu.study.vo.CriteriaVo;
-import edu.study.vo.PageVo;
+import edu.study.vo.LikeVo;
+import edu.study.vo.MemberVo;
+import edu.study.vo.PageMaker;
+import edu.study.vo.ReplyPageMaker;
 import edu.study.vo.ReplyVo;
-import edu.study.vo.SearchCriteria;
+import edu.study.vo.SearchVo;
 
-import edu.study.vo.UserVo;
 
 @RequestMapping(value="/board")
 @Controller
-public class BoardController {
-	
+public class BoardController{
+
 	@Autowired
 	private BoardService boardService;
-	
 	@Inject
 	private ReplyService replyService;
 	
-	//메소드 부분을 빼면 한번밖에 쓰지 못한다.
-//	@RequestMapping(value="/list.do",method=RequestMethod.GET)
-//	public String listSearch(SearchCriteria scri, Model model) {
-//		
-//		List<BoardVo> list = boardService.list(scri);
-//		
-//		model.addAttribute("list", list);
-//		System.out.println(scri.toString());
-//		for (BoardVo item : list)
-//		{
-//			System.out.println(item.getBidx());
-//		}
-//		
-//		PageVo pageVo = new PageVo();
-//		pageVo.setScri(scri);
-//		pageVo.setTotalCount(boardService.listCount(scri));
-//		model.addAttribute("page", pageVo);
-//		
-//		return "board/l";
+	/* 글 목록 보기(검색,페이징) */
+	@RequestMapping(value="/list.do",method=RequestMethod.GET)
+	public String listPage(BoardVo vo,Model model,@ModelAttribute("searchVo") SearchVo searchVo) {
 		
-		/*
-		 * List<BoardVo> list = new ArrayList<BoardVo>();
-		 * 
-		 * BoardVo vo1 = new BoardVo(); vo1.setTitle("첫번째 게시글"); vo1.setWriter("작성자1");
-		 * vo1.setContent("첫번째 내용");
-		 * 
-		 * list.add(vo1);
-		 * 
-		 * BoardVo vo2 = new BoardVo(); vo2.setTitle("두번째 게시글"); vo2.setWriter("작성자2");
-		 * vo2.setContent("두번째 내용");
-		 * 
-		 * list.add(vo2);
-		 * 
-		 * BoardVo vo3 = new BoardVo(); vo3.setTitle("세번째 게시글"); vo3.setWriter("작성자3");
-		 * vo3.setContent("세번째 내용");
-		 * 
-		 * list.add(vo3);
-		 * 
-		 * model.addAttribute("datalist", list);
-		 */	
+		//게시글 보기
+		List<BoardVo> list = boardService.listPage(searchVo);
+		model.addAttribute("list",list);
+		model.addAttribute("searchVo",searchVo);
 		
+		//페이징
+		PageMaker pageMaker = new PageMaker(boardService.count(searchVo),searchVo);
+		pageMaker.setSearchVo(searchVo);	
+		model.addAttribute("pageMaker",pageMaker);
 		
-	
-	@RequestMapping(value="/boardList.do", method=RequestMethod.GET)
-	public String list() {
-		return "board/boardList";
+		return "board/list";	
 	}
 	
-//	@RequestMapping(value="/view.do",method=RequestMethod.GET)
-//	public String view(int bidx, Model model) {	
-//		//DB 상세데이터 조회
-//		BoardVo vo = boardService.selectByBidx(bidx);
-//		
-//		model.addAttribute("vo", vo);
-//		
-//		List<ReplyVo> reply = null;
-//		reply = replyService.list(bidx);
-//		model.addAttribute("reply", reply);	
-//		
-//		return "board/v";
-//	}
-//	
-	@RequestMapping(value="/noticeList.do", method=RequestMethod.GET)
-	public String notice() {
-		return "board/noticeList";
-	}
-	
-	@RequestMapping(value="/eventList.do", method=RequestMethod.GET)
-	public String event() {
-		return "board/eventList";
-	}
-	
-	@RequestMapping(value="/boardContent.do",method=RequestMethod.GET)
-	public String content() {
+	/* 글 상세 보기 */
+	@RequestMapping(value="/view.do",method=RequestMethod.GET)
+	public String view(int bidx,Model model,HttpSession session,@ModelAttribute("searchVo") SearchVo searchVo) {
 		
-		return "board/boardContent";
-	}
-	
-	@RequestMapping(value="/boardWrite.do",method=RequestMethod.GET)
-	public String write() {
+		MemberVo login = (MemberVo)session.getAttribute("login");
 		
-		return "board/boardWrite";
+		//조회수 
+		boardService.hitCnt(bidx);
+		
+		//댓글 개수
+		boardService.updateReplyCnt(bidx);
+		
+		//선택한 게시물 보기
+		model.addAttribute("list",boardService.selectByBidx(bidx));
+		model.addAttribute("searchVo",searchVo);
+		
+		//댓글 보기
+		List<ReplyVo> replyList = replyService.replyListPage(searchVo);
+		model.addAttribute("replyList",replyList);
+				
+		//댓글 페이징
+		ReplyPageMaker replyPageMaker = new ReplyPageMaker(replyService.count(bidx),searchVo);
+		replyPageMaker.setSearchVo(searchVo);
+		model.addAttribute("replyPageMaker",replyPageMaker);
+		
+		return "board/view";	
 	}
-	//가상경로당 메소드 하나기 때문에 한번에 RequestMapping를 할수 없다.
 	
+	/* 글 쓰기 페이지로 이동*/
+	@RequestMapping(value="/write.do",method=RequestMethod.GET)
+	public String write(Model model, @ModelAttribute("searchVo") SearchVo searchVo) {
+		
+		model.addAttribute("searchVo",searchVo);
+		
+		return "board/write";
+	}
 	
-	
+	/* 글 쓰기 실행 */
 	@RequestMapping(value="/write.do",method=RequestMethod.POST)
-	public String write(BoardVo vo, HttpSession session) {//매개변수과 같이 같아야 한다.
-		//해당 메소드를 호출하는 가상 경로 -> projectpath/board/write.do
-						
-		UserVo login = (UserVo)session.getAttribute("login");
+	public String write(BoardVo vo, HttpSession session) {
+
+		//로그인 후 midx,nickname을 vo에 담는다.
+		MemberVo login = (MemberVo)session.getAttribute("login");
+		vo.setMidx(login.getMidx());
+		vo.setWriter(login.getNickname());
+		System.out.println(login.getMidx());
+		System.out.println(login.getNickname());
+
+		boardService.write(vo);
 		
-		vo.setUidx(login.getUidx());	
-		
-		int result = boardService.insert(vo);
-		//insert된 게시글의 pk 값을 가져와 view.do로 이동하세요
-		
-		//int maxBidx = boardService.maxBidx();
-		
-		//System.out.println("param etc ::"+etc);
-		//null로 넘어올시 null체크를 따로 해줘야 한다.
-		/*
-		 * if(title != null && !title.equals("")) {
-		 * 
-		 * }
-		 */
-		
-		/*
-		 * System.out.println("param title ::"+title);
-		 * System.out.println("param writer ::"+writer);
-		 * System.out.println("param content ::"+content);
-		 */
-		//db작업(insert)
-		//return "redirect:list.do"; //redircet되는 가상경로 -> projectpath/board/list.do
-		
-		return "redirect:view.do?bidx="+vo.getBidx(); //리다이렉트하는 파라미터 경로는 do?param=test.do처럼 문자열로 경로를 입력해줘야한다.
-		//redirect되는 가상 경로 -> projectpath/board/list.do
-		//return "redirect:/user/list.do"; //redirect되는 가상 경로 -> projectpath/user/list.do
+		return "redirect:list.do";
 	}
+
+	
+	/* 글 수정 페이지로 이동 */
 	@RequestMapping(value="/modify.do",method=RequestMethod.GET)
-	public String modify(int bidx, Model model) {
+	public String modify(int bidx, Model model,@ModelAttribute("searchVo") SearchVo searchVo) {
+
+		model.addAttribute("vo",boardService.selectByBidx(bidx));
+		model.addAttribute("searchVo",searchVo);
 		
-		BoardVo vo = boardService.selectByBidx(bidx);
-		
-		model.addAttribute("vo", vo);
-		
-		return "board/m";
+		return "board/modify";
 	}
 	
-	@RequestMapping(value="/modify.do",method=RequestMethod.POST)
-	public String modify(BoardVo vo) {
+	/* 글 수정 실행 */
+	@RequestMapping(value ="/modify.do",method=RequestMethod.POST)
+	public String modify(BoardVo vo,SearchVo searchVo,RedirectAttributes rttr) {
+
+		//글 수정하기
+		boardService.updateByBidx(vo);
 		
-		int result = boardService.updateByBidx(vo);
+		rttr.addAttribute("page",searchVo.getPage());
+		rttr.addAttribute("perPageNum",searchVo.getPerPageNum());		
+		rttr.addAttribute("searchType",searchVo.getSearchType());
+		rttr.addAttribute("searchVal",searchVo.getSearchVal());
+
+		return "redirect:view.do?bidx="+vo.getBidx();
 		
-		if(result>0) {		
-			return "redirect:view.do?bidx="+vo.getBidx();
-		}else {
-			return "redirect:/";
-		}
+	}
+
+	
+	/* 글 삭제 페이지로 이동 */
+	@RequestMapping(value="/delete.do",method=RequestMethod.GET)
+	public String delete(int bidx, Model model,@ModelAttribute("searchVo") SearchVo searchVo) {
+		
+		//선택한 글 상세 보기
+		model.addAttribute("vo",boardService.selectByBidx(bidx));	
+		model.addAttribute("searchVo",searchVo);
+		
+		return "board/delete";
 	}
 	
+	/* 글 삭제 실행 */
 	@RequestMapping(value="/delete.do",method=RequestMethod.POST)
-	public String delete(BoardVo vo, HttpSession session) {
+	public String delete(@RequestParam("bidx")int bidx,SearchVo searchVo,RedirectAttributes rttr) {
 		
-		UserVo login = (UserVo)session.getAttribute("login");
+		//글 삭제하기
+		boardService.deleteByBidx(bidx);
 		
-		int uidx = login.getUidx();
+		rttr.addAttribute("page",searchVo.getPage());
+		rttr.addAttribute("category",searchVo.getCategory());
+		rttr.addAttribute("perPageNum",searchVo.getPerPageNum());		
+		rttr.addAttribute("searchType",searchVo.getSearchType());
+		rttr.addAttribute("searchVal",searchVo.getSearchVal());
 		
-		int result = boardService.delete(vo);		
-		System.out.println("vo값은"+vo.toString());
-		
-		
-		if(result>0) {		
-			return "redirect:list.do?bidx="+vo.getBidx();
-		}else {
-			return "redirect:/";
-		}
-		
+		return "redirect:list.do";	
 	}
 	
+	/* 게시물의 추천 클릭 */
+	@ResponseBody
+	@RequestMapping(value="/like.do",method=RequestMethod.GET)
+	public int like(int bidx,LikeVo vo,HttpSession session){
+
+		//로그인하면 id를 vo에 담는다.
+		MemberVo login = (MemberVo)session.getAttribute("login");
+		vo.setId(login.getId());
+		
+		//추천 클릭시 liketb에서 id와 bidx로 likeCheck 총 갯수 카운트
+		int likeCheck = boardService.likeCheck(vo);
+		if(likeCheck == 0) { //추천 처음 클릭시
+			boardService.updateLikeCnt(bidx); //추천 총 횟수 증가
+			boardService.insertLiketb(vo); 	//liketb에 insert
+			boardService.updateByLikeCheck(vo); //LikeCheck를 1로 바꾸어 중복방지
+		}
+
+		return likeCheck;
+	}
+	
+	/* 게시물의 비추천 클릭 */
+	@ResponseBody
+	@RequestMapping(value="/hate.do",method=RequestMethod.GET)
+	public int hate(int bidx,LikeVo vo,HttpSession session) {
+		
+		//로그인하면 id를 vo에 담는다.
+		MemberVo login = (MemberVo)session.getAttribute("login");
+		vo.setId(login.getId());
+		
+		//비추천 클릭시 liketb에서 id와 bidx로 hateCheck 총 갯수 카운트
+		int hateCheck = boardService.likeCheck(vo);
+		if(hateCheck == 0) { //비추천 처음 클릭시
+			boardService.updateHateCnt(bidx); //비추천 총 횟수 증가
+			boardService.insertLiketb(vo); 	//liketb에 insert
+			boardService.updateByHateCheck(vo); //HateCheck를 1로 바꾸어 중복방지
+		}
+		
+		return hateCheck;
+	}
 }
