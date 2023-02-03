@@ -26,5 +26,6 @@
 	<context:component-scan base-package="edu.study.dao" />
 	<context:component-scan base-package="edu.study.vo" />
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
-		
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="edu.study.service.NaverLoginBo" />
 </beans:beans>

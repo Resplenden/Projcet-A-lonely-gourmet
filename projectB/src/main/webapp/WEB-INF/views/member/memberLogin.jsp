@@ -124,7 +124,7 @@ function getCookie(cookieName) {
           <i class="xi-kakaotalk xi-2x"></i>&nbsp;&nbsp;&nbsp;카카오톡으로
           로그인
         </button>
-         <button name="naverLogin" class="naverLogin">
+         <button type="button" name="naverLogin" class="naverLogin" onclick="location.href='${urlNaver}'">
           <i class="xi-naver-square xi-2x"></i>&nbsp;&nbsp;&nbsp;네이버로 로그인
         </button>
         <ul class="subMenu">

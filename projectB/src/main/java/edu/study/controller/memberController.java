@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.study.service.MemberService;
 import edu.study.service.MessageService;
+import edu.study.service.NaverLoginBo;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
 
@@ -41,10 +42,27 @@ public class memberController {
 	
 	@Autowired
 	private MessageService messageService;
-
+	
+	/* NaverLoginBO */
+	private NaverLoginBo naverLoginBo;
+	private String apiResult = null;
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBo naverLoginBo) {
+		this.naverLoginBo = naverLoginBo;
+	}
+	
 	@RequestMapping(value="/memberLogin.do",method=RequestMethod.GET)
-	public String login() {
+	public String login(Model model, HttpSession session) {
+		
+		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBo.getAuthorizationUrl(session);
+		/* 인증요청문 확인 */
+		System.out.println("네이버:" + naverAuthUrl);
+		/* 객체 바인딩 */
+		model.addAttribute("urlNaver", naverAuthUrl);
 
+		
 		return "member/memberLogin";
 	}
 	
@@ -58,7 +76,7 @@ public class memberController {
 		loginVO.setMidx(loginVo2.getMidx());
 		loginVO.setOrgname(loginVo2.getOrgfilename());
 		loginVO.setStname(loginVo2.getStoredname());
-		System.out.println("vo : "+ vo);
+		System.out.println("vo : "+vo);
 		System.out.println("vo2 : "+ loginVo2);
 		System.out.println("passMatch"+passMatch);
 		
@@ -94,10 +112,7 @@ public class memberController {
 	
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
 	public String join(MemberVo vo, MultipartFile profileImg, HttpServletRequest req) throws IllegalStateException, IOException {
-							
-		
-		
-		
+				
 		String inputPwd = vo.getPwd();
 		String pwd = passEncoder.encode(inputPwd); //�븫�샇�솕
 		
