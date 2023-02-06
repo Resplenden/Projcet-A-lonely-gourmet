@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.study.service.MemberService;
 import edu.study.service.MessageService;
 import edu.study.service.NaverLoginBo;
+import edu.study.service.sha256;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
 
@@ -37,9 +37,7 @@ public class memberController {
 	@Autowired
 	private MemberService memberService;
 	
-	@Autowired
-	BCryptPasswordEncoder passEncoder;
-	
+
 	@Autowired
 	private MessageService messageService;
 	
@@ -68,32 +66,56 @@ public class memberController {
 	
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
 	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, Model model) {
+		System.out.println("vo값"+vo);
 		
+		String inputPwd = vo.getPwd();
+		vo.setPwd(sha256.encrypt(inputPwd));
+	
 		MemberVo loginVO = memberService.login(vo);		
-		boolean passMatch = passEncoder.matches(vo.getPwd(), loginVO.getPwd());
-		MemberFileVo loginVo2 = memberService.file(loginVO.getMidx());		
-				
-		loginVO.setMidx(loginVo2.getMidx());
-		loginVO.setOrgname(loginVo2.getOrgfilename());
-		loginVO.setStname(loginVo2.getStoredname());
-		System.out.println("vo : "+vo);
-		System.out.println("vo2 : "+ loginVo2);
-		System.out.println("passMatch"+passMatch);
-		
-		if (loginVO != null && passMatch) {
-			//�꽦怨�
-			//�씪移섑븯�뒗 �쉶�썝 �젙蹂닿� �엳�떎硫� �쉶�썝 �젙蹂대�� �꽭�뀡�뿉 �떞�뒗�떎
-			
-			session.setAttribute("login", loginVO);
-			
-			
-		} else {
-			
-			return "redirect:/member/memberLogin.do";
+		System.out.println("loginVO 값 : "+loginVO);
+		System.out.println("vo값 : "+vo);
+		MemberFileVo loginVo2 = memberService.file(loginVO.getMidx());
+		if( loginVo2 != null )
+		{
+			loginVO.setMidx(loginVo2.getMidx());
+			loginVO.setOrgname(loginVo2.getOrgfilename());
+			loginVO.setStname(loginVo2.getStoredname());
+			System.out.println("vo : "+vo);
+			System.out.println("vo2 : "+ loginVo2);
+			return "";
 		}
+				
 		
-		return "redirect:/";
+		if(loginVO == null) {
+			return "member/memberLogin";
+		} else {
+			session.setAttribute("login", loginVO);
+			return "redirect:/";
+		}
+		 
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/loginCheck.do", method=RequestMethod.POST)
+	public String loginCheck(MemberVo vo,HttpSession session,Model model) {
+		
+		System.out.println("id : " + vo.getId()); 
+
+		//비밀번호 암호화
+		String str_pwd = sha256.encrypt(vo.getPwd()); 
+		
+		vo.setPwd(str_pwd);
+		System.out.println("vo pwd : "+ str_pwd);
+		int count = memberService.loginCheck(vo, session);
+		System.out.println("count:"+count);
+		if(count == 1)
+		{	
+			session.setAttribute("session id", vo.getId()); //session
+			return "1";
+		} else {
+			return "0";
+		}
 	}
 	
 	/* 濡쒓렇�븘�썐 */
@@ -114,9 +136,9 @@ public class memberController {
 	public String join(MemberVo vo, MultipartFile profileImg, HttpServletRequest req) throws IllegalStateException, IOException {
 				
 		String inputPwd = vo.getPwd();
-		String pwd = passEncoder.encode(inputPwd); //�븫�샇�솕
+		String pwd = sha256.encrypt(inputPwd); //암호화
 		
-		vo.setPwd(pwd); //vo�뿉 ���옣
+		vo.setPwd(pwd); //vo에 넣고
 		
 		int result = memberService.join(vo); 
 		
@@ -154,7 +176,7 @@ public class memberController {
 		return "redirect:/member/memberLogin.do";
 	}
 	
-	/*  以묐났寃��궗  */
+	/* 아이디 중복확인  */
 	@ResponseBody
 	@RequestMapping(value="/checkId.do", method=RequestMethod.POST)
 	public String checkId(String id) {
@@ -167,7 +189,7 @@ public class memberController {
 		}
 	} 
 	
-	/* �땳�꽕�엫 以묐났寃��궗 */
+	/* 닉네임 중복확인 */
 	@ResponseBody
 	@RequestMapping(value="/checkNick.do", method=RequestMethod.POST)
 	public String checkNick(String nickname) {
@@ -180,7 +202,7 @@ public class memberController {
 		}
 	}
 	
-	/* �씠硫붿씪 以묐났寃��궗 */
+	/* 이메일 중복확인 */
 	@ResponseBody
 	@RequestMapping(value="/checkEmail.do", method=RequestMethod.POST)
 	public String checkEmail(String email) {

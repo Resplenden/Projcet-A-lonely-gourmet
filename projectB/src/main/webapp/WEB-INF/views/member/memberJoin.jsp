@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>혼밥의 고수 회원가입</title>
-	<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
  <link
       href="../resources/img/_꾸미기_혼밥의고수_파비콘-removebg-preview.png"
       rel="shortcut icon"
@@ -211,10 +211,7 @@
 				$("#id").focus();
 				checkIdFlag = false;
 				return false;
-<<<<<<< HEAD
-=======
-				
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 			} else if(!checkIdFlag) {
 				alert("아이디 중복확인을 해주세요.");
 				checkIdFlag = false;
@@ -601,7 +598,6 @@ $("#email").blur(function(){
 	}	
 });
 
-	
 
   </script>  
   

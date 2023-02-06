@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.study.service.MemberService;
+import edu.study.service.sha256;
 import edu.study.vo.MemberVo;
 
 
@@ -33,8 +33,6 @@ public class findPwdController {
 	@Autowired 
 	private JavaMailSender mailSender;
 	
-	@Autowired
-	BCryptPasswordEncoder passEncoder;
 	
 	/* �븘�씠�뵒 李얘린 */
 	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) /*�븘�씠�뵒 李얘린 �솃�럹�씠吏�濡� �꽆�뼱媛�*/
@@ -155,7 +153,7 @@ public class findPwdController {
 	public String pw_new(MemberVo vo, HttpSession session){
 		
 		String inputPwd = vo.getPwd();
-		String pwd = passEncoder.encode(inputPwd); //암호화
+		String pwd = sha256.encrypt(inputPwd); //암호화
 		
 		vo.setPwd(pwd); //vo에 저장
 		

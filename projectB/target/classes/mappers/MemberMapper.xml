@@ -48,16 +48,22 @@
 	<select id="login" parameterType="memberVo" resultType="memberVo">
 		SELECT midx 
 			,id
-			,pwd
 			,name
 			,nickname
 			,stname
 	 		,orgname
 			,nickname
-			,midx
 		FROM member
 		WHERE id = #{id}
+		AND pwd=#{pwd}
 		
+	</select>
+	
+	<select id="loginCheck" resultType="int">
+		SELECT count(id) as count
+		 	FROM member
+		 	WHERE id=#{id}
+		 	AND pwd=#{pwd}
 	</select>
 	
 	<!-- 회원가입 -->

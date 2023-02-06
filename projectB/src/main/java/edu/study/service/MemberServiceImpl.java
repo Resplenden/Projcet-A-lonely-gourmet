@@ -3,6 +3,8 @@ package edu.study.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.study.dao.MemberDAO;
@@ -87,6 +89,12 @@ public class MemberServiceImpl implements MemberService {
 	public MemberFileVo file(int midx) {
 		// TODO Auto-generated method stub
 		return memberDAO.file(midx);
+	}
+
+	@Override
+	public int loginCheck(MemberVo vo, HttpSession session) {
+		
+		return memberDAO.loginCheck(vo);
 	}
 
 	
