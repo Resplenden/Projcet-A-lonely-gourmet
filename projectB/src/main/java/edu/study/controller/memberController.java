@@ -87,6 +87,7 @@ public class memberController {
 				
 		
 		if(loginVO == null) {
+			
 			return "member/memberLogin";
 		} else {
 			session.setAttribute("login", loginVO);
