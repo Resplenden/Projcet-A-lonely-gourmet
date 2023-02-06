@@ -120,7 +120,7 @@ function getCookie(cookieName) {
 		</c:if>
         
         
-        <button name="kakaoLogin" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=0c4af53abdedaf0c73af2ec8b352e10c&redirect_uri=http://192.168.0.20:8090/controller/member/logindone.do&response_type=code';" class="kakaoLogin">
+        <button name="kakaoLogin" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=0c4af53abdedaf0c73af2ec8b352e10c&redirect_uri=http://localhost:8090/controller/kakao/logindone.do&response_type=code';" class="kakaoLogin">
           <i class="xi-kakaotalk xi-2x"></i>&nbsp;&nbsp;&nbsp;카카오톡으로
           로그인
         </button>

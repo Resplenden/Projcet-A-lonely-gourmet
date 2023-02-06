@@ -58,6 +58,7 @@ nav {
   height: 140px;
   background-color: white;
   align-content: center;
+  align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
@@ -75,7 +76,16 @@ nav {
   margin-right: 220px;
 }
 
-#searchBar input {
+#loginSearchBar {
+  display: flex;
+  width: 666px;
+  height: 49px;
+  border: 3px solid salmon;
+  margin-top: 10px;
+    margin-right: 50px;
+}
+
+#searchBar input, #loginSearchBar input {
   width: 597px;
   height: 47px;
   padding-left: 15px;
@@ -85,11 +95,11 @@ nav {
   font-family: "Pretendard-Regular";
 }
 
-#searchBar input:focus {
+#searchBar input:focus, #loginSearchBar input:focus {
   outline: none;
 }
 
-#searchBar input::placeholder {
+#searchBar input::placeholder, #loginSearchBar input::placeholder {
   font-size: 20px;
   color: rgb(182, 182, 182);
 }
@@ -108,6 +118,11 @@ nav {
 
 .searchBtn i {
   display: inline-block;
+}
+
+.loginInfo {
+	display: flex;
+	align-items: center;
 }
 
 .loginInfo a {
@@ -158,7 +173,8 @@ nav {
 	color: rgb(70, 70, 70);
 	text-align: left;
 	margin-top: 5px;
-	margin-left: 23px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 .loginInfo span{
