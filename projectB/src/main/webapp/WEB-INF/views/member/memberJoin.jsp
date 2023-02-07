@@ -341,13 +341,6 @@ function checkId(){
 				return;
 			}  
 			
-			if(data.id == "") {
-				$('#id_check').text("아이디를 입력하세요");
-				$('#id_check').css('color', 'red');
-				checkIdFlag = false;
-				
-			}	
-			
 			if(data == 0) {
 				$('#id_check').text("사용가능한 아이디입니다.");
 				$('#id_check').css('color', 'green');
@@ -499,7 +492,7 @@ $('#pwdCfm').focusout(function () {
 	var pwd = $("#pwd").val();
 	var pwdCfm = $("#pwdCfm").val();
  
- 
+  
   	if (pwdReg.test($("#pwd").val()) == pwdCfmReg.test($("#pwdCfm").val())) {
       $('#pwdCk_check').text('비밀번호가 일치합니다.');
       $('#pwdCk_check').css('color', 'green');
@@ -588,7 +581,6 @@ $("#pwdCfm").blur(function(){
 	}	
     
 });
-
 
 
 //한글이름만
