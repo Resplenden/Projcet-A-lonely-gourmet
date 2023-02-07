@@ -1,7 +1,5 @@
 package edu.study.vo;
 
-
-
 public class SearchVo{
 	
 	private String searchType; //검색 조건

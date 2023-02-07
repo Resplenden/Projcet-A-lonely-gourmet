@@ -16,7 +16,7 @@
 		<typeAlias type="edu.study.vo.PageMaker" alias="pageMaker"/>
 		<typeAlias type="edu.study.vo.SearchVo" alias="searchVo"/>
 		<typeAlias type="edu.study.vo.LikeVo" alias="likeVo"/>		
-
+		<typeAlias type="edu.study.vo.EventVo" alias="eventVo"/>
     </typeAliases>	
 </configuration>
 

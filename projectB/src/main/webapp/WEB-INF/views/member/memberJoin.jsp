@@ -358,19 +358,7 @@ function checkId(){
 				
 			}
 			
-			if (idReg.test($(data).val())) {
-				//이름이 형식에 맞다면
-				console.log(idReg.test($(this).val()));
-				$("#id_check").text("사용가능한 id입니다. 중복체크를 해주세요.");
-				checkIdFlag = true; 
-			} else {
-				//아이디가 형식에 맞지 않은 경우
-				$('#id_check').text('아이디는 4~10자 소문자, 숫자를 사용하세요.');
-				$('#id_check').css('color', 'red');
-				//$("#id").focus();
-				checkIdFlag = false;
-				return;
-			}
+			
 
 		
 		}

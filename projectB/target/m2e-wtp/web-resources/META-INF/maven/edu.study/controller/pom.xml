@@ -35,26 +35,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-core</artifactId>
-    		<version>3.2.10.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-web</artifactId>
-    		<version>3.2.10.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-config</artifactId>
-    		<version>3.2.10.RELEASE</version>
-		</dependency>
-		
 		<!-- Commons FileUpload -->
         <dependency>
             <groupId>commons-fileupload</groupId>
@@ -218,25 +198,15 @@
 			<version>21.8.0.0</version>
 		</dependency>
 
+
+	 	<!-- sha256 비밀번호 암호화 -->
+      <dependency>
+          <groupId>commons-codec</groupId>
+          <artifactId>commons-codec</artifactId>
+          <version>1.15</version>
+      </dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-core</artifactId>
-    		<version>3.2.10.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-web</artifactId>
-    		<version>3.2.10.RELEASE</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
-		<dependency>
-    		<groupId>org.springframework.security</groupId>
-    		<artifactId>spring-security-config</artifactId>
-    		<version>3.2.10.RELEASE</version>
-		</dependency>
+		
 								    
 		<!-- DB MyBatis 연결시 필요 -->
 		<!-- MyBatis 3.4.1 -->
