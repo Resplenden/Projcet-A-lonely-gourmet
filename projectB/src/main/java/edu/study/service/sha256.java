@@ -4,10 +4,12 @@ import java.security.MessageDigest;
 
 public class sha256 {
 	
-	public static String encrypt(String planText) {
+	public static String encrypt(String pwd) {
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256");
-			md.update(planText.getBytes());
+			System.out.println(pwd);
+			md.update(pwd.getBytes());
+			
 			byte byteData[] = md.digest();
 			StringBuffer sb = new StringBuffer();
 			for (int i = 0; i < byteData.length; i++) {

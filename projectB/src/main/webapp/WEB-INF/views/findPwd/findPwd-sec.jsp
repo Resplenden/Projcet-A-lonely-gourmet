@@ -28,7 +28,7 @@
     			alert("인증번호가 일치합니다.");
     		}
     		
-    		sec.action = "<%=request.getContextPath()%>/findPwd/findPwd-sec.do";
+    		sec.action = "<%=request.getContextPath()%>/find/findPwd-sec.do";
     		sec.method = "post"; //감춰서 넘기는 방식 Post
     		sec.submit();
     		

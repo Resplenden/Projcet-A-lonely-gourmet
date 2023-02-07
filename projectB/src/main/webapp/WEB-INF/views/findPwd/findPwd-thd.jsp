@@ -15,24 +15,24 @@
     <script type="text/javascript">
     	function check(){
     		
-    		if(thd.password.value ==""){
+    		if(thd.pwd.value ==""){
     			alert("새 비밀번호를 입력해주세요.");
-    			thd.password.focus();
+    			thd.pwd.focus();
     			return;
     		}
-    		if(thd.password2.value == ""){
+    		if(thd.pwd2.value == ""){
     			alert("비밀번호 확인을 입력해주세요.");
-    			thd.password2.focus();
+    			thd.pwd2.focus();
     			return;
     		}    		
-    		if(thd.password.value != thd.password2.value){
+    		if(thd.pwd.value != thd.pwd2.value){
     			alert("비밀번호가 일치하지 않습니다.")
     			return;
     		}else{
     			alert("비밀번호가 변경되었습니다.");
     		}
     		    		
-    		thd.action = "<%=request.getContextPath()%>/findPwd/findPwd-thd.do";
+    		thd.action = "<%=request.getContextPath()%>/find/findPwd-thd.do";
     		thd.method = "post"; //감춰서 넘기는 방식 Post
     		thd.submit();
     		
@@ -57,7 +57,7 @@
       <form  name="thd" id="newPwd">      
         <input
           type="password"
-          name="password"
+          name="pwd"
           class="newPwd"
           placeholder="새 비밀번호"
           onkeyup="if(window.event.keyCode==13){check()}"
@@ -65,7 +65,7 @@
         <br />
         <input
           type="password"
-          name="password2"
+          name="pwd2"
           class="newPwdCk"
 		  placeholder="비밀번호 확인"
 		  onkeyup="if(window.event.keyCode==13){check()}"          
