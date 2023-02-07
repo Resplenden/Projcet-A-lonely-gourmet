@@ -82,18 +82,14 @@ public class memberController {
 			loginVO.setStname(loginVo2.getStoredname());
 			System.out.println("vo : "+vo);
 			System.out.println("vo2 : "+ loginVo2);
-			return "";
-		}
-				
-		
-		if(loginVO == null) {
 			
-			return "member/memberLogin";
-		} else {
-			session.setAttribute("login", loginVO);
-			return "redirect:/";
-		}
-		 
+		}	
+		
+	
+		session.setAttribute("login", loginVO);
+		return "redirect:/";
+		
+		
 		
 	}
 	

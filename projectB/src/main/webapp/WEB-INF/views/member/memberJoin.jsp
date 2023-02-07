@@ -322,6 +322,8 @@
 //공백을 아이디로 인식...  
 function checkId(){
 	var idval = $("#id").val();
+	var idReg =/^[a-z0-9_-]{4,10}$/;
+	
 	if(idval == "") {
 		alert("아이디를 입력하세요");
 	}
@@ -341,12 +343,33 @@ function checkId(){
 				return;
 			}  
 			
+			if(data.id == 0) {
+				$('#id_check').text("아이디를 입력하세요");
+				$('#id_check').css('color', 'red');
+				checkIdFlag = false;
+				
+			}	
+			
 			if(data == 0) {
 				$('#id_check').text("사용가능한 아이디입니다.");
 				$('#id_check').css('color', 'green');
 				checkIdFlag = true;
 				checkIdVal = idval;
 				
+			}
+			
+			if (idReg.test($(data).val())) {
+				//이름이 형식에 맞다면
+				console.log(idReg.test($(this).val()));
+				$("#id_check").text("사용가능한 id입니다. 중복체크를 해주세요.");
+				checkIdFlag = true; 
+			} else {
+				//아이디가 형식에 맞지 않은 경우
+				$('#id_check').text('아이디는 4~10자 소문자, 숫자를 사용하세요.');
+				$('#id_check').css('color', 'red');
+				//$("#id").focus();
+				checkIdFlag = false;
+				return;
 			}
 
 		
