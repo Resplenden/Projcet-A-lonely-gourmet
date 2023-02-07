@@ -13,7 +13,7 @@ import edu.study.service.KakaoService;
 
 
 
-@RequestMapping(value="/member")
+@RequestMapping(value="/kakao")
 @Controller
 public class KakaoController {
 	

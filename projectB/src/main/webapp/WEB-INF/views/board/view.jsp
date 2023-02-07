@@ -87,7 +87,7 @@
   				return true;
   			}
   		});
-  	})
+  	
 
 
   	//게시물의 추천 버튼 클릭 시
@@ -391,7 +391,7 @@
             <li>
           <div class="comment">
           	<c:if test="${reply.depth != 0}">└<Br></c:if>
-            <div class="member"><img src="../resources/img/프로필이미지.png" width="42.5" />
+            <div class="member"><img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" width="42.5" />
             <p class="nickname">${reply.writer}</p>
             </div>
             <!--end: .member-->

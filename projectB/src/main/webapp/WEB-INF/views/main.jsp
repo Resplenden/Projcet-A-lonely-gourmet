@@ -39,6 +39,7 @@
           </a>
         </div>
         <!--end: #topMenu-->
+		<c:if test="${login == null && name == null}">
         <div id="searchBar">
           <input type="text" placeholder="검색어를 입력하세요" />
           <button class="searchBtn" type="submit">
@@ -46,23 +47,42 @@
           </button>
         </div>
         <!--end: #searchBar-->
-        <c:if test="${login == null}">
         <div class="loginInfo">
           <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
           <a href="<%=request.getContextPath()%>/member/memberJoin.do" class="join"><p>회원가입</p></a>
-          <p class="welcome"><span>${name}</span>&nbsp;님, 반갑습니다!</p>
         </div>
         <!--end:.loginInfo-->
         </c:if>
-        <c:if test="${login != null}">
+        <c:if test="${login != null && name == null}">
+        <div id="loginSearchBar">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="searchBtn" type="submit">
+            <i class="xi-search xi-2x"></i>
+          </button>
+          </div>
+          <!--end: #searchBar-->
         <div class="loginInfo">
-          <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" style="max-width:50px; height:50px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
+          <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
           <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
           <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
-          <p class="welcome"><span>${name}</span>&nbsp;님, 반갑습니다!</p>
         </div>
         <!--end:.loginInfo-->
         </c:if>
+          <c:if test ="${login == null && name != null}">
+           	 <div id="loginSearchBar">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="searchBtn" type="submit">
+            <i class="xi-search xi-2x"></i>
+          </button>
+          </div>
+          <!--end: #searchBar-->
+        <div class="loginInfo">
+          <span>${name}</span>&nbsp;님, 반갑습니다!</p>
+          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+        </div>
+        <!--end:.loginInfo-->
+            </c:if>
       </div>
       <!--end: #topMenu-->
       <hr />
