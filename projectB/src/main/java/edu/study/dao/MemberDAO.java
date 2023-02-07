@@ -60,6 +60,11 @@ public class MemberDAO {
 			 
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.login", vo);
 	}
+	
+	public int loginCheck(MemberVo vo) {
+		
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.loginCheck", vo);
+	}
 		
 	//�븘�씠�뵒李얘린
 	public MemberVo find_id(MemberVo vo) {

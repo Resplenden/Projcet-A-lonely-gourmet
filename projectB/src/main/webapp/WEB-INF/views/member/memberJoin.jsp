@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>혼밥의 고수 회원가입</title>
-	<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
  <link
       href="../resources/img/_꾸미기_혼밥의고수_파비콘-removebg-preview.png"
       rel="shortcut icon"
@@ -197,6 +197,10 @@
   var checkGenderFlag = false;
   var checkphChkFlag = false;
   var checkphChk2Flag = false;
+  
+  var checkPwdRegFlag = false;
+  var checkPwdCfmRegFlag = false;
+  
   var checkIdVal = "";
   var checkNickVal = "";
   var checkEmailVal = "";
@@ -211,10 +215,7 @@
 				$("#id").focus();
 				checkIdFlag = false;
 				return false;
-<<<<<<< HEAD
-=======
-				
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 			} else if(!checkIdFlag) {
 				alert("아이디 중복확인을 해주세요.");
 				checkIdFlag = false;
@@ -226,7 +227,9 @@
 			var pwd = $.trim($("#pwd").val());
 			if(pwd == ""){
 				alert("비밀번호를 입력하세요.");
-				$("#pwd").focus();
+				$('#pwd_check').text('비밀번호를 입력해주세요.');
+				$('#pwd_check').css('color', 'red');
+				//$("#pwd").focus();
 				checkPwdFlag = false;
 				return false;
 			}
@@ -310,8 +313,7 @@
 		
 
 			/* 최종 유효성 검사 */
-			
-			
+	
 			
 		});
 	})
@@ -320,13 +322,15 @@
 //공백을 아이디로 인식...  
 function checkId(){
 	var idval = $("#id").val();
+	if(idval == "") {
+		alert("아이디를 입력하세요");
+	}
 	
 	$.ajax({
 		url : "checkId.do",
 		type: "post",
 		data: "id="+idval,
 		success:function(data){
-			
 
 			if(data == 1) {
 				$('#id_check').text("중복된 아이디입니다.");
@@ -335,7 +339,9 @@ function checkId(){
 				checkIdFlag = false;
 				checkIdVal = "";
 				return;
-			} else {
+			}  
+			
+			if(data == 0) {
 				$('#id_check').text("사용가능한 아이디입니다.");
 				$('#id_check').css('color', 'green');
 				checkIdFlag = true;
@@ -343,6 +349,7 @@ function checkId(){
 				
 			}
 
+		
 		}
 	});	
 }
@@ -478,42 +485,45 @@ $("#id").on("input",function(){
 });
 
 /*비밀번호 일치확인*/
-$('#pwdCk').focusout(function () {
+$('#pwdCfm').focusout(function () {
+	var pwdReg=/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+	var pwdCfmReg=/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+	
 	var pwd = $("#pwd").val();
 	var pwdCfm = $("#pwdCfm").val();
  
- 
-  	if (pwd == pwdCk) {
+  
+  	if (pwdReg.test($("#pwd").val()) == pwdCfmReg.test($("#pwdCfm").val())) {
       $('#pwdCk_check').text('비밀번호가 일치합니다.');
       $('#pwdCk_check').css('color', 'green');
       checkPwdCkFlag = true;
            
    } else {
+	   alert("비밀번호가 일치하지 않습니다.");
        $('#pwdCk_check').text("비밀번호가 일치하지 않습니다.");
        $('#pwdCk_check').css('color', 'red');
-	   $("#pwdCfm").focus();
        checkPwdCkFlag = false;
        return;
    }	
+  	
 });
 
 //비밀번호
 $("#pwd").blur(function(){
 	var pwd = $("#pwd").val();
-	var pwdReg =/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,8}$/;
+	//var pwdReg =/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]){4,8}$/;
+	var pwdReg=/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
 	
-	if(pwd == null) {
-		//비밀번호가 공백일 경우
-		$('#pwd_check').text('비밀번호를 입력해주세요.');
-		$('#pwd_check').css('color', 'red');
-		checkPwdFlag = false; //아이디를 체크했는지 확인하는 변수
-	} else {
+	if(pwd !=null) {
 		//비밀번호 입력
 		//정규식 검사를 함
 		if (pwdReg.test($(this).val())) {
 			//alert("알맞은 형식입니다");
 			//비밀번호가 형식에 맞다면
 			checkPwdFlag = true; 
+			checkPwdRegFlag = true;
+			
+			
 		} else {
 			//비밀번호가 형식에 맞지 않은 경우
 			//alert("비밀번호는 4자리 이상 8자리 소문자,숫자, 특수문자를 이용해 만들어주세요");
@@ -521,12 +531,56 @@ $("#pwd").blur(function(){
 			$('#pwd_check').css('color', 'red');
 			//$("#pwd").focus();
 			checkPwdFlag = false;
+			checkPwdRegFlag = false;
 			return;
+		} 
+	
+	if (pwdReg.test($(this).val())) {
+		$('#pwd_check').text('');
+		//비밀번호가 형식에 맞다면
+		checkPwdFlag = true; 
+		checkPwdRegFlag = true;
 		}
+		
 	}	
     
 });
 
+$("#pwdCfm").blur(function(){
+	var pwdCfm = $("#pwdCfn").val();
+	//var pwdReg =/^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]){4,8}$/;
+	var pwdCfmReg=/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+	
+	if(pwd !=null) {
+		//비밀번호 입력
+		//정규식 검사를 함
+		if (pwdCfmReg.test($(this).val())) {
+			//alert("알맞은 형식입니다");
+			//비밀번호가 형식에 맞다면
+			checkPwdCfmFlag = true; 
+			checkPwdCfmFlag = true;
+
+		} else {
+			//비밀번호가 형식에 맞지 않은 경우
+			//alert("비밀번호는 4자리 이상 8자리 소문자,숫자, 특수문자를 이용해 만들어주세요");
+			$('#pwdCk_check').text('비밀번호를 확인해주세요.');
+			$('#pwdCk_check').css('color', 'red');
+			//$("#pwd").focus();
+			checkPwdCfmFlag = false;
+			checkPwdCfmFlag = false;
+			return;
+		} 
+	
+	if (pwdCfmReg.test($(this).val())) {
+		$('pwdCk_check').text('');
+		//비밀번호가 형식에 맞다면
+		checkPwdCfmFlag = true; 
+		checkPwdCfmFlag = true;
+		}
+		
+	}	
+    
+});
 
 
 //한글이름만
@@ -601,7 +655,6 @@ $("#email").blur(function(){
 	}	
 });
 
-	
 
   </script>  
   

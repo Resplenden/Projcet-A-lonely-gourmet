@@ -3,6 +3,8 @@ package edu.study.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import edu.study.vo.BoardVo;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
@@ -29,6 +31,8 @@ public interface MemberService {
 	
 	MemberVo login(MemberVo vo); //濡쒓렇�씤
 	
+	int loginCheck(MemberVo vo, HttpSession session);
+
 	MemberVo find_id(MemberVo vo); //�븘�씠�뵒李얘린
 	
 	int fileInsert(HashMap<String, Object>mfFile);

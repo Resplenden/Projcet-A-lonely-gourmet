@@ -3,42 +3,82 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html>
 <html>
+<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
 <script>
 
-$(function(){
-	var id = getCookie("str_id");
-	
-	if(id) {
-		$("#id").val(id);
-		$("#save_id").attr("checked", true);
-	}	
+$(document).ready(function(){
+    // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백
+    var userInputId = getCookie("userInputId");
+    $("#id").val(userInputId); 
+     
+    if($("#id").val().toString().length){ 
+        $("#save_id").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+    }
+     
+    $("#save_id").change(function(){ // 체크박스에 변화가 있을때,
+        if($("#save_id").is(":checked")){ // ID 저장하기 체크했을때,
+            var userInputId = $("#id").val();
+            setCookie("userInputId", userInputId, 10); // 10일 동안 쿠키 보관
+        }else{ // ID 저장하기 체크 해제 시,
+            deleteCookie("userInputId");
+        }
+    });
+     
+    // ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 쿠키 저장.
+    $("#id").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
+        if($("#save_id").is(":checked")){ // ID 저장하기를 체크한 상태라면,
+            var userInputId = $("#id").val();
+            setCookie("userInputId", userInputId, 10); // 10일 동안 쿠키 보관
+        }
+    });
 });
 
-function login(){
-	var id = $("#id").val();
-	var idChk = $("#save_id").is(":checked");
-	
-	if(id == "") {
-		alert("아이디를 입력하세요");
-		$("#id").focus();
-		return;
-	}
-	
-	if(pwd == "") {
-		alert("비밀번호를 입력하세요.");
-		$("#pwd").focus();
-		return;
-	}
-	
-	if(idChk) {
-		setCookie("str_id", id, 7);
-	} else {
-		deleteCookie("str_id");
-	} 
-		$("#loginForm").submit();
+function loginCheck(){
 
-	
-}
+    var frm = document.frm;
+    var idVal = $("#id").val();
+    var pwdVal = $("#pwd").val();  
+
+ /*
+    if(frm.id.value == ""){
+       alert("아이디를 입력해주세요.");
+       frm.id.focus();
+       return;
+    }else if(frm.pwd.value == ""){
+       alert("비밀번호를 입력해주세요.");
+       frm.pwd.focus();
+       return;
+    }*/
+    
+
+    $.ajax({
+       url : "<%=request.getContextPath()%>/member/loginCheck.do",
+       type : "post",
+       data : {"id":idVal, "pwd":pwdVal},
+       dataType : "json",
+       success:function(data)
+       {
+        	if(data == 0)
+        	{
+        		alert("아이디나 비밀번호가 일치하지 않습니다.");
+        		idVal = "";
+        		pwdVal = "";
+        	}else if(data == 1)
+        	{
+        		alert("로그인성공");
+	            frm.action ="<%=request.getContextPath() %>/member/memberLogin.do";
+	            frm.method="post"; 
+	            frm.submit();
+        	}
+    	},
+    	error: function(request,status,error)
+    	{
+    		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    	}
+    });
+ }
+
+
 
 //쿠키 저장하기
 function setCookie(cookieName, value, exdays){
@@ -98,8 +138,8 @@ function getCookie(cookieName) {
           width="350px"
         />
       </a>
-      <form action="memberLogin.do" method="post">
-        <input type="text" id="id" name="id" class="id" value="${inputId }" placeholder="아이디" />
+      <form action="memberLogin.do" name="frm" method="post">
+        <input type="text" id="id" name="id" class="id"  placeholder="아이디" />
         <br />
         <input
           type="password"
@@ -110,9 +150,9 @@ function getCookie(cookieName) {
         />
         <!-- <br />
         <p>올바르지 않은 아이디/비밀번호입니다.</p> -->
-        <input type="checkbox" class="chkId" id="save_id" name="save_id" value="true" ${checked}  />
+        <input type="checkbox" class="chkId" id="save_id" name="save_id" value="true"  />
         <label for="save_id">아이디 저장</label>
-        <button type="submit" name="login" class="login" onclick="login()">로그인</button>
+        <button type="button" name="login" class="login" onclick="loginCheck()">로그인</button>
         
         <c:if test="${msg == false }">
 			alert("아이디와 비밀번호를 다시 입력해주세요");
