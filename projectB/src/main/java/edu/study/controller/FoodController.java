@@ -1,5 +1,7 @@
 package edu.study.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,10 @@ public class FoodController {
 	
 	/*식당 상세 페이지*/
 	@RequestMapping(value="/foodView.do",method=RequestMethod.GET)
-	public String view() {
+	public String view(HttpSession session) {
+		System.out.println("session 값:" + session);
 		
-	return "food/foodView";
+	return "food/foodView1";
 	
 	}
 	

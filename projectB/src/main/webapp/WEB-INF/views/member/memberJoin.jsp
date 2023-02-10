@@ -39,12 +39,11 @@
       <form action="join.do" method="post" enctype = "multipart/form-data">
         <ul>
           <li id="prof">
-            <label for="profile"></label><br />
             <div class="memberImage">
               <label class="profileImg" for="profileImg">
                 <i class="xi-camera xi-2x"></i>
+                <input type="file" id="profileImg" name="profileImg" />
               </label>
-              <input type="file" id="profileImg" name="profileImg" />
             </div>
             <!--div: 프로필 이미지가 들어갈 자리-->
             <!--label: 파일 찾기 버튼을 감싸는 태그-->

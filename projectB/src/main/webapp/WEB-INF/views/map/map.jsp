@@ -41,7 +41,7 @@
 		<div id="map"
 			style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 		<div id="menu_wrap" class="bg_white">
-			<div class="option">
+			<div class="option"> 
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
 						<input type="text" value="전주 맛집" id="keyword">
@@ -61,25 +61,20 @@
 	<script>
 		// 마커를 담을 배열입니다
 		var markers = [];
-
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
 			level : 4
 		// 지도의 확대 레벨
 		};
-
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
-
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
-
 		// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 		var infowindow = new kakao.maps.InfoWindow({
 			zIndex : 1
 		});
-
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
 
@@ -91,7 +86,7 @@
 			if (!keyword.replace(/^\s+|\s+$/g, '')) {
 				alert('키워드를 입력해 주세요.');
 				return false;
-			}
+			} 
 
 			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 			ps.keywordSearch(keyword, placesSearchCB);
@@ -151,16 +146,16 @@
 				(function(marker, title) {
 					kakao.maps.event.addListener(marker, 'mouseover',
 							function() {
-								displayInfowindow(marker, title);
+								displayInfowindow(marker, title, places);
 							});
 
-					kakao.maps.event.addListener(marker, 'mouseout',
+					/* kakao.maps.event.addListener(marker, 'mouseout',
 							function() {
 								infowindow.close();
-							});
+							}); */
 
 					itemEl.onmouseover = function() {
-						displayInfowindow(marker, title);
+						displayInfowindow(marker, title, places);
 					};
 
 					itemEl.onmouseout = function() {
@@ -204,9 +199,90 @@
 
 			return el;
 		}
+		
+		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+		// 인포윈도우에 장소명을 표시합니다
+		function displayInfowindow(marker, title, places) {
+			
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlay = new kakao.maps.CustomOverlay({
+			    content: content,
+			    map: map,
+			    position: marker.getPosition()      
+			});
+			
+			
+			for (var i = 0; i < places.length; i++) {
+				if(title == places[i].place_name) {
+	
+				console.log(places[i]);
+				
+				// 마커를 클릭했을 때 커스	텀 오버레이를 표시합니다
+				kakao.maps.event.addListener(marker, 'click', function() {
+				    overlay.setMap(map);
+				});
+				
+			
+			
+			var content = '<div id="content">'
+			+'</br>'
+			+ '<p class="title">' 
+			+ title
+			+ '</p>' 
+			+'<p class="address">'
+			+ places[i].address_name
+			+'</p>'	
+			+'<p class="tel">'
+			+ places[i].phone
+			+'</p>'
+			+'</br>'
+			+'<a href="<%=request.getContextPath()%>/food/foodView.do?" class="view">'
+			+'자세히 보기'
+			+'<i class="xi-angle-right xi-2x">'
+			+'</i>'
+			+'</a>'	
+			+'</div>' 
+			
+			infowindow.setContent(content);
+			infowindow.open(map, marker, places);
+			
+			
+				}
+				//end: if(title == places[i].place_name)
+				
+				
+
+			var closeBtn = document.createElement('button');
+			var con = document.getElementById("content");
+			
+				closeBtn.innerHTML = '<i class="xi-close xi-2x"><i>';
+				closeBtn.style.backgroundColor="#dfdfdf";
+				closeBtn.style.border= "none";
+				closeBtn.style.float="right";
+				closeBtn.style.width="17px";
+				closeBtn.style.height="17px";
+				closeBtn.style.borderRadius="50%";
+				closeBtn.style.textAlign="center";
+				closeBtn.style.marginBottom="10px";
+				
+				closeBtn.onclick = function() {
+					con.style.display="none";
+					infowindow.close();	
+					overlay.setMap(null);
+				}
+				
+				// end: closeBtn.onclick 
+			
+				
+			}
+			con.insertAdjacentElement('afterbegin',closeBtn);
+			//end: for문
+		}
+		//end: function displayInfoWindow()
 
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-		function addMarker(position, idx, title) {
+		function addMarker(position, idx, title, places) {
 			var imageSrc = "<%=request.getContextPath()%>/resources/img/marker_number_salmon.png";
 			imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
 			imgOptions = {
@@ -264,27 +340,20 @@
 			paginationEl.appendChild(fragment);
 		}
 
-		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-		// 인포윈도우에 장소명을 표시합니다
-		function displayInfowindow(marker, title) {
-			var content = '<div style="padding:5px;z-index:1;">'
-					+ '<p style="font-size:15px; font-weight:bold;">' + title
-					+ '</p>' + '</div>';
-
-			infowindow.setContent(content);
-			infowindow.open(map, marker);
-		}
+	
+		
+	
+		
 
 		// 검색결과 목록의 자식 Element를 제거하는 함수입니다
-		function removeAllChildNods(el) {
+		function removeAllChildNods(el) { 	
 			while (el.hasChildNodes()) {
 				el.removeChild(el.lastChild);
 			}
-		}
+		}	
+		
+		
 	</script>
-
-
-
 
 </body>
 </html>

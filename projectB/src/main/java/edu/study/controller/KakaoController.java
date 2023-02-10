@@ -27,6 +27,7 @@ public class KakaoController {
 		String access_token = kakaoService.getAccessToken(code);
 		System.out.println("access_token"+access_token);
 		HashMap<String,Object> userInfo = kakaoService.getUserInfo(access_token);
+		System.out.println("session qqq" + session);
 		session.setAttribute("userId", userInfo.get("id"));
 		session.setAttribute("name", userInfo.get("name"));
 		System.out.println(userInfo);
