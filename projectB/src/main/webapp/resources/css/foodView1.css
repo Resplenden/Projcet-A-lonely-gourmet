@@ -1,126 +1,128 @@
 @charset "UTF-8";
 
-
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Pretendard-Regular";
+	src:
+		url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+		format("woff");
+	font-weight: 400;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: "TTTtangsbudaejjigaeB";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2")
-    format("woff2");
-  font-weight: 700;
-  font-style: normal;
+	font-family: "TTTtangsbudaejjigaeB";
+	src:
+		url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2")
+		format("woff2");
+	font-weight: 700;
+	font-style: normal;
 }
 
 @font-face {
-  font-family: 'GongGothicMedium';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'GongGothicMedium';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
-  margin: 0 auto;
-  padding: 0;
-  text-decoration: none;
-  font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
-    "Arial";
-  -webkit-user-select: none;
-  -ms-use-select: none;
+	margin: 0 auto;
+	padding: 0;
+	text-decoration: none;
+	font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP",
+		San-serif ", "Arial";
+	-webkit-user-select: none;
+	-ms-use-select: none;
 }
 
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 table {
-  -webkit-border-horizontal-spacing: 0px;
-  -webkit-border-vertical-spacing: 0px;
+	-webkit-border-horizontal-spacing: 0px;
+	-webkit-border-vertical-spacing: 0px;
 }
 
 body {
-  font-family: "Pretendard-Regular";
+	font-family: "Pretendard-Regular";
 }
 
 nav {
-  width: 1920px;
-  height: 191px;
-  z-index: 12010;
-  box-shadow: 5px 5px 5px rgb(216, 216, 216);
+	width: 1920px;
+	height: 191px;
+	z-index: 12010;
+	box-shadow: 5px 5px 5px rgb(216, 216, 216);
 }
 
-
 #topMenu {
-  display: flex;
-  width: 1600px;
-  height: 140px;
-  background-color: white;
-  align-content: center;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+	display: flex;
+	width: 1600px;
+	height: 140px;
+	background-color: white;
+	align-content: center;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
 }
 
 .logo {
-  margin-right: 170px;
+	margin-right: 170px;
 }
 
 #searchBar {
-  display: flex;
-  width: 666px;
-  height: 49px;
-  border: 3px solid salmon;
-  margin-top: 10px;
-  margin-right: 220px;
+	display: flex;
+	width: 666px;
+	height: 49px;
+	border: 3px solid salmon;
+	margin-top: 10px;
+	margin-right: 220px;
 }
 
 #loginSearchBar {
-  display: flex;
-  width: 666px;
-  height: 49px;
-  border: 3px solid salmon;
-  margin-top: 10px;
-    margin-right: 50px;
+	display: flex;
+	width: 666px;
+	height: 49px;
+	border: 3px solid salmon;
+	margin-top: 10px;
+	margin-right: 50px;
 }
 
 #searchBar input, #loginSearchBar input {
-  width: 597px;
-  height: 47px;
-  padding-left: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  border: none;
-  font-family: "Pretendard-Regular";
+	width: 597px;
+	height: 47px;
+	padding-left: 15px;
+	font-size: 20px;
+	font-weight: bold;
+	border: none;
+	font-family: "Pretendard-Regular";
 }
 
 #searchBar input:focus, #loginSearchBar input:focus {
-  outline: none;
+	outline: none;
 }
 
 #searchBar input::placeholder, #loginSearchBar input::placeholder {
-  font-size: 20px;
-  color: rgb(182, 182, 182);
+	font-size: 20px;
+	color: rgb(182, 182, 182);
 }
 
 .searchBtn {
-  border: none;
-  color: salmon;
-  padding: 8.5px 16px 7px 7px;
-  background: none;
+	border: none;
+	color: salmon;
+	padding: 8.5px 16px 7px 7px;
+	background: none;
 }
 
 .searchBtn:hover {
-  color: rgb(250, 71, 48);
-  cursor: pointer;
+	color: rgb(250, 71, 48);
+	cursor: pointer;
 }
 
 .searchBtn i {
-  display: inline-block;
+	display: inline-block;
 }
 
 .loginInfo {
@@ -129,41 +131,41 @@ nav {
 }
 
 .loginInfo a {
-  text-decoration: none;
-  color: black;
-  margin-top: 14px;
+	text-decoration: none;
+	color: black;
+	margin-top: 14px;
 }
 
 .login, .myPage {
-  display: inline-block;
-  padding: 10px 25px 10px 25px;
-  margin-right: 10px;
-  border-radius: 30px;
+	display: inline-block;
+	padding: 10px 25px 10px 25px;
+	margin-right: 10px;
+	border-radius: 30px;
 }
 
 .login p, .myPage p {
-  color: salmon;
-  font-weight: bold;
+	color: salmon;
+	font-weight: bold;
 }
 
 .login p:hover, .myPage p:hover {
-  color: rgb(250, 71, 48);
-  font-weight: bold;
+	color: rgb(250, 71, 48);
+	font-weight: bold;
 }
 
 .join, .logout {
-  display: inline-block;
-  padding: 10px 25px 10px 25px;
-  background: salmon;
-  border-radius: 5px;
+	display: inline-block;
+	padding: 10px 25px 10px 25px;
+	background: salmon;
+	border-radius: 5px;
 }
 
 .join:hover, .logout:hover {
-  background-color: rgb(250, 71, 48);
+	background-color: rgb(250, 71, 48);
 }
 
 .join p, .logout p {
-  color: white;
+	color: white;
 }
 
 .loginInfo {
@@ -180,441 +182,426 @@ nav {
 	margin-right: 15px;
 }
 
-.loginInfo span{
+.loginInfo span {
 	font-weight: bold;
 	font-style: italic;
 	font-size: 20px;
 }
 
 /*end: .loginInfo*/
-
 hr {
-  background: rgb(182, 182, 182);
-  height: 1px;
-  border: none;
+	background: rgb(182, 182, 182);
+	height: 1px;
+	border: none;
 }
 
 #bottMenu {
-  width: 1652px;
-  height: 50px;
-  background-color: rgb(255, 255, 255);
+	width: 1652px;
+	height: 50px;
+	background-color: rgb(255, 255, 255);
 }
 
 #bottMenu ul {
-  display: flex;
-  margin-left: 300px;
-  margin-right: 300px;
+	display: flex;
+	margin-left: 300px;
+	margin-right: 300px;
 }
 
 #bottMenu li {
-  font-size: 18px;
-  flex-basis: 100px;
-  margin-top: 12px;
+	font-size: 18px;
+	flex-basis: 100px;
+	margin-top: 12px;
 }
 
 #bottMenu li a {
-  color: salmon;
+	color: salmon;
 }
 
 #bottMenu li a:hover {
-  color: rgb(250, 71, 48);
-  font-weight: bold;
+	color: rgb(250, 71, 48);
+	font-weight: bold;
 }
 /*end: nav*/
-
-
 main {
-    width: 1522.38px;
-    min-height: 2940px;
-    max-height: 6000px;
-    padding: 100px 0 150px 0;
-  }
-  
-  .boardName {
-    width: 1522.38px;
-    font-size: 44px;
-    color: salmon;
-    padding: 10px;
-    margin-bottom: 80px;
-  }
-  
-  #board_1 {
-      width: 1100px;
-      min-height: 500px;
-      max-height: 1500px;
-      border: 1px solid rgb(145, 145, 145);
-      padding: 60px 60px 120px 60px;
-      background-color: white;
-  }
+	width: 1522.38px;
+	min-height: 2940px;
+	max-height: 6000px;
+	padding: 100px 0 150px 0;
+}
 
-  .foodImg {
-    width: 900px;
-    height: 550px; 
-    background-color: grey;
-    margin-bottom: 45px;
-  }
+.boardName {
+	width: 1522.38px;
+	font-size: 44px;
+	color: salmon;
+	padding: 10px;
+	margin-bottom: 80px;
+}
 
-  .info {
-    width: 886px;
-    padding-left: 90px;
-    padding-right: 90px;
-    padding-bottom: 90px;
-    position: relative;
-  }
+#board_1 {
+	width: 1100px;
+	min-height: 500px;
+	max-height: 1500px;
+	border: 1px solid rgb(145, 145, 145);
+	padding: 60px 60px 120px 60px;
+	background-color: white;
+}
 
-  .info:before {
-    content : "";
-    position: absolute;
-    left    : 80px;
-    bottom  : 0;
-    height  : 1px;
-    width   : 900px;
-    border-bottom:1px solid rgb(146, 146, 146);
-  } /*.info의 보다 짧은 border-bottom을 위해 만든 것임!*/
+.foodImg {
+	width: 900px;
+	height: 550px;
+	margin-bottom: 45px;
+}
 
-  .info h2 {
-    font-size: 55px;  
-    margin-bottom: 10px;
-  }
+.info {
+	width: 886px;
+	padding-left: 90px;
+	padding-right: 90px;
+	padding-bottom: 90px;
+	position: relative;
+}
 
-  .info h3 {
-    font-size: 20px;
-    font-weight: lighter;
-    color:rgb(112, 112, 112);
-    margin-bottom: 30px;
-  }
+.info:before {
+	content: "";
+	position: absolute;
+	left: 80px;
+	bottom: 0;
+	height: 1px;
+	width: 900px;
+	border-bottom: 1px solid rgb(146, 146, 146);
+} /*.info의 보다 짧은 border-bottom을 위해 만든 것임!*/
+.info h2 {
+	font-size: 55px;
+	margin-bottom: 10px;
+}
 
-  .info p {
-    color:rgb(65, 65, 65);
-    font-size: 18px;
-    margin-top: 15px;
-    display: inline-block;
-  } 
+.info h3 {
+	font-size: 20px;
+	font-weight: lighter;
+	color: rgb(112, 112, 112);
+	margin-bottom: 30px;
+}
 
+.info p {
+	color: rgb(65, 65, 65);
+	font-size: 18px;
+	margin-top: 15px;
+	display: inline-block;
+}
 
-  .recommend {
-    min-width: 70px;
-    max-width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    font-size: 15px;
-    border: 1px solid salmon;
-    background-color: white;
-    color: salmon;
-    cursor: pointer;
-    font-weight: bold;
-    float: right;
-    margin-right: 10px;
-    
-  }
+.recommend {
+	min-width: 70px;
+	max-width: 100px;
+	height: 40px;
+	border-radius: 5px;
+	font-size: 15px;
+	border: 1px solid salmon;
+	background-color: white;
+	color: salmon;
+	cursor: pointer;
+	font-weight: bold;
+	float: right;
+	margin-right: 10px;
+}
 
-  .reviewWrite {
-    width: 95px;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    font-size: 15px;  
-    background-color: salmon;
-    color: white;
-    float: right;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0 5px 0 5px;
-    margin-left: 6px;
-  }
+.reviewWrite {
+	width: 95px;
+	height: 40px;
+	border-radius: 5px;
+	border: none;
+	font-size: 15px;
+	background-color: salmon;
+	color: white;
+	float: right;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 0 5px 0 5px;
+	margin-left: 6px;
+}
 
-  .recommend:hover {
-    background-color: salmon;
-    color:  white;
-    transition: all 0.2s ease-in-out;
-  }
+.recommend:hover {
+	background-color: salmon;
+	color: white;
+	transition: all 0.2s ease-in-out;
+}
 
-  .menu {
-    padding-left: 105px;
-    padding-right: 105px;
-  }
+.menu {
+	padding-left: 105px;
+	padding-right: 105px;
+}
 
-  .menu h3{
-    font-size: 33px;
-    margin-top: 35px;
-    margin-bottom: 20px;
-  }
+.menu h3 {
+	font-size: 33px;
+	margin-top: 35px;
+	margin-bottom: 20px;
+}
 
-  .menu p {
-    display: inline-block; 
-    font-size: 18px;
-    margin-top: 20px;
-    color:rgb(65, 65, 65);
-  }
+.menu p {
+	display: inline-block;
+	font-size: 18px;
+	margin-top: 20px;
+	color: rgb(65, 65, 65);
+}
 
-  .menuName {
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .price {
-    float: right;
-  }
-
-  /*end: #borad_1*/
-
-  #board_2 {
-    width: 1100px;
-    min-height: 500px;
-    max-height: 2500px;
-    border: 1px solid rgb(145, 145, 145);
-    padding: 60px 60px 130px 60px;
-    background-color: white;
-    margin-top: 100px;
-  }
-
-  .reviewList {
-    padding: 0 105px 0 105px;
-  }
-
-  .reviewList h3 {
-    font-size: 33px;
-    margin-top: 35px;
-    margin-bottom: 20px;
-    display: inline-block;
-  }
-
-  .count {
-    display: inline-block;
-    margin-left: 40px;
-    font-size: 20px;
-    color: salmon;
-    font-weight: bold;
-  }
-
-  .reviewList li {
-    border-bottom: 1px solid grey;
-    padding-bottom: 90px;
-    padding-top: 30px;
-  }
+.menuName1, .menuName2, .menuName3, .menuName4 {
+	font-size: 20px;
+	font-weight: bold;
+}
 
 
-  .review {
-    width: 100%;
-    height: 15%;
-    display: flex;
-    align-items: center;
-  }
+.price1, .price2, .price3, .price4 {
+	float: right;
+}
 
-  .reviewImg {
-    width: 250px;
-    height: 160px;
-    background-color:rgb(250, 71, 48);
-  }
+/*end: #borad_1*/
+#board_2 {
+	width: 1100px;
+	min-height: 500px;
+	max-height: 2500px;
+	border: 1px solid rgb(145, 145, 145);
+	padding: 60px 60px 130px 60px;
+	background-color: white;
+	margin-top: 100px;
+}
 
-  .reviewContent {
-    width: 570px;
-    padding: 20px;
-  }
+.reviewList {
+	padding: 0 105px 0 105px;
+}
 
-  .reviewContent h3 {
-    font-size: 25px;
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: inline-block;
-  }
+.reviewList h3 {
+	font-size: 33px;
+	margin-top: 35px;
+	margin-bottom: 20px;
+	display: inline-block;
+}
 
-  .reviewContent a {
-    color: black;
-  }
+.count {
+	display: inline-block;
+	margin-left: 40px;
+	font-size: 20px;
+	color: salmon;
+	font-weight: bold;
+}
 
-  .reviewContent h3:hover {
-    text-decoration: underline;
-    color: black;
-  }
-  
+.reviewList li {
+	border-bottom: 1px solid grey;
+	padding-bottom: 90px;
+	padding-top: 30px;
+}
+
+.review {
+	width: 100%;
+	height: 15%;
+	display: flex;
+	align-items: center;
+}
+
+.reviewImg {
+	width: 250px;
+	height: 160px;
+	background-color: rgb(250, 71, 48);
+}
+
+.reviewContent {
+	width: 570px;
+	padding: 20px;
+}
+
+.reviewContent h3 {
+	font-size: 25px;
+	margin-top: 0;
+	margin-bottom: 20px;
+	display: inline-block;
+}
+
+.reviewContent a {
+	color: black;
+}
+
+.reviewContent h3:hover {
+	text-decoration: underline;
+	color: black;
+}
+
 .reviewContent p {
-  display: block;
-  width: 530px;
-  max-width: 530px;
-  height: 108px;
-  max-height: 108px;
-  margin-left: 0;
-  font-size: 20px;
-  line-height: 27px;
-  color:rgb(65, 65, 65);
-  overflow:hidden;
-  text-overflow:ellipsis;
+	display: block;
+	width: 530px;
+	max-width: 530px;
+	height: 108px;
+	max-height: 108px;
+	margin-left: 0;
+	font-size: 20px;
+	line-height: 27px;
+	color: rgb(65, 65, 65);
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 /*end: .review*/
-
 .profile {
-width: 600px;
-height: 60px;
-float: right;
-text-align: center;
-position: relative;
+	width: 600px;
+	height: 60px;
+	float: right;
+	text-align: center;
+	position: relative;
 }
 
 .profileImg {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  position: absolute;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	position: absolute;
 }
 
 .profile p {
-  color:rgb(65, 65, 65);  
+	color: rgb(65, 65, 65);
 }
 
 .nickname {
-  color: black;
-  font-weight: bold;
-  display: inline-block;
-  position: absolute;
-  left: 85px;
-  top: 17px;
-  font-size: 18px;
+	color: black;
+	font-weight: bold;
+	display: inline-block;
+	position: absolute;
+	left: 85px;
+	top: 17px;
+	font-size: 18px;
 }
 
-.date{
-  position: absolute;
-  right: 100px;
-bottom: 0;
-  font-size: 16px;
+.date {
+	position: absolute;
+	right: 100px;
+	bottom: 0;
+	font-size: 16px;
 }
 
 .reviewRecom {
-  position: absolute;
-  right: 20px;
-  bottom: 0;
-  font-size: 16px;
+	position: absolute;
+	right: 20px;
+	bottom: 0;
+	font-size: 16px;
 }
 
 /*end: .profile*/
-
 .pager {
-  text-align: center;
-  padding-top: 40px;
+	text-align: center;
+	padding-top: 40px;
 }
 
 #boardOption .reviewWrite {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
-  /*end: .reviewList*/
-  #topBtn {
-    background-color: white;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    border: none;
-    box-shadow: 3px 3px 3px rgb(182, 182, 182);
-    cursor: pointer;
-    bottom: 40px;
-    right: 40px;
-    position: fixed;
-  }
+/*end: .reviewList*/
+#topBtn {
+	background-color: white;
+	width: 65px;
+	height: 65px;
+	border-radius: 50%;
+	border: none;
+	box-shadow: 3px 3px 3px rgb(182, 182, 182);
+	cursor: pointer;
+	bottom: 40px;
+	right: 40px;
+	position: fixed;
+}
 
-  #topBtn p {
-    position: absolute;
-    text-align: center;
-    left: 19px;
-    top: 8px;
-    color:rgb(128, 128, 128);
-    font-size: 13px;
-  }
-   
-  #topBtn i {
-    color: salmon;
-  }
+#topBtn p {
+	position: absolute;
+	text-align: center;
+	left: 19px;
+	top: 8px;
+	color: rgb(128, 128, 128);
+	font-size: 13px;
+}
+
+#topBtn i {
+	color: salmon;
+}
 
 /*end: #topBtn*/
-
-  
 footer {
-  width: 1613px;
-  height: 250px;
-  background-color: rgb(56, 56, 56);
-  padding: 50px 160px 30px 130px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  position: relative;
+	width: 1613px;
+	height: 250px;
+	background-color: rgb(56, 56, 56);
+	padding: 50px 160px 30px 130px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	margin: 0 auto;
+	position: relative;
 }
 
-
 #slogan {
-  width: 620px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  flex-basis: 50px;
-  padding-bottom: 30px;
-  margin: 0;
+	width: 620px;
+	height: 70px;
+	display: flex;
+	align-items: center;
+	flex-basis: 50px;
+	padding-bottom: 30px;
+	margin: 0;
 }
 
 footer img {
-  filter: invert(0.5);
-  margin-bottom: 10px;
+	filter: invert(0.5);
+	margin-bottom: 10px;
 }
 
 footer p {
-  display: inline-block;
-  color:rgb(99, 99, 99);
+	display: inline-block;
+	color: rgb(99, 99, 99);
 }
 
 #footerMenu {
-  margin: 0;
-  width: 600px;
+	margin: 0;
+	width: 600px;
 }
 
-
-#footerMenu ul{
-  margin: 0;
-  display: flex;
-  width: 600px;
-  padding-bottom: 30px;
+#footerMenu ul {
+	margin: 0;
+	display: flex;
+	width: 600px;
+	padding-bottom: 30px;
 }
-
 
 #footerMenu a {
-  color: rgb(99, 99, 99);
+	color: rgb(99, 99, 99);
 }
 
 #footerMenu a:hover {
-  color: salmon;
+	color: salmon;
 }
 
 .companyInfo {
-  margin-left: 15px;
-  width: 620px;
+	margin-left: 15px;
+	width: 620px;
 }
 
 #sns {
-  width: 500px;
+	width: 500px;
 }
 
 #sns ul {
-  display: flex;
-  position: absolute;
-  right: 160px;
-  bottom: 100px;
+	display: flex;
+	position: absolute;
+	right: 160px;
+	bottom: 100px;
 }
 
 #sns li:nth-child(2) {
- margin-right: 15px;
- margin-left: 15px;
+	margin-right: 15px;
+	margin-left: 15px;
 }
 
 #sns a {
-  padding: 25px 10px 10px 10px;
-  border: 1px solid rgb(99, 99, 99);
-  border-radius: 25%;
-    color:rgb(99, 99, 99);
+	padding: 25px 10px 10px 10px;
+	border: 1px solid rgb(99, 99, 99);
+	border-radius: 25%;
+	color: rgb(99, 99, 99);
 }
 
 #sns a:visited {
-  color:rgb(99, 99, 99);
+	color: rgb(99, 99, 99);
 }
 
 #sns a:hover {
-  color: salmon;
-  border: 1px solid salmon;
+	color: salmon;
+	border: 1px solid salmon;
 }

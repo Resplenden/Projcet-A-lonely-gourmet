@@ -1,5 +1,6 @@
 package edu.study.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,13 +22,19 @@ public class FoodController {
 	
 	}
 	
-	/*식당 상세 페이지*/
 	@RequestMapping(value="/foodView.do",method=RequestMethod.GET)
-	public String view(HttpSession session) {
-		System.out.println("session 값:" + session);
-		
-	return "food/foodView1";
-	
+	   public String view(HttpServletRequest req, Model model) {
+	      System.out.println("session 값:" + req.getParameter("name"));
+	      System.out.println("session 값:" + req.getParameter("category"));
+	      String name= req.getParameter("name");
+	      String addr = req.getParameter("addr");
+	      String category = req.getParameter("category");
+	      String phone = req.getParameter("phone");
+	      req.setAttribute("title", name);
+	      req.setAttribute("addr", addr);
+	      req.setAttribute("category", category);
+	      req.setAttribute("phone", phone);
+	   return "food/foodView1";
 	}
 	
 	/*리뷰 상세 페이지*/

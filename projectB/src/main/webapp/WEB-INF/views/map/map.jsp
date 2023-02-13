@@ -155,8 +155,10 @@
 							}); */
 
 					itemEl.onmouseover = function() {
-						displayInfowindow(marker, title, places);
-					};
+				                  displayInfowindow(marker, title, places);
+				                  var pos = marker.getPosition();
+				                  map.panTo(pos);
+				               };
 
 					itemEl.onmouseout = function() {
 						infowindow.close();
@@ -178,10 +180,12 @@
 		function getListItem(index, places) {
 
 			var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
-					+ (index + 1)
-					+ '"></span>'
-					+ '<div class="info">'
-					+ '   <h5>' + places.place_name + '</h5>';
+	               + (index + 1)
+	               + '"></span>'
+	               + '<div class="info">'
+	               + '<a href="<%=request.getContextPath()%>/food/foodView.do?name='+ places.place_name +'&category='+places.category_name+'&addr='+places.address_name+'&phone='+places.phone+'">'
+	               + '<h5>' + places.place_name + '</h5>'
+	               + '</a>';
 
 			if (places.road_address_name) {
 				itemStr += '    <span>' + places.road_address_name + '</span>'
@@ -237,7 +241,17 @@
 			+ places[i].phone
 			+'</p>'
 			+'</br>'
-			+'<a href="<%=request.getContextPath()%>/food/foodView.do?" class="view">'
+			+'<a href="<%=request.getContextPath()%>/food/foodView.do?'
+			+'&name='
+			+ places[i].place_name
+			+'&addr='
+			+ places[i].address_name
+			+'&phone='
+			+ places[i].phone
+			+'&category='
+			+ places[i].category_name
+			+'"'	
+			+' class="view">' 
 			+'자세히 보기'
 			+'<i class="xi-angle-right xi-2x">'
 			+'</i>'
