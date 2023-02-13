@@ -17,18 +17,18 @@ public class EventServiceImpl implements EventService{
 	private EventDAO eventDAO;
 	
 	@Override
-	public List<EventVo> list() {
+	public List<EventVo> list(SearchVo searchVo) {
 
-		List<EventVo> list = eventDAO.list();
+		List<EventVo> list = eventDAO.list(searchVo);
 
 		return list;
 	}
 
-	//@Override
-	//public int count(SearchVo searchVo) {
+	@Override
+	public int count(SearchVo searchVo) {
 		
-		//return eventDAO.count(searchVo);
-	//}
+		return eventDAO.count(searchVo);
+	}
 
 	@Override
 	public EventVo selectByEidx(int eidx) {

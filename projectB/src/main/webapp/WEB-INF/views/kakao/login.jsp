@@ -7,7 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
-<a href="https://kauth.kakao.com/oauth/authorize?client_id=0c4af53abdedaf0c73af2ec8b352e10c&redirect_uri=http://192.168.0.14:8090&response_type=code">로그인ㄴㅁㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㄴㅇㅁㄴ </a>
+<a href="https://kauth.kakao.com/oauth/authorize?client_id=78ddd6c305488a31abc2fc79ad6af5c5&redirect_uri=http://localhost:8090/controller/kakao/logindone.do&response_type=code">로그인</a>
 
 
 

@@ -182,6 +182,8 @@
  		   set replyCnt = (select count(ridx) from replytb where bidx = #{bidx})
  		 where bidx = #{bidx}
  	</update>
+ 	
+ 	
 	
 </mapper>
 	

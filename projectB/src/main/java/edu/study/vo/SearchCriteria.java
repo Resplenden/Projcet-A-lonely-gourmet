@@ -3,6 +3,7 @@ package edu.study.vo;
 public class SearchCriteria extends CriteriaVo{
 	private String searchType ="";
 	private String keyWord = "";
+	
 	public String getSearchType() {
 		return searchType;
 	}

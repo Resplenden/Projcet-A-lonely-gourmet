@@ -19,7 +19,6 @@ public class PageVo{
 	 private SearchCriteria scri;
 	 
 	 
-
 	 public void setTotalCount(int totalCount) {
 	  this.totalCount = totalCount;
 	  calcData();

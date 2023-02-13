@@ -13,29 +13,32 @@ import edu.study.vo.SearchCriteria;
 
 public interface MemberService {
 	
-	List<MemberVo> list();
 	
-	int join(MemberVo vo);
-	
-	MemberVo selectMember(String email);
-		
-	int updatePw(MemberVo vo);
-	
-	int idCheck(String id);
-	
-	int nameCheck(String name);
-	
-	int nickCheck(String nickname);
-	
-	int emailCheck(String email);
-	
-	MemberVo login(MemberVo vo); //濡쒓렇�씤
+	MemberVo login(MemberVo vo); //로그인
 	
 	int loginCheck(MemberVo vo, HttpSession session);
-
-	MemberVo find_id(MemberVo vo); //�븘�씠�뵒李얘린
+	
+	MemberVo find_id(MemberVo vo); //아이디찾기
+	
+	MemberVo selectMember(String email);
+	
+	int updatePw(MemberVo vo); //새 비밀번호
+	
+	int join(MemberVo vo); //회원가입
 	
 	int fileInsert(HashMap<String, Object>mfFile);
 	
 	MemberFileVo file(int midx);
+	
+	int idCheck(String id); //아이디 중복확인
+	
+	int nameCheck(String name); //이름 중복확인
+	
+	int nickCheck(String nickname); //닉네임 중복확인
+	
+	int emailCheck(String email); //이메일
+	
+	
+	
+
 }

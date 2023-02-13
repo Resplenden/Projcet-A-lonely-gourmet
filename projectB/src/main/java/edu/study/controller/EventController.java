@@ -35,25 +35,25 @@ public class EventController{
 	
 	/* 글 목록 보기(검색,페이징) */
 	@RequestMapping(value="/list.do",method=RequestMethod.GET)
-	public String list(EventVo vo,Model model) {
+	public String list(EventVo vo,Model model, @ModelAttribute("searchVo") SearchVo searchVo) {
 		
 		//게시글 보기
-		List<EventVo> list = eventService.list();
+		List<EventVo> list = eventService.list(searchVo);
 		model.addAttribute("list",list);
-		//model.addAttribute("searchVo",searchVo);
+		model.addAttribute("searchVo",searchVo);
 		
 		//페이징
-		/*PageMaker pageMaker = new PageMaker(eventService.count(searchVo),searchVo);
+		PageMaker pageMaker = new PageMaker(eventService.count(searchVo),searchVo);
 		pageMaker.setSearchVo(searchVo);	
-		model.addAttribute("pageMaker",pageMaker);*/
+		model.addAttribute("pageMaker",pageMaker);
 		
 		return "event/list";	
 	}
 	
 	@RequestMapping(value="/view.do",method=RequestMethod.GET)
 	public String view(int eidx,Model model) {
-		EventVo vo =  eventService.selectByEidx(eidx); 
 		eventService.updateREC(eidx);//조회수
+		EventVo vo =  eventService.selectByEidx(eidx); 
 		System.out.println("vo:"+vo);
 		model.addAttribute("vo",vo);
 		

@@ -15,14 +15,15 @@ public class EventDAO {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<EventVo> list(){
+	public List<EventVo> list(SearchVo searchVo){
 		
-		return sqlSession.selectList("edu.study.mapper.eventMapper.list");
+		return sqlSession.selectList("edu.study.mapper.eventMapper.list",searchVo);
 	}
 	
 	//±Û°³¼ö
-	//public int count(SearchVo searchVo) {
-		//return sqlSession.selectOne("edu.study.mapper.eventMapper.count");}
+	public int count(SearchVo searchVo) {
+		return sqlSession.selectOne("edu.study.mapper.eventMapper.count",searchVo);
+	}
 	
 	public EventVo selectByEidx(int eidx) {
 		return sqlSession.selectOne("edu.study.mapper.eventMapper.selectByEidx", eidx);

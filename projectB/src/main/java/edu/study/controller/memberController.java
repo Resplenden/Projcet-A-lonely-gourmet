@@ -27,8 +27,6 @@ import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
 
 
-
-//@ComponentScan(basePackages = {"edu.study.service.UserService"})
 @RequestMapping(value="/member")
 @Controller
 
@@ -56,7 +54,7 @@ public class memberController {
 		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginBo.getAuthorizationUrl(session);
 		/* 인증요청문 확인 */
-		System.out.println("네이버:" + naverAuthUrl);
+		//System.out.println("네이버:" + naverAuthUrl);
 		/* 객체 바인딩 */
 		model.addAttribute("urlNaver", naverAuthUrl);
 
@@ -71,7 +69,8 @@ public class memberController {
 		String inputPwd = vo.getPwd();
 		vo.setPwd(sha256.encrypt(inputPwd));
 	
-		MemberVo loginVO = memberService.login(vo);		
+		MemberVo loginVO = memberService.login(vo);	
+	
 		System.out.println("loginVO 값 : "+loginVO);
 		System.out.println("vo값 : "+vo);
 		MemberFileVo loginVo2 = memberService.file(loginVO.getMidx());
@@ -85,13 +84,10 @@ public class memberController {
 			
 		}	
 		
-	
 		session.setAttribute("login", loginVO);
 		return "redirect:/";
 		
-		
-		
-	}
+	}	
 	
 	@ResponseBody
 	@RequestMapping(value="/loginCheck.do", method=RequestMethod.POST)
@@ -115,7 +111,7 @@ public class memberController {
 		}
 	}
 	
-	/* 濡쒓렇�븘�썐 */
+	/* 로그아웃 */
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -123,6 +119,7 @@ public class memberController {
 	}
 	
 	
+	/* 회원가입 */
 	@RequestMapping(value="/memberJoin.do", method=RequestMethod.GET)
 	public String join() {
 		
@@ -139,7 +136,7 @@ public class memberController {
 		
 		int result = memberService.join(vo); 
 		
-		String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+		String path = "C:\\Users\\745\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 		
 		System.out.println(path);
 		
@@ -173,6 +170,7 @@ public class memberController {
 		return "redirect:/member/memberLogin.do";
 	}
 	
+
 	/* 아이디 중복확인  */
 	@ResponseBody
 	@RequestMapping(value="/checkId.do", method=RequestMethod.POST)
@@ -184,50 +182,52 @@ public class memberController {
 		} else {
 			return "0";
 		}
-	} 
+	}
+	
 	
 	/* 닉네임 중복확인 */
 	@ResponseBody
 	@RequestMapping(value="/checkNick.do", method=RequestMethod.POST)
 	public String checkNick(String nickname) {
 		int result = memberService.nickCheck(nickname);
-		
+
 		if(result > 0) {
 			return "1";
 		} else {
 			return "0";
 		}
 	}
-	
+
 	/* 이메일 중복확인 */
 	@ResponseBody
 	@RequestMapping(value="/checkEmail.do", method=RequestMethod.POST)
 	public String checkEmail(String email) {
 		int result = memberService.emailCheck(email);
-		
+
 		if(result > 0) {
 			return "1";
 		} else {
 			return "0";
 		}
 	}
-	
+
 	@RequestMapping("/sendSMS1.do") //
 	@ResponseBody    
-	    public String sendSMS(String phone) {
-	 
-	        Random rand  = new Random(); //랜덤숫자 생성하기 !!
-	        String numStr = "";
-	        for(int i=0; i<6; i++) {
-	            String ran = Integer.toString(rand.nextInt(10));
-	            numStr+=ran;
-	        }
-	        	        
-	         
-	        messageService.message(phone, numStr);	
-	         
-	          return numStr;
-	    }
+	public String sendSMS(String phone) {
+
+		Random rand  = new Random(); //랜덤숫자 생성하기 !!
+		String numStr = "";
+		for(int i=0; i<6; i++) {
+			String ran = Integer.toString(rand.nextInt(10));
+			numStr+=ran;
+    }
+    	        
+     
+    messageService.message(phone, numStr);	
+     
+      return numStr;
+}
+
 	
 	
 	
@@ -235,3 +235,7 @@ public class memberController {
 	
 	
 }
+	
+	
+	
+

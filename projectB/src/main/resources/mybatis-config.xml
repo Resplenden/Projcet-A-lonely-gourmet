@@ -17,6 +17,7 @@
 		<typeAlias type="edu.study.vo.SearchVo" alias="searchVo"/>
 		<typeAlias type="edu.study.vo.LikeVo" alias="likeVo"/>		
 		<typeAlias type="edu.study.vo.EventVo" alias="eventVo"/>
+		<typeAlias type="edu.study.vo.ReviewVo" alias = "reviewVo" />
     </typeAliases>	
 </configuration>
 

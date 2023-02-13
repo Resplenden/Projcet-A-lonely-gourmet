@@ -21,22 +21,30 @@ public class MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 		
+	
+	//로그인
+	public MemberVo login(MemberVo vo) {
+			 
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.login", vo);
+	}
+	
+	public int loginCheck(MemberVo vo) {
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.loginCheck", vo);
+	}
+	
+	//아이디찾기
+	public MemberVo find_id(MemberVo vo) {
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.find_id", vo);
+	}
+		
+	//비번찾기
 	public MemberVo selectMember(String email){		
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.selectMember", email);			
 	}
-	
-	public int join(MemberVo vo) {
-		return sqlSession.insert("edu.study.mapper.memberMapper.join", vo);
-	}
-	
+		
 	public int updatePw(MemberVo vo) {
 		
 		return sqlSession.update("edu.study.mapper.memberMapper.updatePw", vo);
-	}
-
-	public List<MemberVo> list(){
-		
-		return sqlSession.selectList("edu.study.mapper.memberMapper.list");
 	}
 	
 	public int idCheck(String id) {
@@ -48,27 +56,16 @@ public class MemberDAO {
 	}
 	
 	public int nickCheck(String nickname) {
-		return sqlSession.selectOne("edu.study.mapper.memberMapper.nameCheck", nickname);
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.nickCheck", nickname);
 	}
 	
 	public int emailCheck(String email) {
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.emailCheck", email);
 	}
 	
-	//濡쒓렇�씤
-	public MemberVo login(MemberVo vo) {
-			 
-		return sqlSession.selectOne("edu.study.mapper.memberMapper.login", vo);
-	}
 	
-	public int loginCheck(MemberVo vo) {
-		
-		return sqlSession.selectOne("edu.study.mapper.memberMapper.loginCheck", vo);
-	}
-		
-	//�븘�씠�뵒李얘린
-	public MemberVo find_id(MemberVo vo) {
-		return sqlSession.selectOne("edu.study.mapper.memberMapper.find_id", vo);
+	public int join(MemberVo vo) {
+		return sqlSession.insert("edu.study.mapper.memberMapper.join", vo);
 	}
 	
 	public int fileInsert(HashMap<String, Object> mfFile) {
@@ -79,6 +76,13 @@ public class MemberDAO {
 	public MemberFileVo file(int midx){		
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.file", midx);
 	}
+	
+
+	
+	
+
+
+	
 	
 	
 }

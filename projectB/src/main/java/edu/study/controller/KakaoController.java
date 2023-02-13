@@ -21,12 +21,14 @@ public class KakaoController {
 	private KakaoService kakaoService;
 
 	@RequestMapping(value = "/logindone.do", method=RequestMethod.GET)
-	public String kakaoLogin2(@RequestParam(value = "code", required = false)String code, HttpSession session) {
+	public String kakaoLogin(@RequestParam(value = "code", required = false)String code, HttpSession session) {
 		
 		System.out.println("##"+code);		
 		String access_token = kakaoService.getAccessToken(code);
 		System.out.println("access_token"+access_token);
 		HashMap<String,Object> userInfo = kakaoService.getUserInfo(access_token);
+		
+//		session.invalidate();
 		session.setAttribute("userId", userInfo.get("id"));
 		session.setAttribute("name", userInfo.get("name"));
 		System.out.println(userInfo);
@@ -34,6 +36,8 @@ public class KakaoController {
 		return "redirect:/";
 	
 	}
+	
+	
 
 	
 }

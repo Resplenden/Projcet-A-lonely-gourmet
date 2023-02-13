@@ -1,6 +1,8 @@
 package edu.study.controller;
 
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 
@@ -80,5 +82,12 @@ public class NaverController {
 		return "redirect:/";
 	}
     	
+	public String logout(HttpSession session) throws IOException {
+		
+		System.out.println("로그아웃 성공");
+		session.invalidate();
+		
+		return "redirect:main.jsp";
+	}
 	
 }

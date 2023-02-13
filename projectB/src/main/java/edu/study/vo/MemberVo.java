@@ -12,9 +12,10 @@ public class MemberVo {
 	private String email;
 	private String phone;
 	private String orgname;
+	private String stname;
+	private String lvl;
 	private String wdate;
 	private String delyn;
-	private String stname;
 	
 	public int getMidx() {
 		return midx;
@@ -76,6 +77,18 @@ public class MemberVo {
 	public void setOrgname(String orgname) {
 		this.orgname = orgname;
 	}
+	public String getStname() {
+		return stname;
+	}
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
+	public String getLvl() {
+		return lvl;
+	}
+	public void setLvl(String lvl) {
+		this.lvl = lvl;
+	}
 	public String getWdate() {
 		return wdate;
 	}
@@ -88,20 +101,18 @@ public class MemberVo {
 	public void setDelyn(String delyn) {
 		this.delyn = delyn;
 	}
-	public String getStname() {
-		return stname;
-	}
-	public void setStname(String stname) {
-		this.stname = stname;
-	}
 	
 	@Override
 	public String toString() {
 		return "MemberVo [midx=" + midx + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", birth=" + birth
 				+ ", nickname=" + nickname + ", gender=" + gender + ", email=" + email + ", phone=" + phone
-				+ ", orgname=" + orgname + ", wdate=" + wdate + ", delyn=" + delyn + ", stname=" + stname + "]";
+				+ ", orgname=" + orgname + ", stname=" + stname + ", lvl=" + lvl + ", wdate=" + wdate + ", delyn="
+				+ delyn + "]";
 	}
 	
+	
+	
+
 	
 	
 	

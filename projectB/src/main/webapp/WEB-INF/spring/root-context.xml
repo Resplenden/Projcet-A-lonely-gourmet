@@ -5,13 +5,21 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@192.168.0.14:1521:xe" />
 		<property name="username" value="c##apic" />
 		<property name="password" value="1234" />
-	</bean>
+	</bean> -->
 	
+	<bean id="dataSource"  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://jjezen.cafe24.com:3307/api_20220919_c_b?useSSL=false&amp;serverTimezone=UTC"></property>
+		<property name="username" value="api_c_userB"></property>
+		<property name="password" value="user1234!!"></property>
+	</bean>	
+	
+		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
@@ -39,5 +47,7 @@
 			</props>
 		</property>
 	</bean>
+	
+	
 	
 </beans>

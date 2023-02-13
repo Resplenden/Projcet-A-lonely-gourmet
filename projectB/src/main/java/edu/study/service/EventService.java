@@ -7,8 +7,8 @@ import edu.study.vo.SearchVo;
 
 public interface EventService {
 	
-	List<EventVo> list();
-	//int count(SearchVo searchVo);
+	List<EventVo> list(SearchVo searchVo);
+	int count(SearchVo searchVo);
 	EventVo selectByEidx(int eidx); 
 	int updateREC(int eidx); //조회수
 	int write(EventVo vo); //글쓰기

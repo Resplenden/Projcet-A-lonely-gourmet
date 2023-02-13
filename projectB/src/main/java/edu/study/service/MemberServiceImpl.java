@@ -19,24 +19,55 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDAO;
 
+
+	@Override
+	public MemberVo login(MemberVo vo) {
+		
+		return memberDAO.login(vo);
+	}
+
+	@Override
+	public int loginCheck(MemberVo vo, HttpSession session) {
+		
+		return memberDAO.loginCheck(vo);
+	}
+	
+	@Override
+	public MemberVo find_id(MemberVo vo) {
+		
+		return memberDAO.find_id(vo);
+	}
+	
 	@Override
 	public MemberVo selectMember(String email) {
 		// TODO Auto-generated method stub
 		return memberDAO.selectMember(email);
 	}
-
+	
 	@Override
 	public int updatePw(MemberVo vo) {
 		// TODO Auto-generated method stub
 		return memberDAO.updatePw(vo);
 	}
-
+	
 	@Override
-	public List<MemberVo> list() {
-		// TODO Auto-generated method stub
-		return memberDAO.list();
+	public int join(MemberVo vo) {
+		
+		return memberDAO.join(vo);
 	}
-
+	
+	@Override
+	public int fileInsert(HashMap<String, Object> mfFile) {
+		// TODO Auto-generated method stub
+		return memberDAO.fileInsert(mfFile);
+	}
+	
+	@Override
+	public MemberFileVo file(int midx) {
+		// TODO Auto-generated method stub
+		return memberDAO.file(midx);
+	}
+	
 	@Override
 	public int idCheck(String id) {
 		// TODO Auto-generated method stub
@@ -48,37 +79,7 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return memberDAO.nameCheck(name);
 	}
-
-	@Override
-	public int emailCheck(String email) {
-		// TODO Auto-generated method stub
-		return memberDAO.emailCheck(email);
-	}
-
-	@Override
-	public int join(MemberVo vo) {
-		// TODO Auto-generated method stub
-		return memberDAO.join(vo);
-	}
-
-	@Override
-	public MemberVo login(MemberVo vo) {
-		
-		return memberDAO.login(vo);
-	}
-
-	@Override
-	public MemberVo find_id(MemberVo vo) {
-		
-		return memberDAO.find_id(vo);
-	}
-
-	@Override
-	public int fileInsert(HashMap<String, Object> mfFile) {
-		// TODO Auto-generated method stub
-		return memberDAO.fileInsert(mfFile);
-	}
-
+	
 	@Override
 	public int nickCheck(String nickname) {
 		// TODO Auto-generated method stub
@@ -86,17 +87,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberFileVo file(int midx) {
+	public int emailCheck(String email) {
 		// TODO Auto-generated method stub
-		return memberDAO.file(midx);
+		return memberDAO.emailCheck(email);
 	}
-
-	@Override
-	public int loginCheck(MemberVo vo, HttpSession session) {
-		
-		return memberDAO.loginCheck(vo);
-	}
-
+	
+	
 	
 	
 	
