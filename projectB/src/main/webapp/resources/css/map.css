@@ -351,3 +351,63 @@ nav {
 	cursor: default;
 	color: salmon;
 }
+
+/*end: pagination*/
+
+#content {
+	min-width: 170px;
+	max-width: 300px;
+	padding: 10px;
+	z-index: 1;
+}
+
+.close{
+	width: 20px;
+	height: 17px;
+	display: block;
+	float: right;	
+	background-color: #dfdfdf;
+	border-radius: 50%;
+	text-align: center;
+	margin-bottom: 10px;
+	padding-top: 3px;	
+}
+
+.title {
+	font-size:23px;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+.address {
+	font-size: 14px;
+	color: 	#333333;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: 3px;
+}
+
+.tel {
+	font-size: 13px;
+	color:#7a7a7a;
+	font-style: italic;
+}
+
+
+.view {
+	float: right;
+	font-size: 15px;
+	padding:5px;
+	margin-bottom: 10px;
+	border: none;
+	color: #333333;
+}
+
+.view i {
+	color: salmon;
+	font-weight: bold;
+	margin-left: 5px;
+}

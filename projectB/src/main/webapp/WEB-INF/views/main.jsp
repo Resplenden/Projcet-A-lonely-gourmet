@@ -91,7 +91,11 @@
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
           <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
+
           <li><a href="<%=request.getContextPath()%>/review/list.do">이벤트</a></li>
+
+          <li><a href="<%=request.getContextPath()%>/food/foodList.do">식당</a></li>
+
         </ul>
       </div>
       <!--end: #bottMenu-->
