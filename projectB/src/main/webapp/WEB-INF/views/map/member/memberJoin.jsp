@@ -53,9 +53,7 @@
           <li>
             <label for="id">아이디<br /><br />
             <input type="text" id="id" name="id" class="id" />
-            <button type="button" name="idCheck" class="idCheck" onclick="checkId()">
-              <p>중복확인</p>
-            </button>
+            <input type="button" name="idCheck" class="idCheck" onclick="checkId()" value="중복확인">
             </label>
             <span id="id_check"></span>
           </li>
@@ -88,9 +86,8 @@
           <li>
             <label for="nickname">닉네임<br /><br />
             <input type="text" id="nickname" name="nickname" class="nickname" />
-             <button type="button" name="nickCheck" class="nickCheck" onclick="checkNick()">
-              <p>중복확인</p>
-            </button>
+             <input type="button" name="nickCheck" class="nickCheck" onclick="checkNick()" value="중복확인" >
+              
             </label>
           	<span id="nick_check" class="error_box"></span>
           </li>
@@ -144,9 +141,8 @@
           <li>
             <label for="email">이메일<br /><br />
             <input type="email" id="email" name="email" class="email" placeholder="(ex: example@email.com)"/>
-             <button type="button" name="emailCheck" class="emailCheck" onclick="checkEmail()">
-              <p>중복확인</p>
-            </button>
+             <input type="button" name="emailCheck" class="emailCheck" onclick="checkEmail()" value="중복확인">
+              
             </label>
             <span id="email_check" class="error_box"></span>
           </li>
@@ -209,7 +205,7 @@
 		$("form").submit(function(){
 			
 			/* 아이디 */
-			var id =  $.trim($("#id").val());
+			var id = $("#id").val();
 			if(id == "") {
 				alert("아이디를 입력하세요.");
 				$("#id").focus();
@@ -224,7 +220,7 @@
 			
 
 			/* 비밀번호 */
-			var pwd = $.trim($("#pwd").val());
+			var pwd = $("#pwd").val();
 			if(pwd == ""){
 				alert("비밀번호를 입력하세요.");
 				$('#pwd_check').text('비밀번호를 입력해주세요.');
@@ -235,7 +231,7 @@
 			}
 			
 			/* 비밀번호 확인  */
-			var pwdCfm = $.trim($("#pwdCfm").val());
+			var pwdCfm = $("#pwdCfm").val();
 			if(pwdCfm == ""){
 				alert("비밀번호 확인을 입력하세요.");
 				$("#pwdCfm").focus();
@@ -245,7 +241,7 @@
 		
 			
 			/* 이름 */
-			var name = $.trim($("#name").val());
+			var name = $("#name").val();
 			if(name == "") {
 				alert("이름을 입력하세요.");
 				$("#name").focus();
@@ -254,7 +250,7 @@
 			}
 			
 			/* 닉네임  */
-			var nick = $.trim($("#nickname").val());
+			var nick = $("#nickname").val();
 			if(nick == "") {
 				alert("닉네임을 입력하세요.");
 				$("#nickname").focus();
@@ -326,7 +322,32 @@ function checkId(){
 	
 	if(idval == "") {
 		alert("아이디를 입력하세요");
+		return;
 	}
+	
+	// 아이디 입력값이 있어
+	// 정규식 검사를 해서, 올바르지 않은 형식이면
+	// 형식에 맞지 않습니다. 메세지를 띄우고
+	// 아이디 입력하는 인풋으로 포커스 이동
+	// 리턴
+		
+	if (idReg.test($("#id").val())) {
+			//이름이 형식에 맞다면
+			$("#id_check").text("사용가능한 id입니다. 중복체크를 해주세요.");
+			checkIdFlag = true; 
+		} else {
+			//아이디가 형식에 맞지 않은 경우
+			$('#id_check').text('아이디는 4~10자 소문자, 숫자를 사용하세요.');
+			$('#id_check').css('color', 'red');
+			//$("#id").focus();
+			checkIdFlag = false;
+			$("#id").focus();
+			return;
+		}
+
+	
+	// 아이디도 입력되어있고, 형식도 맞으니 중복검사를 할 차례
+	// ajax -> 사용가능, 중복 
 	
 	$.ajax({
 		url : "checkId.do",
@@ -343,13 +364,6 @@ function checkId(){
 				return;
 			}  
 			
-			if(data.id == 0) {
-				$('#id_check').text("아이디를 입력하세요");
-				$('#id_check').css('color', 'red');
-				checkIdFlag = false;
-				
-			}	
-			
 			if(data == 0) {
 				$('#id_check').text("사용가능한 아이디입니다.");
 				$('#id_check').css('color', 'green');
@@ -357,10 +371,6 @@ function checkId(){
 				checkIdVal = idval;
 				
 			}
-			
-			
-
-		
 		}
 	});	
 }
@@ -398,7 +408,22 @@ function checkId(){
  /* 닉네임 중복검사 */
 function checkNick(){
 	var nickVal = $("#nickname").val();
-
+	var nickReg=/^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/;
+	
+	if(nickVal == "") {
+		alert("닉네임을 입력하세요");
+		return;
+	}
+	
+	if(nickReg.test($("#nickname").val())){
+		$("#nick_check").text("멋진 닉네임이예요.");
+		checkNickFlag=true;
+	}else {
+		$("#nick_check").text("중복된 닉네임입니다.");
+		$("#nick_check").css("color","red");
+		checkNickFlag = false;
+	}
+	
 		$.ajax({
 			url : "checkNick.do",
 			type: "post",
@@ -408,11 +433,11 @@ function checkNick(){
 				if(data == 1){
 					$('#nick_check').text("중복된 닉네임입니다.");
 					$('#nick_check').css('color', 'red');
-					$("#nickname").focus();
 					checkNickFlag = false;
-					checkNickVal =="";
+					checkNickVal ="";
 					return;
-				}else{
+				}
+				if (data == 0){
 					$('#nick_check').text("사용가능한 닉네임입니다.");
 					$('#nick_check').css('color', 'green');
 					checkNickFlag = true;
@@ -426,6 +451,20 @@ function checkNick(){
 /* 이메일 중복검사  */
  function checkEmail() {
 	var emailVal = $("#email").val();
+	var emailReg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i; 
+				
+	if(emailVal == "") {
+		alert("이메일을 입력하세요");
+		return;
+	}
+	
+	
+	if(emailReg.test($("#email").val())) {
+		//alert("사용가능한 이메일입니다");
+		$("#email_check").text('');
+		checkEmailFlag = true;
+		
+	}
 		
 		$.ajax({
 			url:"checkEmail.do",
@@ -439,7 +478,6 @@ function checkNick(){
 					$('#email_check').css('color', 'red');
 					checkEmailFlag = false;
 					checkEmailVal ="";
-					$("#email").focus();
 					return;
 				} else {
 					$('#email_check').text("사용가능한 이메일입니다.");
@@ -543,6 +581,7 @@ $("#pwd").blur(function(){
 			//$("#pwd").focus();
 			checkPwdFlag = false;
 			checkPwdRegFlag = false;
+			$("#pwd").focus();
 			return;
 		} 
 	
@@ -569,7 +608,6 @@ $("#pwdCfm").blur(function(){
 			//alert("알맞은 형식입니다");
 			//비밀번호가 형식에 맞다면
 			checkPwdCfmFlag = true; 
-			checkPwdCfmFlag = true;
 
 		} else {
 			//비밀번호가 형식에 맞지 않은 경우
@@ -578,7 +616,6 @@ $("#pwdCfm").blur(function(){
 			$('#pwdCk_check').css('color', 'red');
 			//$("#pwd").focus();
 			checkPwdCfmFlag = false;
-			checkPwdCfmFlag = false;
 			return;
 		} 
 	
@@ -586,7 +623,6 @@ $("#pwdCfm").blur(function(){
 		$('pwdCk_check').text('');
 		//비밀번호가 형식에 맞다면
 		checkPwdCfmFlag = true; 
-		checkPwdCfmFlag = true;
 		}
 		
 	}	
@@ -613,7 +649,6 @@ $("#name").blur(function(){
 			//이름이 형식에 맞지 않은 경우
 			$('#name_check').text('이름을 확인해주세요.');
 			$('#name_check').css('color', 'red');
-			$("#name").focus();
 			checkNameFlag = false;
 			return;
 			}
@@ -662,9 +697,27 @@ $("#email").blur(function(){
 		$('#email_check').css('color', 'red');
 		$("#email").focus();
 		checkEmailFlag = false;
-		return;ㄴ
+		return;
 	}	
 });
+
+//닉네임 유효성검사
+$("#nickname").blur(function(){
+	var nick = $("#nickname").val();
+	var nickReg=/^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,16}$/; //2자 이상 16자 이하, 영어 또는 숫자 또는 한글로 구성
+	
+	if(reg.test($(this).val())){
+		$("#nick_check").text("멋진 닉네임이예요.");
+		$("#nick_check").css('color','green');
+		checkNickFlag=true;
+	}else {
+		$("#nick_check").text("중복된 닉네임입니다.");
+		$("#nick_check").css("color","red");
+		checkNickFlag = false;
+		return;
+		}
+	});
+
 
 
   </script>  

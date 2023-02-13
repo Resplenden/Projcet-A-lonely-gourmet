@@ -7,8 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title>
+	<title>혼밥의 고수 아이디 찾기</title>
+	<link
+      href="../resources/img/_꾸미기_혼밥의고수_파비콘-removebg-preview.png"
+      rel="shortcut icon"
+    />
 
+<link href="${pageContext.request.contextPath}/resources/css/find_id.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
 <script>
 
@@ -49,7 +54,7 @@
 					return;
 				} 
 				
-					$("#frm").submit();
+				$("#findId").submit();
 
 				
 			} 
@@ -61,27 +66,40 @@
 
 </head>
 <body>
-	<h1>아이디 찾기</h1>
+<div id="inner">
+      <a href="#"
+        ><img
+          src="../resources/img/사본_-혼밥의고수_로고_초안_대지_1_사본-removebg-preview.png"
+          width="350px"
+        />
+      </a>
+      <h1>&nbsp;아이디 찾기</h1>
 
-		<form action="find_id.do" name ="frm" id="frm" method="post" >
-			<c:if test="${msg == false }">
-			<span id="findingID" >찾으시는 아이디는 아이디가 없습니다</span> 
-			</c:if> 
-			<div>
-				<label for="name">이름</label>
-				<input type="text" name="name" id="name">
-			</div>
-			<div>
-				<label for="email">이메일</label>
-				<input type="email" name="email" id="email">
-			</div>
+	
+
+		<form action="find_id.do" name ="findId" id="findId" method="post" >
 				
-			<button type="button" id="btn" onclick="findingID()">아이디확인</button>
-			<button onclick="reset()">취소</button>
-			<br>
-			
-			
+			<input type="text" name="name" id="name" class="name" placeholder="이름">
+			<br />
+			<input type="email" name="email" id="email" class="email" placeholder="이메일">
+			<br /> 
+			<button type="button" id="btn" class="findId" onclick="findingID()">아이디확인</button>
+			<br/>
+			<button class="findId" onclick="reset()">취소</button>
+			<br/>
 		</form>
+		
+		
+	<!--end: form-->
+	<p class="companyInfo">
+ 		혼밥의고수 &#124; 대표자: 고독한 미식가 &#124; 전주시 덕진구 백제대로
+        572 4층 이젠컴퓨터아트서비스학원
+        <br />
+        © 2023 혼밥의 고수 Ltd. All rights reserved.
+      </p>
+      </div>
+      <!--end: .companyInfo-->
+	<!-- inner -->
 
 </body>
 </html>
