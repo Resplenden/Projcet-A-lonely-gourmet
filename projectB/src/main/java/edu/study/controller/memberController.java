@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import edu.study.service.MemberService;
 import edu.study.service.MessageService;
 import edu.study.service.NaverLoginBo;
+import edu.study.service.SessionConfig;
 import edu.study.service.sha256;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
@@ -63,8 +65,10 @@ public class memberController {
 	}
 	
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
-	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, Model model) {
+	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, HttpServletRequest request, Model model) {
 		System.out.println("vo값"+vo);
+		String id = request.getParameter("id");
+		
 		
 		String inputPwd = vo.getPwd();
 		vo.setPwd(sha256.encrypt(inputPwd));
@@ -84,8 +88,24 @@ public class memberController {
 			
 		}	
 		
+		
+		if(id!= null) {
+			String userId = SessionConfig.loginSessionChecker("id", id);
+			System.out.println(id+":"+userId);
+			session.setMaxInactiveInterval(60*60); //세션 유효시간 설정
+			session.setAttribute("id", id);
+			return "redirect:/";
+		}
+		
+		
+		
+		//EgovHttpSessionBindingListener listener = new EgovHttpSessionBindingListener();
+	
 		session.setAttribute("login", loginVO);
 		return "redirect:/";
+			
+		
+		
 		
 	}	
 	
