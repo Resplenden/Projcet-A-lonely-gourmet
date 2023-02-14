@@ -2,7 +2,12 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-<mapper namespace="edu.study.mapper.sampleMapper">
-	 
+
+<mapper namespace="edu.study.mapper.reviewMapper">
+	
+	
+ 	
+ 	
+	
 </mapper>
+	

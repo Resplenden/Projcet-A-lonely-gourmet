@@ -8,13 +8,13 @@
 	<!-- 검색 조건 -->
 	<sql id="search">
 		<if test="searchType == 'title'">
-		and title like '%'||#{searchVal}||'%'
+		and title like '%${searchVal}%'
 		</if>
 		<if test="searchType == 'writer'">
-		and writer like '%'||#{searchVal}||'%'
+		and writer like '%${searchVal}%'
 		</if>
 		<if test="searchType == 'content'">
-		and content like '%'||#{searchVal}||'%'
+		and content like '%${searchVal}%'
 		</if>
 	</sql>
 	
@@ -46,15 +46,12 @@
   	<!-- 글 목록 + 페이징 -->
   	<select id="listPage" parameterType="searchVo" resultType="boardVo">
 	
-		SELECT * FROM(
-		SELECT ROWNUM as RN,A.* FROM (
-		select * from board
-		where 1=1
+		SELECT * FROM board	
+		WHERE delyn = 'N'
 		<include refid="search"></include>
 		<include refid="category"></include>
 		order by <include refid="order"></include>bidx desc
-		)A
-		)WHERE RN between #{start} and #{end}
+		limit #{start} , #{perPageNum}
  	</select>
 	
 	<!-- 검색조건에 맞는 게시물 총 갯수 조회 -->
@@ -69,8 +66,8 @@
   	<!-- 글쓰기  -->
   	<insert id="write" parameterType="boardVo">
   		insert into board(
-  				bidx
-  			,	title
+  				
+  			title
   			,	content
   			,	writer
   			,	category
@@ -78,11 +75,10 @@
   			,	likeCnt
   			,	midx
   			,	filename
-  			,	wdate
-  			,	delyn
+  			
   		)values(
-  				bidx_seq.nextval
-  			,	#{title}
+  			
+  			#{title}
   			,	#{content}
   			,	#{writer}
   			,	#{category}
@@ -90,8 +86,7 @@
   			,	#{likeCnt}
   			,	#{midx}
   			,	#{filename}
-  			,	sysdate
-  			,	'N'
+  			
   		)
   	</insert>
 
@@ -120,8 +115,8 @@
 
 	<!-- 글 삭제하기 -->
 	<delete id="deleteByBidx" parameterType="int">
-		delete 
-		 from board
+		update board
+		 set delyn = 'Y'
 		 where bidx = #{bidx}
 	</delete>
 
@@ -141,20 +136,18 @@
 
 	<!-- 추천이나 비추천 클릭시 liketb에 insert -->
 	<insert id="insertLiketb" parameterType="likeVo">
-		insert into liketb(
-				lidx
-			,	id
+		insert into boardlike(				
+			id
 			,	bidx
-		)values(
-				lidx_seq.nextval
-			,	#{id}
+		)values(				
+			#{id}
 			,	#{bidx}
 		)
 	</insert>
 
 	<!-- 추천 클릭시 likeCheck를 1로 만들어서 중복 방지 -->
 	<update id="updateByLikeCheck" parameterType="likeVo">
-		update liketb
+		update boardlike
 		   set likeCheck = 1
 		 where bidx = #{bidx}
 		   and id = #{id}
@@ -162,7 +155,7 @@
 
 	<!-- 비추천 클릭시 hateCheck를 1로 만들어서 중복 방지 -->
 	<update id="updateByHateCheck" parameterType="likeVo">
-		update liketb
+		update boardlike
 		   set hateCheck = 1
 		 where bidx = #{bidx}
 		   and id = #{id}
@@ -171,7 +164,7 @@
  	<!-- 게시글 추천 or비추천 중복방지 -->
  	<select id="likeCheck" parameterType="likeVo" resultType="int">
  		select count(*)
- 		  from liketb
+ 		  from boardlike
  		 where bidx = #{bidx}
  		   and id = #{id}
  	</select>
@@ -179,7 +172,7 @@
  	<!-- 댓글 개수 수정 -->
  	<update id="updateReplyCnt" parameterType="int">
  		update board
- 		   set replyCnt = (select count(ridx) from replytb where bidx = #{bidx})
+ 		   set replyCnt = (select count(ridx) from reply where bidx = #{bidx})
  		 where bidx = #{bidx}
  	</update>
  	

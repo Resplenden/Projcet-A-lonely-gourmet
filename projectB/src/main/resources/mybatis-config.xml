@@ -4,8 +4,7 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="edu.study.vo.BoardVo" alias="boardVo"/>
-		<typeAlias type="edu.study.vo.UserVo" alias="userVo"/>
+		<typeAlias type="edu.study.vo.BoardVo" alias="boardVo"/>		
 		<typeAlias type="edu.study.vo.SearchCriteria" alias="scri"/>
 		<typeAlias type="edu.study.vo.CriteriaVo" alias="criVo" />
 		<typeAlias type="edu.study.vo.ReplyVo" alias = "replyVo" />	
@@ -15,8 +14,7 @@
 		<typeAlias type="edu.study.vo.ReplyPageMaker" alias="replyPageMaker"/>
 		<typeAlias type="edu.study.vo.PageMaker" alias="pageMaker"/>
 		<typeAlias type="edu.study.vo.SearchVo" alias="searchVo"/>
-		<typeAlias type="edu.study.vo.LikeVo" alias="likeVo"/>		
-		<typeAlias type="edu.study.vo.EventVo" alias="eventVo"/>
+		<typeAlias type="edu.study.vo.LikeVo" alias="likeVo"/>				
 		<typeAlias type="edu.study.vo.ReviewVo" alias = "reviewVo" />
     </typeAliases>	
 </configuration>
