@@ -89,6 +89,7 @@ function loginCheck(){
           name="pwd"
           class="password"
           placeholder="비밀번호"
+          onkeyup="if(window.event.keyCode==13){loginCheck()}"
         />
         <!-- <br />
         <p>올바르지 않은 아이디/비밀번호입니다.</p> -->

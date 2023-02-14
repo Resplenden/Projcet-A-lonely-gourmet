@@ -97,6 +97,7 @@ public class ReplyController{
 		//로그인하면 id를 vo에 담는다.
 		MemberVo login = (MemberVo)session.getAttribute("login");
 		vo.setId(login.getId());
+		System.out.println("vo" + login);
 		
 		//추천 클릭시 replyLiketb에서 id와 ridx로 likeCheck 총 갯수 카운트
 		int likeCheck = replyService.replyLikeCheck(vo);

@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.study.vo.EventVo;
+import edu.study.vo.BoardVo;
+
+import edu.study.vo.MemberVo;
+import edu.study.vo.ReviewVo;
 
 @RequestMapping(value="/food")
 @Controller 
@@ -51,6 +54,21 @@ public class FoodController {
 		
 	return "food/reviewWrite";
 	
+	}
+	
+	@RequestMapping(value="/reviewWrite.do",method=RequestMethod.POST)
+	public String write(ReviewVo vo, HttpSession session) {
+
+		//로그인 후 midx,nickname을 vo에 담는다.
+		MemberVo login = (MemberVo)session.getAttribute("login");
+		vo.setMidx(login.getMidx());
+		vo.setWriter(login.getNickname());
+		System.out.println(login.getMidx());
+		System.out.println(login.getNickname());
+
+	
+		
+		return "redirect:review.do";
 	}
 	
 }

@@ -61,13 +61,13 @@
   					  	  +"&searchType=${searchVo.searchType}"
   					  	  +"&searchVal=${searchVo.searchVal}"; 
   		});
-  	
+  
   		//댓글 등록을 누를시
   		$(".commentWrite button").on("click", function(){
   
   			if(${login == null}){
   				alert("로그인을 하셔야 댓글을 다실 수 있습니다.");
-  				location.href="/member/memberLogin.do";
+  				location.href="../member/memberLogin.do";
   			}else{
   			
   			var bidx = $("#bidx").val();
@@ -75,7 +75,7 @@
 			console.log(bidx);
 			console.log(content);
   	  		$.ajax({
-  	  			url:"/reply/write.do",
+  	  			url:"../reply/write.do",
   	  			data:{"bidx":bidx,
   	  				  "content":content},
   	  			success:function(result){
@@ -88,14 +88,14 @@
   			}
   		});
   	
-
+	})
 
   	//게시물의 추천 버튼 클릭 시
   	function like(){
   		
   		if(${login == null}){
 			alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
-			location.href="/member/memberLogin.do";
+			location.href="<%=request.getContextPath()%>/member/memberLogin.do";
   		}else if(${login.nickname == list.writer}){
 			alert("본인 글은 추천하실 수 없습니다.")
 			return false;
@@ -126,14 +126,14 @@
  
   		if(${login == null}){
 			alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
-			location.href="/member/memberLogin.do";
-  		}else if(${nickname == writer}){
+			location.href="../member/memberLogin.do";
+  		}else if(nickname == writer){
 			alert("본인 댓글은 추천하실 수 없습니다.")
 			return false;
   		}else{
   		
 	  		$.ajax({
-	  			url:"/reply/replyLike.do",
+	  			url:"../reply/replyLike.do",
 	  			data:{"ridx":ridx},
 	  			success:function(likeCheck){
 	  					
@@ -161,7 +161,7 @@
   		}else{
   		
 	  		$.ajax({
-	  			url:"/reply/replyHate.do",
+	  			url:"../reply/replyHate.do",
 	  			data:{"ridx":ridx},
 	  			success:function(hateCheck){
 	  					
@@ -200,7 +200,7 @@
   		var content = $("[name=replyContent]").val();
   		
   		$.ajax({
-  			url:"/reply/modify.do",
+  			url:"../reply/modify.do",
   			data:{"ridx":ridx,
   				  "content":content},
   			success:function(result){
@@ -224,7 +224,7 @@
   		if(!deleteReply) return false;
   		
   		$.ajax({
-  			url:"/reply/delete.do",
+  			url:"<%=request.getContextPath()%>/reply/delete.do",
   			data:{"ridx":ridx},
   			success:function(data){
   				if(data==1){
@@ -234,59 +234,7 @@
   		})
   	}
 
-  	//댓글 답변버튼 클릭시 폼 생성
-  	function commentReply(ridx,originridx,depth,lvl){
-  		
-  		if(${login == null}){
-  			alert("로그인을 하셔야 답글을 다실 수 있습니다.");
-  			location.href="/member/memberLogin.do";
-  		}
-  		var rereply="";
-  		rereply += "<textarea rows='3' cols='30' id='rereplyContent' class='commentWrite rereply' placeholder='답글 폼 생성'></textarea><br>";
-  		rereply += "<button type='button' class='rereply' onclick='rereplyWrite(";
-  		rereply += ridx;
-  		rereply += ",";
-  		rereply += originridx;
-  		rereply += ",";
-  		rereply += depth;
-  		rereply += ",";
-  		rereply += lvl;
-  		rereply += ")'>등록</button>";
-  		rereply += "<button type='button' class='rereply' onclick='rereplyClose()'>닫기</button>";
-  		
-  		$(".buttons"+ridx).remove();
-  		$(".rereply").remove();
-  		$("#rereplyForm"+ridx).append(rereply);
-  	}
-
-  	//댓글 답글 폼에서 등록 버튼 클릭
-  	function rereplyWrite(ridx,originridx,depth,lvl){
-  		
-  		var bidx = $("#bidx").val();
-  		var content = $("#rereplyContent").val();
-		console.log(content);
-  		$.ajax({
-  			url:"/reply/writeRereply.do",
-  			data:{"bidx":bidx,
-  				  "ridx":ridx,
-  				  "originridx":originridx,
-  				  "depth":depth,
-  				  "lvl":lvl,
-  				  "content":content},
-  			success:function(data){
-  				if(data=1){
-  					location.reload();
-  				}
-  			}
-  		})
-  	}
-
-  	//답글 폼에서 닫기 버튼을 눌렀을 때
-  	function rereplyClose(ridx){
-
-  		$("#rereplyForm"+ridx).remove();
-  		location.reload();
-  	}
+  	
   	</script>
   	
   	

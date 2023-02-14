@@ -61,7 +61,7 @@ public class SearchVo{
 	}
 	public int getStart() {
 		//페이지의 시작 게시글 번호
-		start = ((getPage()-1)*getPerPageNum()) + 1;
+		start = ((getPage()-1)*getPerPageNum());
 		return start;
 	}
 
@@ -117,7 +117,7 @@ public class SearchVo{
 
 	public int getReplyStart() {
 		//페이지 댓글의 시작 번호
-		replyStart = ((getReplyPage()-1)*getReplyPerPageNum()) + 1;
+		replyStart = ((getReplyPage()-1)*getReplyPerPageNum());
 		return replyStart;
 	}
 

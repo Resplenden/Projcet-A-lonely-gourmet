@@ -6,42 +6,29 @@
 <mapper namespace="edu.study.mapper.replyMapper">
 	
 	<!-- 댓글 목록(페이징) -->
-  	<select id="replyListPage" parameterType="searchVo" resultType="replyVo">
-	
-		SELECT * FROM(
-		SELECT ROWNUM as RN,A.* FROM (
-		select * from replytb
-		where bidx = #{bidx}
-		order by originridx asc,lvl asc,depth desc
-		)A
-		)WHERE RN between #{replyStart} and #{replyEnd}
+  	<select id="replyListPage" parameterType="searchVo" resultType="replyVo">	
+		SELECT * FROM reply		
+		WHERE bidx = #{bidx}
+		AND delYn = 'N'		
+		
+		limit #{replyStart} , #{replyEnd}
  	</select>
 	
 	<!-- 댓글 총 갯수 조회 -->
 	<select id="count" resultType="int">
 		select count(*)
-		  from replytb
+		  from reply
 		where bidx = #{bidx}
 	</select>
   	
   	<!-- 댓글 쓰기-->
  	<insert id="writeReply" parameterType="replyVo">
- 		insert into replytb(
- 				ridx
- 			,	originridx
- 			,	depth
-			,	lvl
- 			,	content
- 			,	wdate
+ 		insert into reply(
+ 			content
  			,	writer
  			,	bidx
  		)values(
- 				ridx_seq.nextval
- 			,	ridx_seq.nextval
- 			,	0
- 			,	0
- 			,	#{content}
- 			,	sysdate
+ 			#{content}
  			,	#{writer}
  			,	#{bidx}
  		)
@@ -49,63 +36,35 @@
  	
  	<!-- 댓글 수정 -->
  	<update id="updateReply" parameterType="replyVo">
- 		update replytb
+ 		update reply
  		   set content = #{content}
  		 where ridx = #{ridx}
  	</update>
  	
  	<!-- 댓글 삭제 -->
 	<delete id="deleteReply" parameterType="int">
-		delete 
-		  from replytb
+		update reply
+			set delYn = 'Y'
 		 where ridx = #{ridx}
 	</delete>
 	
 	<!-- 댓글 조회 -->
 	<select id="selectReply" parameterType="int">
-		select originridx
+		select ridx
 			,  content
  			,  wdate
  			,  writer
  			,  bidx
- 		 from  replytb
+ 		 from  reply
  		where  ridx = #{ridx}
 	</select>
 	
-	<!-- 답글 쓰기 -->
-	<insert id="writeRereply" parameterType="replyVo">
- 		insert into replytb(
- 				ridx
- 			,	originridx
- 			,	depth
-			,	lvl
- 			,	content
- 			,	wdate
- 			,	writer
- 			,	bidx
- 		)values(
- 				ridx_seq.nextval
- 			,	#{originridx}
- 			,	#{depth}+1
- 			,	#{lvl}+1
- 			,	#{content}
- 			,	sysdate
- 			,	#{writer}
- 			,	#{bidx}
- 		)
- 	</insert>
+	
 
-	<!-- 원 댓글에 답글 작성시 depth증가 -->
-	<update id="updateDepth" parameterType="replyVo">
-		update replytb
-		   set depth = depth+1
-		 where originridx = #{originridx}
-		   and depth > #{depth}
-	</update>
 	
 	<!-- 게시글 추천 클릭시 replytb의 likeCnt 업데이트 -->
 	<update id="updateReplyLikeCnt" parameterType="int">
-		update replytb
+		update reply
 		   set likeCnt = likeCnt+1
 		 where ridx = #{ridx}
 	</update>	
@@ -119,20 +78,18 @@
 
 	<!-- 추천이나 비추천 클릭시 replyLiketb에 insert -->
 	<insert id="insertReplyLiketb" parameterType="replyLikeVo">
-		insert into replyLiketb(
-				rlidx
-			,	id
+		insert into replylike(				
+			id
 			,	ridx
-		)values(
-				rlidx_seq.nextval
-			,	#{id}
+		)values(				
+			#{id}
 			,	#{ridx}
 		)
 	</insert>
 
 	<!-- 추천 클릭시 likeCheck를 1로 만들어서 중복 방지 -->
 	<update id="updateByReplyLikeCheck" parameterType="replyLikeVo">	
-		update replyLiketb
+		update replylike
 		   set likeCheck = 1
 		 where ridx = #{ridx}
 		   and id = #{id}
@@ -140,7 +97,7 @@
 
 	<!-- 비추천 클릭시 hateCheck를 1로 만들어서 중복 방지 -->
 	<update id="updateByReplyHateCheck" parameterType="replyLikeVo">
-		update replyLiketb
+		update replylike
 		   set hateCheck = 1
 		 where ridx = #{ridx}
 		   and id = #{id}
@@ -149,7 +106,7 @@
  	<!-- 게시글 추천 or비추천 중복방지 -->
  	<select id="replyLikeCheck" parameterType="replyLikeVo" resultType="int">
  		select count(*)
- 		  from replyLiketb
+ 		  from replylike
  		 where ridx = #{ridx}
  		   and id = #{id}
  	</select>
