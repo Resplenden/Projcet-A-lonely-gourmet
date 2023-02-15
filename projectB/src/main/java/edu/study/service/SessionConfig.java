@@ -15,11 +15,11 @@ public class SessionConfig implements HttpSessionListener {
 	private static final Map<String, HttpSession> sessions = new ConcurrentHashMap<>();
 	
 	//중복로그인 지우기
-	public synchronized static String getSessionidCheck(String type, String compareId){
+	public synchronized static String getSessionidCheck(String usingtype, String usingcompareId){
 		String result = "";
 		for( String key : sessions.keySet() ){
 			HttpSession hs = sessions.get(key);
-			if(hs != null &&  hs.getAttribute(type) != null && hs.getAttribute(type).toString().equals(compareId) ){
+			if(hs != null &&  hs.getAttribute(usingtype) != null && hs.getAttribute(usingtype).toString().equals(usingcompareId) ){
 				result =  key.toString();
 			}
 		}
@@ -27,11 +27,11 @@ public class SessionConfig implements HttpSessionListener {
 		return result;
 	}
 	
-	private static void removeSessionForDoubleLogin(String userId){    	
-		System.out.println("remove userId : " + userId);
-		if(userId != null && userId.length() > 0){
-			sessions.get(userId).invalidate();
-			sessions.remove(userId);    		
+	private static void removeSessionForDoubleLogin(String usingId){    	
+		System.out.println("remove usingId : " + usingId);
+		if(usingId != null && usingId.length() > 0){
+			sessions.get(usingId).invalidate();
+			sessions.remove(usingId);    		
 		}
 	}
 	
