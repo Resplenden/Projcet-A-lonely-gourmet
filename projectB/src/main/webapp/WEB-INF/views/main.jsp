@@ -26,6 +26,10 @@
     <script src="resources/js/main.js"></script>
     <!--js 연결-->
 	<title>혼밥의 고수</title>
+	
+	<script type="text/javascript">
+	 
+	</script>
 </head>
 <body>
 <nav>
@@ -47,6 +51,7 @@
           </button>
         </div>
         <!--end: #searchBar-->
+       
         <div class="loginInfo">
           <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
           <a href="<%=request.getContextPath()%>/member/memberJoin.do" class="join"><p>회원가입</p></a>
@@ -114,7 +119,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -126,7 +131,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -140,7 +145,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -152,7 +157,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -164,7 +169,7 @@
                 <a href="#" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -176,7 +181,7 @@
                 <a href="#" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -188,7 +193,7 @@
                 <a href="#" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>

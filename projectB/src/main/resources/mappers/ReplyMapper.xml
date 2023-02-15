@@ -19,6 +19,7 @@
 		select count(*)
 		  from reply
 		where bidx = #{bidx}
+		and delYn = 'N'
 	</select>
   	
   	<!-- 댓글 쓰기-->

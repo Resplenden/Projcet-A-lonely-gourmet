@@ -16,12 +16,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import edu.study.service.MemberService;
 import edu.study.service.MessageService;
 import edu.study.service.NaverLoginBo;
+import edu.study.service.SessionConfig;
 import edu.study.service.sha256;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
@@ -38,6 +42,11 @@ public class memberController {
 
 	@Autowired
 	private MessageService messageService;
+	
+	
+	
+
+	
 	
 	/* NaverLoginBO */
 	private NaverLoginBo naverLoginBo;
@@ -63,7 +72,10 @@ public class memberController {
 	}
 	
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
-	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, Model model) {
+	public String login(RedirectAttributes rttr,HttpServletRequest request,MemberVo vo, MemberFileVo vo2, HttpSession session, Model model)throws Exception {
+		
+		
+		
 		System.out.println("vo값"+vo);
 		
 		String inputPwd = vo.getPwd();
@@ -74,6 +86,8 @@ public class memberController {
 		System.out.println("loginVO 값 : "+loginVO);
 		System.out.println("vo값 : "+vo);
 		MemberFileVo loginVo2 = memberService.file(loginVO.getMidx());
+		
+		
 		if( loginVo2 != null )
 		{
 			loginVO.setMidx(loginVo2.getMidx());
@@ -84,7 +98,19 @@ public class memberController {
 			
 		}	
 		
+		String id = request.getParameter("id");
+		if(id != null){
+			String userId = SessionConfig.getSessionidCheck("login_id", id);
+			System.out.println(id + " : " +userId);
+			session.setMaxInactiveInterval(60 * 60);
+			session.setAttribute("login_id", id);
+			
+			
+		}
+		
 		session.setAttribute("login", loginVO);
+		
+		
 		return "redirect:/";
 		
 	}	

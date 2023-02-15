@@ -6,4 +6,5 @@ encoding//src/main/java/edu/study/controller/findPwdController.java=UTF-8
 encoding//src/main/java/edu/study/controller/memberController.java=UTF-8
 encoding//src/main/java/edu/study/dao/MemberDAO.java=UTF-8
 encoding//src/main/java/edu/study/service/MemberService.java=UTF-8
+encoding//src/main/java/edu/study/service/SessionConfig.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/board/noticeList.jsp=UTF-8
