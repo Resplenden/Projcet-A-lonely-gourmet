@@ -73,17 +73,13 @@ public class memberController {
 	}
 	
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
-<<<<<<< HEAD
-	public String login(RedirectAttributes rttr,HttpServletRequest request,MemberVo vo, MemberFileVo vo2, HttpSession session, Model model)throws Exception {
+
+	
 		
 		
 		
-=======
-	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, HttpServletRequest request, Model model) {
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
-		System.out.println("vo값"+vo);
-		String id = request.getParameter("id");
-		
+
+	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, HttpServletRequest request,RedirectAttributes rttr, Model model) throws Exception {
 		
 		String inputPwd = vo.getPwd();
 		vo.setPwd(sha256.encrypt(inputPwd));
@@ -105,32 +101,17 @@ public class memberController {
 			
 		}	
 		
-<<<<<<< HEAD
+
 		String id = request.getParameter("id");
 		if(id != null){
 			String userId = SessionConfig.getSessionidCheck("login_id", id);
 			System.out.println(id + " : " +userId);
 			session.setMaxInactiveInterval(60 * 60);
 			session.setAttribute("login_id", id);
-			
-			
+		
 		}
-		
-=======
-		
-		if(id!= null) {
-			String userId = SessionConfig.loginSessionChecker("id", id);
-			System.out.println(id+":"+userId);
-			session.setMaxInactiveInterval(60*60); //세션 유효시간 설정
-			session.setAttribute("id", id);
-			return "redirect:/";
-		}
-		
-		
-		
-		//EgovHttpSessionBindingListener listener = new EgovHttpSessionBindingListener();
 	
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 		session.setAttribute("login", loginVO);
 		
 		
