@@ -102,12 +102,12 @@ public class memberController {
 		}	
 		
 
-		String id = request.getParameter("id");
-		if(id != null){
-			String userId = SessionConfig.getSessionidCheck("login_id", id);
-			System.out.println(id + " : " +userId);
+		String memberId = request.getParameter("id");
+		if(memberId != null){
+			String userId = SessionConfig.getSessionidCheck("login_id", memberId);
+			System.out.println(memberId + " : " +userId);
 			session.setMaxInactiveInterval(60 * 60);
-			session.setAttribute("login_id", id);
+			session.setAttribute("login_id", memberId);
 		
 		}
 	
