@@ -4,6 +4,7 @@
 <%@ page session="true" %>
 <html>
 <head>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.1.min.js"></script>
     <link
       href="resources/img/_꾸미기_혼밥의고수_파비콘-removebg-preview.png"
       rel="shortcut icon"
@@ -298,61 +299,18 @@
         <div class="popularList">
           <div class="listTitle">
             <h3>인기 게시글</h3>
-            <a href="<%=request.getContextPath()%>/board/boardList.do" class="readMore"><p>READ MORE →</p></a>
+            <a href="<%=request.getContextPath()%>/board/list.do" class="readMore"><p>READ MORE →</p></a>
           </div>
           <!--end: .listTitle-->
           <table>
             <tbody>
-              <tr>
-                <td><a href="#">첫번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">두번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">세번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">네번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">다섯번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">여섯번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">일곱번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">여덟번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">아홉번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">열번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
+	            <c:forEach items="${list}" var="vo">
+	              <tr>
+	                <td><a href="<%=request.getContextPath()%>/board/view.do?bidx=${vo.bidx}">${vo.title}</a></td>
+	                <td>${vo.writer}</td>
+	                <td>${vo.wdate}</td>
+	              </tr>
+	            </c:forEach>              
             </tbody>
           </table>
         </div>

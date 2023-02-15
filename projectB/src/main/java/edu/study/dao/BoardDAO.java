@@ -21,6 +21,11 @@ public class BoardDAO {
 		return sqlSession.selectList("edu.study.mapper.boardMapper.listPage",searchVo);
 	}
 	
+	public List<BoardVo> listView(){
+		
+		return sqlSession.selectList("edu.study.mapper.boardMapper.listView");
+	}
+	
 	public int count(SearchVo searchVo) {
 		
 		return sqlSession.selectOne("edu.study.mapper.boardMapper.count",searchVo);

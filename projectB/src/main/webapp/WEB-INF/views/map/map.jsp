@@ -225,6 +225,8 @@
 				// 마커를 클릭했을 때 커스	텀 오버레이를 표시합니다
 				kakao.maps.event.addListener(marker, 'click', function() {
 				    overlay.setMap(map);
+				    var pos = marker.getPosition();
+	                map.panTo(pos);
 				});
 				
 			

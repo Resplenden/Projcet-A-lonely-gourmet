@@ -11,6 +11,8 @@ public interface BoardService {
 	/* 게시물 조회(검색조건) */
 	List<BoardVo> listPage(SearchVo searchVo);
 	
+	List<BoardVo> listView();
+	
 	/* 게시물 총 개수(검색조건) */
 	int count(SearchVo searchVo);
 	
