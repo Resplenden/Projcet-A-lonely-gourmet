@@ -16,15 +16,15 @@ public class SessionConfig implements HttpSessionListener {
 	
 	//중복로그인 지우기
 	public synchronized static String getSessionidCheck(String usingtype, String usingcompareId){
-		String result = "";
-		for( String key : sessions.keySet() ){
-			HttpSession hs = sessions.get(key);
+		String usingresult = "";
+		for( String usingkey : sessions.keySet() ){
+			HttpSession hs = sessions.get(usingkey);
 			if(hs != null &&  hs.getAttribute(usingtype) != null && hs.getAttribute(usingtype).toString().equals(usingcompareId) ){
-				result =  key.toString();
+				usingresult =  usingkey.toString();
 			}
 		}
-		removeSessionForDoubleLogin(result);
-		return result;
+		removeSessionForDoubleLogin(usingresult);
+		return usingresult;
 	}
 	
 	private static void removeSessionForDoubleLogin(String usingId){    	
