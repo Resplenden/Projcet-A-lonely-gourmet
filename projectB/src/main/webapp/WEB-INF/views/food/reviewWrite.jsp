@@ -166,11 +166,13 @@
       <input type="hidden" name="midx" value="${login.midx}">
       <input type="hidden" name="name" value="${title}">
       <input type="hidden" name="addr" value="${addr}">
+      <input type="hidden" name="category" value="${category}">
+      <input type="hidden" name="phone" value="${phone}">
         <div id="board_1">
           <div class="reviewInfo">
             <span
               >${category} &nbsp; &nbsp;<i class="xi-angle-right-min xi-1x"></i>
-              &nbsp;&nbsp;${title}</span
+              &nbsp;&nbsp;${title} ${phone}</span
             >
             <input
               type="text"

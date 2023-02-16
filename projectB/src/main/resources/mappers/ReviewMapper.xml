@@ -38,6 +38,8 @@
  			,	midx
  			,	name
  			,	addr
+ 			,	category
+ 			,	phone
  		)values(
  				#{title}
  			,	#{content}
@@ -50,6 +52,8 @@
  			,	#{midx}
  			,	#{name}
  			,	#{addr}
+ 			,	#{category}
+ 			,	#{phone}
  		)
  	</insert>
  	
