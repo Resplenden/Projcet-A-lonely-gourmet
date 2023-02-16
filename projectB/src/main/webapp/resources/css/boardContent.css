@@ -386,6 +386,20 @@ main {
 
 /*end: .like*/
 
+.Btn button {
+  float: right;
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: salmon;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin:0 2px;
+}
+
 #commentPage {
   width: 1200px;
   height: 1380px;  

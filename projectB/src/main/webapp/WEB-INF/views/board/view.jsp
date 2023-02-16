@@ -312,15 +312,17 @@
             <div class="likeCount">
               <span id="counter">추천&nbsp;&nbsp;&nbsp;${list.likeCnt}</span>
             </div>
-          </div>
           <!--end: #like-cnt-->
-          <c:if test="${login.midx == list.midx}">
-			<button type="button" class="modifyBtn">수정</button>	
-			<button type="button" class="deleteBtn">삭제</button>
-		  </c:if>
-		  	<button type="button" class="listBtn">목록</button>
-        </div>
+          </div>
         <!--end: .like-->
+      <div class="Btn">    
+		  	<button type="button" class="listBtn">목록</button>
+          <c:if test="${login.midx == list.midx}">
+			<button type="button" class="deleteBtn">삭제</button>
+			<button type="button" class="modifyBtn">수정</button>	
+		  </c:if>
+      </div>
+      <!-- end: .Btn -->
       </div>
       <!--end: #board-->
       <div id="commentPage">

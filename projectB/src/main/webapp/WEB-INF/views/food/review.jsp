@@ -21,6 +21,40 @@
     <!--검색 버튼 아이콘-->
     <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet" />
     <!--css 연결-->
+    
+    <script>
+    $(function(){
+	    //게시물의 추천 버튼 클릭 시
+	  	$(".like").on("click", function(){
+	  		
+	  		if(${login == null}){
+				alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
+				location.href="<%=request.getContextPath() %>/member/memberLogin.do";
+	  		}else if(${login.nickname == review.writer}){
+				alert("본인 글은 추천하실 수 없습니다.")
+				return false;
+			}else{
+		  		
+				var vidx = $("#vidx").val();
+		  			
+		  		$.ajax({
+		  			url:"reviewLike.do",
+		  			data:{"vidx":vidx},
+		  			success:function(likeCheck){
+		  					
+		  				if(likeCheck == 0){
+		  					location.reload();
+		  				}else if(likeCheck == 1){
+		  					alert("이미 추천하신 글입니다.");
+		  					location.reload();
+		  				}
+		  			}	
+		  		})
+					return true;
+			}
+	  	})
+    })		
+  	</script> 
 </head>
 <body>
 		<nav>
@@ -94,65 +128,34 @@
     <!--end: nav-->
      <main>
       <h1 class="boardName">리뷰 상세보기</h1>
+      <input type="hidden" id="vidx" value="${review.vidx}">
       <div id="board_1">
         <div class="reviewInfo">
           <span
-            >카테고리   &nbsp;  &nbsp;<i class="xi-angle-right-min xi-1x"></i>    &nbsp;&nbsp;식당 이름</span
+            >${category}  &nbsp;  &nbsp;<i class="xi-angle-right-min xi-1x"></i>    &nbsp;&nbsp;${review.name}</span
           >
-          <h2>리뷰 제목입니다</h2>
+          <h2>${review.title}</h2>
           <div class="profileImg">
             <img src="../resources/img/프로필이미지.png" width="50" />
           </div>
-          <p class="writer">작성자</p>
+          <p class="writer">${review.writer}</p>
           <br />
           <br />
           <br />
           <p class="miniInfo">
-            2023.01.26
+            ${review.wdate}
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;추천수
-            0
+            ${review.likecnt}
           </p>
         </div>
         <!--end: .reviewInfo-->
-        <div class="foodImg">사진이 들어가는 자리입니다.</div>
+        <div class="foodImg">
+        	<img src="<%=request.getContextPath()%>/resources/upload/${review.filename}" width="700" height="550"/>
+        </div>
         <!--end: .foodImg-->
         <div id="content">
           <p>
-            니가 나의 모든 걸 뺏어갔어도 모두가 내 꿈에 바리케이드를 쳐도 내가
-            나의 기름 더 불을 붙여줘 빛이 나는 My Way 빛이 나는 My Way 니가 나의
-            모든 걸 뺏어갔어도 모두가 내 꿈에 바리케이드를 쳐도 내가 나의 기름
-            더 불을 붙여줘 빛이 나는 My Way 빛이 나는 My Way 난생처음 섰던
-            무대엔 낯선 얼굴 쟤 누군데? 마이크 잡은 후엔 함 더 묻대 쟤 누구래?
-            끝내고 내려오는 기분이 이걸 하는 가장 큰 이유 중에 하나 앉아서 잘 봐
-            그 꼬마가 이젠 TV에 나와 서있어 무대 알아봐라 그러니 Lets put em in
-            (all in) 날 부르니 또 오르지 저 구름 위 (oh yeah) 내 걸음이 밑
-            거름이 좋은 버릇이 든 어린이는 돼 어른이 아닌 얼음을 목에 걸은 애
-            이빨을 드러낼 때야 씩 (study me) Pop that champagne for champion
-            반짝 허리에 감겨있는 벨트 감쪽같은 마술은 마법이네 My spell is
-            spelling did u get that? 밤마다 반복해서 주문을 외워 삶을 원하다면
-            죽음을 배워 타이머가 곧 울리네 tik tik ding ding 난 또 빛이 나는 길
-            위에 (woo) I was racing with nobody (woo) 여전히 타올라 제일
-            처음같이 (woo) 쉽게 이룬 듯이 근데 no way (woo) 두 엄마의 품은
-            기억에 평생 남겨져 흉터로 베여있어 어렸을 땐 행복과는 제일 멀 던 놈
-            내게 친구 옆에 있어도 빈자린 언제나 괴롭혀 그때의 난 어렸었네 무시에
-            짓눌렸기에 압박 속에 피어났네 난 diamond 무엇보다도 빛나게 (let's
-            go) 난 원해 맨 위 그대로 더 행진 난 원해 내일엔 더 재수 없는 놈이
-            되길 바라 됐어 타이밍 이젠 내 형제들과 밟어 We go vroom vroom vroom
-            vroom 니가 나의 모든 걸 뺏어갔어도 모두가 내 꿈에 바리케이드를 쳐도
-            내가 나의 기름 더 불을 붙여줘 빛이 나는 My Way 빛이 나는 My Way I'ma
-            I stack my money up 'til I can't no more You should be afraid of us
-            We're 'bout to blow up 내가 나의 기름 더 불을 붙여줘 빛이 나는 My
-            Way 빛이 나는 My Way 난 여기다 내 목을 걸었어 다시 예전으로 돌아갈
-            수 없어 힘들던 그땐 신이 미웠지만 이젠 신의 계획이 뭔지 알게 됐어
-            아팠던 기억들은 던져 친구 미안한데 이건 내가 먼저 챙겨가야겠어 난
-            아직도 갈 길이 멀어 그렇기에 난 포기 안 할 거라 말했고 넘어져도
-            일어나 계속 지쳐도 안쳤지 tap 되려 벌렸지 gap 내 시작은 맨손 반찬
-            팔아가며 청춘 받쳐 날 키워준 값진 그녀의 행복 나 땜에 잠시 내려놨던
-            그 행복을 이 손자가 돌려줄게 꼭 난 내 놈들과 하나둘씩 이뤄가 점점
-            끝없이 Naughty for life 우린 절대 안 져 계속 보여주지 절대 안 될 거
-            같던 꿈들을 이뤄 난 여기 있지 아팠던 날 들을 저 뒤로 보내고 웃자고
-            같던 꿈들을 이뤄 난 여기 있지 아팠던 날 들을 저 뒤로 보내고 웃자고
-            같던 꿈들을 이뤄 난 여기 있지 아팠던 날 들을 저 뒤로 보내고 웃자고
+         	${review.content}
           </p>
         </div>
         <!--end: #content-->
@@ -173,7 +176,7 @@
               </svg>
             </a>
             <div class="likeCount">
-              <span id="counter">추천&nbsp;&nbsp;&nbsp;0</span>
+              <span id="counter">추천&nbsp;&nbsp;&nbsp;${review.likecnt}</span>
             </div>
           </div>
           <!--end: #like-cnt-->

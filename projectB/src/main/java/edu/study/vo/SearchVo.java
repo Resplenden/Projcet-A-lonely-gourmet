@@ -2,22 +2,30 @@ package edu.study.vo;
 
 public class SearchVo{
 	
-	private String searchType; //°Ë»ö Á¶°Ç
-	private String searchVal; //°Ë»ö¾î
-	private String category; //Ä«Å×°í¸®
-	private String order; //¼ø¼­
+	private String searchType; //ê²€ìƒ‰ ì¡°ê±´
+	private String searchVal; //ê²€ìƒ‰ì–´
+	private String category; //ì¹´í…Œê³ ë¦¬
+	private String order; //ìˆœì„œ
 	
-	private int page; //ÇöÀç ÆäÀÌÁö ¹øÈ£
-	private int perPageNum; //ÆäÀÌÁö´ç Ãâ·ÂÇÒ µ¥ÀÌÅÍ °³¼ö
-    private int displayPageNum; //È­¸é ÇÏ´Ü¿¡ Ãâ·ÂÇÒ ÆäÀÌÁö »çÀÌÁî
-    private int start; //ÆäÀÌÁö ½ÃÀÛ À§Ä¡
-	private int end; //ÆäÀÌÁö ³¡ À§Ä¡
-	private int bidx; //°Ô½Ã¹° ¹øÈ£(´ñ±Û ±â´É¿¡¼­ »ç¿ë)
+	private int page; //í˜„ì¬ í˜ì´ì§€ ë²ˆí˜¸
+	private int perPageNum; //í˜ì´ì§€ë‹¹ ì¶œë ¥í•  ë°ì´í„° ê°œìˆ˜
+    private int displayPageNum; //í™”ë©´ í•˜ë‹¨ì— ì¶œë ¥í•  í˜ì´ì§€ ì‚¬ì´ì¦ˆ
+    private int start; //í˜ì´ì§€ ì‹œì‘ ìœ„ì¹˜
+	private int end; //í˜ì´ì§€ ë ìœ„ì¹˜
+	private int bidx; //ê²Œì‹œë¬¼ ë²ˆí˜¸(ëŒ“ê¸€ ê¸°ëŠ¥ì—ì„œ ì‚¬ìš©)
 	
-	private int replyPage; //ÇöÀç ´ñ±ÛÆäÀÌÁö ¹øÈ£
-	private int replyPerPageNum; //ÆäÀÌÁö´ç ´ñ±ÛÀÇ °¹¼ö
-	private int replyStart; //ÆäÀÌÁöÀÇ ´ñ±Û ½ÃÀÛ À§Ä¡
-	private int replyEnd; //ÆäÀÌÁöÀÇ ´ñ±Û ³¡ À§Ä¡
+	private int replyPage; //í˜„ì¬ ëŒ“ê¸€í˜ì´ì§€ ë²ˆí˜¸
+	private int replyPerPageNum; //í˜ì´ì§€ë‹¹ ëŒ“ê¸€ ê°œìˆ˜
+	private int replyStart; //í˜ì´ì§€ì˜ ëŒ“ê¸€ ì‹œì‘ ìœ„ì¹˜
+	private int replyEnd; //í˜ì´ì§€ì˜ ëŒ“ê¸€ ë ìœ„ì¹˜
+
+	private int reviewPage; //í˜„ì¬ ë¦¬ë·°í˜ì´ì§€ ë²ˆí˜¸
+	private int reviewPerPageNum;	//í˜ì´ì§€ë‹¹ ë¦¬ë·° ê°œìˆ˜
+	private int reviewStart; //í˜ì´ì§€ì˜ ë¦¬ë·° ì‹œì‘ ìœ„ì¹˜
+	private int reviewEnd; //í˜ì´ì§€ì˜ ë¦¬ë·° ë ìœ„ì¹˜
+	
+	private String name; //ì‹ë‹¹ì´ë¦„
+	private String addr; //ì‹ë‹¹ì£¼ì†Œ
 	
     public SearchVo(){
     	this.page = 1;
@@ -25,7 +33,10 @@ public class SearchVo{
     	this.displayPageNum = 10;
     	
     	this.replyPage = 1;
-    	this.replyPerPageNum = 10;
+    	this.replyPerPageNum = 9;
+    	
+    	this.reviewPage = 1;
+    	this.reviewPerPageNum = 5;
     }
 
     
@@ -60,7 +71,7 @@ public class SearchVo{
 		this.displayPageNum = displayPageNum;
 	}
 	public int getStart() {
-		//ÆäÀÌÁöÀÇ ½ÃÀÛ °Ô½Ã±Û ¹øÈ£
+		//í˜ì´ì§€ì˜ ì‹œì‘ ê²Œì‹œê¸€ ë²ˆí˜¸
 		start = ((getPage()-1)*getPerPageNum());
 		return start;
 	}
@@ -70,7 +81,7 @@ public class SearchVo{
 	}
 
 	public int getEnd() {
-		//ÆäÀÌÁöÀÇ ³¡ °Ô½Ã±Û ¹øÈ£
+		//í˜ì´ì§€ì˜ ë ê²Œì‹œê¸€ ë²ˆí˜¸
 		end = getPage()*getPerPageNum();
 		return end;
 	}
@@ -116,7 +127,7 @@ public class SearchVo{
 
 
 	public int getReplyStart() {
-		//ÆäÀÌÁö ´ñ±ÛÀÇ ½ÃÀÛ ¹øÈ£
+		//í˜ì´ì§€ ëŒ“ê¸€ì˜ ì‹œì‘ ë²ˆí˜¸
 		replyStart = ((getReplyPage()-1)*getReplyPerPageNum());
 		return replyStart;
 	}
@@ -128,7 +139,7 @@ public class SearchVo{
 
 
 	public int getReplyEnd() {
-		//ÆäÀÌÁö ´ñ±ÛÀÇ ³¡ ¹øÈ£
+		//í˜ì´ì§€ ëŒ“ê¸€ì˜ ë ë²ˆí˜¸
 		replyEnd = getReplyPage() * getReplyPerPageNum();
 		return replyEnd;
 	}
@@ -159,6 +170,70 @@ public class SearchVo{
 	}
 
 
+	public int getReviewPage() {
+		return reviewPage;
+	}
+
+
+	public void setReviewPage(int reviewPage) {
+		this.reviewPage = reviewPage;
+	}
+
+
+	public int getReviewPerPageNum() {
+		return reviewPerPageNum;
+	}
+
+
+	public void setReviewPerPageNum(int reviewPerPageNum) {
+		this.reviewPerPageNum = reviewPerPageNum;
+	}
+
+
+	public int getReviewStart() {
+		//ë¦¬ë·° ì‹œì‘ ë²ˆí˜¸
+		reviewStart = ((getReviewPage()-1)*getReviewPerPageNum());
+		return reviewStart;
+	}
+
+	public void setReviewStart(int reviewStart) {
+		
+		this.reviewStart = reviewStart;
+	}
+
+
+	public int getReviewEnd() {
+		//ë¦¬ë·° ë ë²ˆí˜¸
+		reviewEnd = getReviewPage() * getReviewPerPageNum();
+		return reviewEnd;
+	}
+
+
+	public void setReviewEnd(int reviewEnd) {
+		this.reviewEnd = reviewEnd;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getAddr() {
+		return addr;
+	}
+
+
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+
+	
 
 
 }
