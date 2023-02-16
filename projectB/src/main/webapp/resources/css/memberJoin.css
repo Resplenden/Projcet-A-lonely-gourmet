@@ -1,136 +1,139 @@
 @charset "utf-8";
 
 @font-face {
-  font-family: "Pretendard-Regular";
-  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
-    format("woff");
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Pretendard-Regular";
+	src:
+		url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+		format("woff");
+	font-weight: 400;
+	font-style: normal;
 }
 
 * {
-    padding: 0;
-    text-decoration: none;
-    font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
-      "Arial";
-    -webkit-user-select: none;
-    -ms-use-select: none;
-  }
-  
-  ul {
-    list-style: none;
-  }
+	padding: 0;
+	text-decoration: none;
+	font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP",
+		San-serif ", "Arial";
+	-webkit-user-select: none;
+	-ms-use-select: none;
+}
 
-  
+ul {
+	list-style: none;
+}
+
 body {
-    font-family: "Pretendard-Regular";
-  }
+	font-family: "Pretendard-Regular";
+}
 
-  input:focus {
-    outline: none;
-    border: 2px solid rgb(250, 71, 48);
-    border-radius: 3px;
-  }
+input[type="text"]:focus {
+	outline: none;
+	border: 2px solid rgb(250, 71, 48);
+	border-radius: 3px;
+}
 
-  select:focus {
-    outline: none;
-    border: 2px solid rgb(250, 71, 48);
-    border-radius: 3px;
-  }
+input[type="password"]:focus {
+	outline: none;
+	border: 2px solid rgb(250, 71, 48);
+	border-radius: 3px;
+}
+
+select:focus {
+	outline: none;
+	border: 2px solid rgb(250, 71, 48);
+	border-radius: 3px;
+}
 
 #inner {
-    width: 600px;
-    min-height: 2300px;
-    max-height: 3000px;
-    margin: 0 auto;
-  }
+	width: 600px;
+	min-height: 2300px;
+	max-height: 3000px;
+	margin: 0 auto;
+}
 
 img {
-    margin-top: 70px;
-    margin-left: 143px;
-    padding-bottom: 10px;
-  }
+	margin-top: 70px;
+	margin-left: 143px;
+	padding-bottom: 10px;
+}
 
-  button {
-    background-color: salmon;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-  }
+button {
+	background-color: salmon;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+}
 
-  button:hover {
-    background-color:#ff523e;}
+button:hover {
+	background-color: #ff523e;
+}
 
 form {
-    margin: 0 auto;
-    width: 350px;
-    height: 1550px;
-    text-align: center;
+	margin: 0 auto;
+	width: 350px;
+	height: 1550px;
+	text-align: center;
 }
 
 form label {
-    display: inline-block;
-    font-size: 18px;
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    position: relative;
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	position: relative;
 }
 
 form ul {
-    text-align: left;
+	text-align: left;
 }
 
-
-
-#prof { 
-  display: flex;
-  justify-content: center
+#prof {
+	display: flex;
+	justify-content: center
 }
 
 .memberImage {
-  border: none;
-  border-radius: 100%;
-  height: 180px;
-  width: 180px;
-  background: url("../img/프로필이미지.png") center/100% auto no-repeat;
-  display: inline-block;
-  position: relative;
-  margin-top: 60px;
-  margin-bottom: 40px;
+	border: none;
+	border-radius: 100%;
+	height: 180px;
+	width: 180px;
+	background: url("../img/프로필이미지.png") center/100% auto no-repeat;
+	display: inline-block;
+	position: relative;
+	margin-top: 60px;
+	margin-bottom: 40px;
 }
 
 input[type="file"] {
-  display: none;
+	display: none;
 }
 
 .profileImg {
-  display: inline-block;
-  border: 5px solid white;
-  padding: 10px;
-  border-radius: 100%;
-  background-color: salmon;
-  cursor: pointer;
-  position: absolute;
-  bottom: 0px;
-  right: -13px;
+	display: inline-block;
+	border: 5px solid white;
+	padding: 10px;
+	border-radius: 100%;
+	background-color: salmon;
+	cursor: pointer;
+	position: absolute;
+	bottom: 0px;
+	right: -13px;
 }
 
 .profileImg i {
-  color: white;
+	color: white;
 }
 
 /*end: prof*/
-
-
-.id, .nickname,  .email, .phone, .phone2{
-    display: inline-block;
-    padding: 10px;
-    font-size: 16px;
-    width: 326px;
-    height: 30px;
+.id, .nickname, .email, .phone, .phone2 {
+	display: inline-block;
+	padding: 10px;
+	font-size: 16px;
+	width: 326px;
+	height: 30px;
 }
 
 .idCheck, .nickCheck, .emailCheck, .phoneCheck, .phone2Check  {
@@ -139,83 +142,80 @@ input[type="file"] {
     position: absolute;
     top: 52px;
     right: 10px;
+    background-color: salmon;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
 }
-
 
 .idCheck p, .nickCheck p, .emailCheck p, .phoneCheck p, .phone2Check p {
-    margin: 0;
-    padding: 0;
-    font-size: 13px;
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
 }
-
 
 .password, .passwordCfm, .name, .birthday {
-    display: inline-block;
-    padding: 10px;
-    font-size: 16px;
-    width: 326px;
-    height: 30px;
-    margin-bottom: 7px;
+	display: inline-block;
+	padding: 10px;
+	font-size: 16px;
+	width: 326px;
+	height: 30px;
+	margin-bottom: 7px;
 }
 
-
 select {
-    display: inline-block;
-    padding: 10px;
-    font-size: 16px;
-    width: 350px;
-    height: 54px;
+	display: inline-block;
+	padding: 10px;
+	font-size: 16px;
+	width: 350px;
+	height: 54px;
 }
 
 .join {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 10px;
-    font-size: 16px;
-    width: 350px;
-    height: 54px;
+	display: inline-block;
+	margin-top: 30px;
+	padding: 10px;
+	font-size: 16px;
+	width: 350px;
+	height: 54px;
 }
 
 /*start: footer*/
-
 footer {
-    width: 700px;
-    height: 250px;
-    margin: 0 auto;
-    text-align: center;
+	width: 700px;
+	height: 250px;
+	margin: 0 auto;
+	text-align: center;
 }
 
 #footerMenu {
-    display: flex;
-    margin: 0 auto;
-    width: 500px;
-    height: 70px;
-  }
-  
-  
-#footerMenu ul{
-    display: flex;
-    width: 500px;
-  }
+	display: flex;
+	margin: 0 auto;
+	width: 500px;
+	height: 70px;
+}
 
+#footerMenu ul {
+	display: flex;
+	width: 500px;
+}
 
 #footerMenu a {
-    color: rgb(85, 85, 85);
-    padding-left: 16px;
-    padding-right: 16px;
+	color: rgb(85, 85, 85);
+	padding-left: 16px;
+	padding-right: 16px;
 }
 
 #footerMenu a:hover {
-    color: salmon;
+	color: salmon;
 }
 
-  .companyInfo {
-    display: inline-block;
-    width: 700px;
-    margin: 0 auto;
-    font-size: 14px;
-    color: rgb(109, 109, 109);
-  }
-
-  
-
+.companyInfo {
+	display: inline-block;
+	width: 700px;
+	margin: 0 auto;
+	font-size: 14px;
+	color: rgb(109, 109, 109);
+}

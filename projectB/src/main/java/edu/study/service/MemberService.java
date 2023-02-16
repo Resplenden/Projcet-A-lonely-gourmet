@@ -1,6 +1,7 @@
 package edu.study.service;
 
 import java.util.HashMap;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import edu.study.vo.BoardVo;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
 import edu.study.vo.SearchCriteria;
+
 
 
 public interface MemberService {
@@ -38,6 +40,13 @@ public interface MemberService {
 	
 	int emailCheck(String email); //이메일
 	
+	MemberVo profile(int midx); //회원 정보 조회
+	
+	int profileModify(MemberVo vo); //회원 정보 수정
+	
+	int fileUpdate(HashMap<String, Object>mfFile); //회원 사진 수정
+	
+	int unregister(MemberVo vo); //회원 정보 수정
 	
 	
 
