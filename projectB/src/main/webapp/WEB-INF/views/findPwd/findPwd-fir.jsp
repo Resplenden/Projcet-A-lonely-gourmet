@@ -20,6 +20,25 @@
 			var name = $("#name").val();
 			var id = $("#id").val();
 			var email = $("#email").val();
+			
+			if(name == "" || name == null){
+				alert("이름을 입력해 주세요.");
+				$("#name").focus();
+				return;
+			}	
+			
+			if(id == "" || id == null){
+				alert("아이디를 입력해 주세요.");
+				$("#id").focus();
+				return;
+			}	
+			
+			if(email == "" || email == null){
+				alert("이메일을 입력해 주세요.");
+				$("#email").focus();
+				return;
+			}
+			
 			$.ajax({
 				url:"check.do",
 				type:"post",
@@ -31,11 +50,7 @@
 				dataType : "json", 
 				 
 				success:function(json_data){
-					if($("#name").val() == ""){
-						alert("이름을 입력해 주세요.");
-						$("#name").focus();
-						return;
-					}			
+							
 					
 					if(json_data.name == 0){
 						alert("등록되지 않은 이름입니다.");
@@ -51,11 +66,7 @@
 												
 					}
 					
-					if($("#id").val() == ""){
-						alert("아이디를 입력해 주세요.");
-						$("#id").focus();
-						return;
-					}	
+					
 					
 					if(json_data.id == 0){
 						alert("등록되지 않은 아이디입니다.");
@@ -68,11 +79,7 @@
 						
 					}
 					
-					if($("#email").val() == ""){
-						alert("이메일을 입력해 주세요.");
-						$("#email").focus();
-						return;
-					}
+					
 					
 					if(json_data.email == 0){
 						alert("등록되지 않은 이메일 입니다.");

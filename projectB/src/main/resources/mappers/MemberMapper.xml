@@ -12,8 +12,7 @@
 			,name
 			,nickname
 			,stname
-	 		,orgname
-			,nickname
+	 		,orgname			
 		FROM member
 		WHERE id = #{id}
 		AND pwd=#{pwd}
@@ -130,14 +129,6 @@
 		)
 	</insert>
 	
-	<select id="file" parameterType="int" resultType="mfileVo">
-	 	SELECT
-	 		mfidx 
-	 		, midx
-	 		, orgfilename
-	 		, storedname	 		
-	 	FROM memberfile	 
-	 	WHERE midx=#{midx}
-	 </select> 
+	
 	 
 </mapper>
