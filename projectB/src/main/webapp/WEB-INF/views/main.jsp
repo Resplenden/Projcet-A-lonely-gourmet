@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.1.min.js"></script>
     <link
       href="resources/img/_꾸미기_혼밥의고수_파비콘-removebg-preview.png"
       rel="shortcut icon"
@@ -28,6 +29,10 @@
     <script src="resources/js/main.js"></script>
     <!--js 연결-->
 	<title>혼밥의 고수</title>
+	
+	<script type="text/javascript">
+	 
+	</script>
 </head>
 <body>
 <nav>
@@ -49,6 +54,7 @@
           </button>
         </div>
         <!--end: #searchBar-->
+       
         <div class="loginInfo">
           <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
           <a href="<%=request.getContextPath()%>/member/memberJoin.do" class="join"><p>회원가입</p></a>
@@ -116,7 +122,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -128,7 +134,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -142,7 +148,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -154,7 +160,7 @@
                 <a href="#" class="best"
                   ><i class="xi-crown xi-1x"> 베스트 후기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -163,10 +169,10 @@
               <div class="text">
                 <h3>혼자 먹다 둘이 죽는 국밥 명소</h3>
                 <p>국밥엔 혼술이 국룰이지!</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -175,10 +181,10 @@
               <div class="text">
                 <h3>고기 반찬, 남 주기 아깝다!</h3>
                 <p>혼자서도 당당히 먹으러 다닐 수 있는 고깃집 추천</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -187,10 +193,10 @@
               <div class="text">
                 <h3>가볍고 빠른 식사는 어디서?</h3>
                 <p>이게 진짜 혼밥이지! 부담없이 갈 수 있는 혼밥집 모음</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
-                <a href="#" class="map"
+                <a href="<%=request.getContextPath()%>/map/map.do" class="map"
                   ><i class="xi-maker xi-1x"> 맛집지도</i></a
                 >
               </div>
@@ -233,7 +239,7 @@
         <div class="noticeList">
           <div class="listTitle">
             <h3>공지사항</h3>
-            <a href="<%=request.getContextPath()%>/board/noticeList.do" class="readMore"><p>READ MORE →</p></a>
+            <a href="#" class="readMore"><p>READ MORE →</p></a>
           </div>
           <!--end: .listTitle-->
           <table>
@@ -295,61 +301,18 @@
         <div class="popularList">
           <div class="listTitle">
             <h3>인기 게시글</h3>
-            <a href="<%=request.getContextPath()%>/board/boardList.do" class="readMore"><p>READ MORE →</p></a>
+            <a href="<%=request.getContextPath()%>/board/list.do" class="readMore"><p>READ MORE →</p></a>
           </div>
           <!--end: .listTitle-->
           <table>
             <tbody>
-              <tr>
-                <td><a href="#">첫번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">두번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">세번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">네번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">다섯번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">여섯번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">일곱번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">여덟번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">아홉번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
-              <tr>
-                <td><a href="#">열번째 게시글입니다.</a></td>
-                <td>관리자</td>
-                <td>2023-01-09</td>
-              </tr>
+	            <c:forEach items="${list}" var="vo">
+	              <tr>
+	                <td><a href="<%=request.getContextPath()%>/board/view.do?bidx=${vo.bidx}">${vo.title}</a></td>
+	                <td>${vo.writer}</td>
+	                <td>${vo.wdate}</td>
+	              </tr>
+	            </c:forEach>              
             </tbody>
           </table>
         </div>

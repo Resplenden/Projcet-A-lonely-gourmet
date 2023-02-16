@@ -24,6 +24,7 @@ public class BoardServiceImpl implements BoardService{
 		return list;
 	}
 	
+	
 	@Override
 	public int count(SearchVo searchVo) {
 		
@@ -102,6 +103,21 @@ public class BoardServiceImpl implements BoardService{
 		
 		return boardDAO.updateReplyCnt(bidx);
 	}
+
+
+	@Override
+	public List<BoardVo> listView() {
+		List<BoardVo> list2 = boardDAO.listView();
+		return list2;
+	}
+
+
+
+	
+
+
+
+	
 	
 
 

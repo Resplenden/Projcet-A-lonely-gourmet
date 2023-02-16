@@ -44,8 +44,7 @@
 	</sql>
 	
   	<!-- 글 목록 + 페이징 -->
-  	<select id="listPage" parameterType="searchVo" resultType="boardVo">
-	
+  	<select id="listPage" parameterType="searchVo" resultType="boardVo">	
 		SELECT * FROM board	
 		WHERE delyn = 'N'
 		<include refid="search"></include>
@@ -53,6 +52,16 @@
 		order by <include refid="order"></include>bidx desc
 		limit #{start} , #{perPageNum}
  	</select>
+	
+	<!-- 글 목록 + 페이징 -->
+  	<select id="listView"  resultType="boardVo">	
+		SELECT * FROM board	
+		WHERE delyn = 'N'		
+		order by likeCnt desc , bidx desc
+		limit 0 , 10
+ 	</select>
+	
+	
 	
 	<!-- 검색조건에 맞는 게시물 총 갯수 조회 -->
 	<select id="count" parameterType="searchVo" resultType="int">
@@ -172,8 +181,9 @@
  	<!-- 댓글 개수 수정 -->
  	<update id="updateReplyCnt" parameterType="int">
  		update board
- 		   set replyCnt = (select count(ridx) from reply where bidx = #{bidx})
+ 		   set replyCnt = (select count(ridx) from reply where bidx = #{bidx}  AND delyn='N')
  		 where bidx = #{bidx}
+ 		
  	</update>
  	
  	

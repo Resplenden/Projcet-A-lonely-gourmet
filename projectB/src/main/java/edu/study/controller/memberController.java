@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +20,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import edu.study.service.MemberService;
 import edu.study.service.MessageService;
 import edu.study.service.NaverLoginBo;
+import edu.study.service.SessionConfig;
 import edu.study.service.sha256;
 import edu.study.vo.MemberFileVo;
 import edu.study.vo.MemberVo;
@@ -38,10 +43,9 @@ public class memberController {
 	@Autowired
 	private MemberService memberService;
 	
-
 	@Autowired
 	private MessageService messageService;
-	
+		
 	/* NaverLoginBO */
 	private NaverLoginBo naverLoginBo;
 	private String apiResult = null;
@@ -60,14 +64,14 @@ public class memberController {
 		//System.out.println("네이버:" + naverAuthUrl);
 		/* 객체 바인딩 */
 		model.addAttribute("urlNaver", naverAuthUrl);
-
 		
 		return "member/memberLogin";
 	}
 	
 	@RequestMapping(value="/memberLogin.do", method=RequestMethod.POST)
-	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, Model model) {
-		System.out.println("vo값"+vo);
+						
+
+	public String login(MemberVo vo, MemberFileVo vo2, HttpSession session, HttpServletRequest request,RedirectAttributes rttr, Model model) throws Exception {
 		
 		String inputPwd = vo.getPwd();
 		vo.setPwd(sha256.encrypt(inputPwd));
@@ -77,6 +81,7 @@ public class memberController {
 		System.out.println("loginVO 값 : "+loginVO);
 		System.out.println("vo값 : "+vo);
 		MemberFileVo loginVo2 = memberService.file(loginVO.getMidx());
+				
 		if( loginVo2 != null )
 		{
 			loginVO.setMidx(loginVo2.getMidx());
@@ -86,13 +91,28 @@ public class memberController {
 			System.out.println("vo2 : "+ loginVo2);
 			
 		}	
+
 		
 		model.addAttribute("vo", vo );
-		session.setAttribute("login", loginVO);
-		return "redirect:/";
+
 		
-	}	
+		String memberId = request.getParameter("id");
+		if(memberId != null){
+			String usingId = SessionConfig.getSessionidCheck("login_id", memberId);
+			System.out.println(memberId + " : " + usingId);
+			session.setMaxInactiveInterval(60*60);
+			session.setAttribute("login_id", memberId);
+			
+		}
 	
+		session.setAttribute("login", loginVO);
+			
+		return "redirect:/";
+			
+	}
+	
+
+		
 	@ResponseBody
 	@RequestMapping(value="/loginCheck.do", method=RequestMethod.POST)
 	public String loginCheck(MemberVo vo,HttpSession session,Model model) {
@@ -206,8 +226,7 @@ public class memberController {
 			return "0";
 		}
 	}
-	
-	
+		
 	/* 닉네임 중복확인 */
 	@ResponseBody
 	@RequestMapping(value="/checkNick.do", method=RequestMethod.POST)
@@ -243,13 +262,13 @@ public class memberController {
 		for(int i=0; i<6; i++) {
 			String ran = Integer.toString(rand.nextInt(10));
 			numStr+=ran;
-    }
+    }	
     	        
      
     messageService.message(phone, numStr);	
      
       return numStr;
-}
+	}
 
 	
 	

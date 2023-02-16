@@ -14,17 +14,32 @@
     <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js" ></script>
     <script type="text/javascript">
     	function check(){
+    		var pwd = $("#pwd").val();
+    		var pwd2 = $("#pwd2").val();
+    		var reg=/^(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{5,10}$/;
     		
     		if(thd.pwd.value ==""){
     			alert("새 비밀번호를 입력해주세요.");
     			thd.pwd.focus();
     			return;
     		}
+    		
+    		if(!reg.test(pwd)) {
+    		alert("비밀번호는 5~10자리 소문자, 숫자, 특수문자를 섞어 형식에 맞게 입력해주세요.");
+    		return false;
+    		}
+    		
     		if(thd.pwd2.value == ""){
     			alert("비밀번호 확인을 입력해주세요.");
     			thd.pwd2.focus();
     			return;
-    		}    		
+    		}    
+    		
+    		if(!reg.test(pwd2)) {
+        		alert("비밀번호는 4~10자리 소문자, 숫자, 특수문자를 섞어 형식에 맞게 입력해주세요.");
+        		return false;
+        	}
+    		
     		if(thd.pwd.value != thd.pwd2.value){
     			alert("비밀번호가 일치하지 않습니다.")
     			return;
@@ -58,6 +73,7 @@
         <input
           type="password"
           name="pwd"
+          id="pwd"
           class="newPwd"
           placeholder="새 비밀번호"
           onkeyup="if(window.event.keyCode==13){check()}"
@@ -66,6 +82,7 @@
         <input
           type="password"
           name="pwd2"
+          id="pwd2"
           class="newPwdCk"
 		  placeholder="비밀번호 확인"
 		  onkeyup="if(window.event.keyCode==13){check()}"          
