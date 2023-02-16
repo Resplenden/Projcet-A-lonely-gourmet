@@ -405,7 +405,7 @@ String title = request.getParameter("title");
             </li>
             </c:if>	
           </ul>
-          <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do?name=${title}&category=${category}&addr=${addr}'">
+          <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do?name=${title}&category=${category}&addr=${addr}&phone=${phone}'">
             <i class="xi-pen xi-1x"></i>&nbsp;리뷰쓰기
           </button>
           <button class="recommend">추천 0</button>
@@ -476,7 +476,7 @@ String title = request.getParameter("title");
 				</c:if>
             </div>
             <!--end: .pager-->
-            <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do?name=${title}&category=${category}&addr=${addr}'">
+            <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do?name=${title}&category=${category}&addr=${addr}&phone=${phone}'">
               <i class="xi-pen xi-1x"></i>&nbsp;리뷰쓰기
             </button>
           </div>

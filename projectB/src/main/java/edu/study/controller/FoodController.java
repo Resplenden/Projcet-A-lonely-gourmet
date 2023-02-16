@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.study.service.ReviewService;
 import edu.study.vo.MemberVo;
@@ -104,7 +105,7 @@ public class FoodController {
 	
 	/*리뷰작성*/
 	@RequestMapping(value="/reviewWrite.do",method=RequestMethod.POST)
-	public String write(ReviewVo vo,ReviewFileVo vo2,@RequestParam("file") MultipartFile file) {
+	public String write(ReviewVo vo,ReviewFileVo vo2,@RequestParam("file") MultipartFile file,RedirectAttributes rttr) {
 
 		if(!file.isEmpty()) {
 			String OriginalFilename = file.getOriginalFilename();
@@ -135,8 +136,13 @@ public class FoodController {
 		}
 		
 		reviewService.writeReview(vo);
-
-		return "redirect:foodList.do";
+		
+		rttr.addAttribute("name",vo.getName());
+		rttr.addAttribute("category",vo.getCategory());
+		rttr.addAttribute("addr",vo.getAddr());
+		rttr.addAttribute("phone",vo.getPhone());	
+	
+		return "redirect:foodView.do";
 	}
 	
 	/*리뷰 추천*/
