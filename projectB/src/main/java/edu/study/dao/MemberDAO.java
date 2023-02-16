@@ -77,10 +77,26 @@ public class MemberDAO {
 		return sqlSession.selectOne("edu.study.mapper.memberMapper.file", midx);
 	}
 	
-
+	//회원 정보 조회
 	
+	public MemberVo profile(int midx) {
+		return sqlSession.selectOne("edu.study.mapper.memberMapper.profile", midx);
+	}
 	
+	//회원 정보 수정
+	public int profileModify(MemberVo vo) {
+		return sqlSession.update("edu.study.mapper.memberMapper.profileModify", vo);
+	}
+	
+	//회원 사진 수정
+		public int fileUpdate(HashMap<String, Object> mfFile) {
+			return sqlSession.update("edu.study.mapper.memberMapper.fileUpdate", mfFile);
+		}
 
+	//회원 탈퇴
+	public int unregister(MemberVo vo) {
+		return sqlSession.update("edu.study.mapper.memberMapper.unregister", vo);
+	}
 
 	
 	

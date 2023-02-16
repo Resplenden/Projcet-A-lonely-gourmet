@@ -1,0 +1,428 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TTTtangsbudaejjigaeB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/TTTtangsbudaejjigaeB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GongGothicMedium';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
+    "Arial";
+  -webkit-user-select: none;
+  -ms-use-select: none;
+}
+
+ul {
+  list-style: none;
+}
+
+table {
+  -webkit-border-horizontal-spacing: 0px;
+  -webkit-border-vertical-spacing: 0px;
+}
+
+body {
+  font-family: "Pretendard-Regular";
+}
+
+nav {
+  width: 1920px;
+  height: 191px;
+  z-index: 12010;
+  box-shadow: 5px 5px 5px rgb(216, 216, 216);
+}
+
+#topMenu {
+  display: flex;
+  width: 1600px;
+  height: 140px;
+  background-color: white;
+  align-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.logo {
+  margin-right: 170px;
+}
+
+#searchBar {
+  display: flex;
+  width: 666px;
+  height: 49px;
+  border: 3px solid salmon;
+  margin-top: 10px;
+  margin-right: 220px;
+}
+
+#loginSearchBar {
+  display: flex;
+  width: 666px;
+  height: 49px;
+  border: 3px solid salmon;
+  margin-top: 10px;
+    margin-right: 50px;
+}
+
+#searchBar input, #loginSearchBar input {
+  width: 597px;
+  height: 47px;
+  padding-left: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  font-family: "Pretendard-Regular";
+}
+
+#searchBar input:focus, #loginSearchBar input:focus {
+  outline: none;
+}
+
+#searchBar input::placeholder, #loginSearchBar input::placeholder {
+  font-size: 20px;
+  color: rgb(182, 182, 182);
+}
+
+.searchBtn {
+  border: none;
+  color: salmon;
+  padding: 8.5px 16px 7px 7px;
+  background: none;
+}
+
+.searchBtn:hover {
+  color: rgb(250, 71, 48);
+  cursor: pointer;
+}
+
+.searchBtn i {
+  display: inline-block;
+}
+
+.loginInfo {
+	display: flex;
+	align-items: center;
+}
+
+.loginInfo a {
+  text-decoration: none;
+  color: black;
+  margin-top: 14px;
+}
+
+.login, .myPage {
+  display: inline-block;
+  padding: 10px 25px 10px 25px;
+  margin-right: 10px;
+  border-radius: 30px;
+}
+
+.login p, .myPage p {
+  color: salmon;
+  font-weight: bold;
+}
+
+.login p:hover, .myPage p:hover {
+  color: rgb(250, 71, 48);
+  font-weight: bold;
+}
+
+.join, .logout {
+  display: inline-block;
+  padding: 10px 25px 10px 25px;
+  background: salmon;
+  border-radius: 5px;
+}
+
+.join:hover, .logout:hover {
+  background-color: rgb(250, 71, 48);
+}
+
+.join p, .logout p {
+  color: white;
+}
+
+.loginInfo {
+	min-width: 239px;
+	max-width: 700px;
+}
+
+.welcome {
+	font-size: 18px;
+	color: rgb(70, 70, 70);
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.loginInfo span{
+	font-weight: bold;
+	font-style: italic;
+	font-size: 20px;
+}
+
+/*end: .loginInfo*/
+
+hr {
+  background: rgb(182, 182, 182);
+  height: 1px;
+  border: none;
+}
+
+#bottMenu {
+  width: 1652px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+}
+
+#bottMenu ul {
+  display: flex;
+  margin-left: 300px;
+  margin-right: 300px;
+}
+
+#bottMenu li {
+  font-size: 18px;
+  flex-basis: 100px;
+  margin-top: 12px;
+}
+
+#bottMenu li a {
+  color: salmon;
+}
+
+#bottMenu li a:hover {
+  color: rgb(250, 71, 48);
+  font-weight: bold;
+}
+/*end: nav*/
+
+
+main {
+  width: 80%;
+  height: 1200px;
+  margin-top: 100px;
+}
+
+main h1 {
+  font-size: 44px;
+  color: salmon;
+}
+
+#info {
+  height: 280px;
+  margin-top: 50px;
+}
+
+.memberImage {
+  border: none;
+  border-radius: 100%;
+  height: 200px;
+  width: 200px;
+}
+
+#info h2 {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 40px;
+}
+
+#info p {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 7px;
+  color: gray;
+}
+
+#menu {
+  margin-top: 138.18px;
+  width: 90%;
+  height: 560px;
+}
+
+#menu img {
+  height: 125px;
+  width: 125px;
+  filter: opacity(0.8);
+}
+
+.profile img {
+  height: 155px !important;
+  width: 155px !important;
+}
+
+.reviewSet img {
+  height: 155px !important;
+  width: 155px !important;
+}
+
+.boardSet img {
+  height: 120px !important;
+  width: 120px !important;
+  margin-top: 20px;
+  padding-left: 30px;
+}
+
+.messageSet img {
+  margin-top: 5px;
+}
+
+table {
+  width: 95%;
+  height: 500px;
+}
+
+td {
+  text-align: center;
+  width: 342.33px;
+  border: none;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 5px 5px 10px rgb(231, 231, 231);
+}
+
+
+.messageSet h2 {
+  margin-top: 15px;
+}
+
+.gift h2,
+.commentSet h2 {
+  margin-top: 30px;
+}
+
+.boardSet h2 {
+  margin-top: 15px;
+}
+
+td a {
+  text-decoration: none;
+  color: rgb(56, 56, 56);
+  display: flex;
+  flex-direction: column;
+}
+
+td p {
+  margin-top: 6px;
+}
+
+table .gift {
+  width: 311px;
+}
+
+/*end: main*/
+
+footer {
+  width: 1613px;
+  height: 250px;
+  background-color: rgb(56, 56, 56);
+  padding: 50px 160px 30px 130px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  position: relative;
+}
+
+
+#slogan {
+  width: 620px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  flex-basis: 50px;
+  padding-bottom: 30px;
+  margin: 0;
+}
+
+footer img {
+  filter: invert(0.5);
+  margin-bottom: 10px;
+}
+
+footer p {
+  display: inline-block;
+  color:rgb(99, 99, 99);
+}
+
+#footerMenu {
+  margin: 0;
+  width: 600px;
+}
+
+
+#footerMenu ul{
+  margin: 0;
+  display: flex;
+  width: 600px;
+  padding-bottom: 30px;
+}
+
+
+#footerMenu a {
+  color: rgb(99, 99, 99);
+}
+
+#footerMenu a:hover {
+  color: salmon;
+}
+
+.companyInfo {
+  margin-left: 15px;
+  width: 620px;
+}
+
+#sns {
+  width: 500px;
+}
+
+#sns ul {
+  display: flex;
+  position: absolute;
+  right: 160px;
+  bottom: 100px;
+}
+
+#sns li:nth-child(2) {
+ margin-right: 15px;
+ margin-left: 15px;
+}
+
+#sns a {
+  padding: 25px 10px 10px 10px;
+  border: 1px solid rgb(99, 99, 99);
+  border-radius: 25%;
+}
+
+#sns a:visited {
+  color:rgb(99, 99, 99);
+}
+
+#sns a:hover {
+  color: salmon;
+  border: 1px solid salmon;
+}

@@ -27,6 +27,13 @@
 				return false;
 			}
 		}
+
+		function msg() {
+			alert("회원가입이 완료되었습니다. 로그인 해주세요.");
+		}
+		
+		
+		
 	</script>
 </head>
 <body>
@@ -43,7 +50,7 @@
             <div class="memberImage">
               <label class="profileImg" for="profileImg">
                 <i class="xi-camera xi-2x"></i>
-                <input type="file" id="profileImg" name="profileImg" />
+                <input type="file" id="profileImg" name="profileImg"/>
               </label>
             </div>
             <!--div: 프로필 이미지가 들어갈 자리-->
@@ -150,7 +157,7 @@
           <br />
           <br />
           <li>
-            <button  id="btn" name="join" class="join">회원가입</button>
+            <button  id="btn" name="join" class="join" onclick="msg()">회원가입</button>
           </li>
         </ul>
       </form>
@@ -207,6 +214,8 @@ var checkEmailVal = "";
 
 $(function(){
 		$("form").submit(function(){
+		
+			
 			
 			/* 아이디 */
 			var id = $("#id").val();
@@ -326,6 +335,10 @@ $(function(){
 			
 		});
 	})
+	
+
+
+	
 	
 /*아이디 중복검사*/
 //공백을 아이디로 인식...  
@@ -473,7 +486,7 @@ function blurId(obj){
 		
 		
 		 if($("#phone2").val() == code2){ // 위에서 저장한값을 ㅣ교함
-			$('#phone2_check').text('인증성공');
+			$('#phone2_check').text('인증이 성공했습니다.');
 			$('#phone2_check').css('color', 'green');
 	      }else{
 	    	  	$('#phone2_check').text('인증이 실패했습니다. 다시 시도해주세요');
@@ -498,7 +511,7 @@ function checkNick(){
 			$("#nick_check").text("사용가능한 닉네임이예요. 닉네임 중복체크를 해주세요.");
 			$("#nick_check").css('color','green');
 		} else {
-			$("#nick_check").text("닉네임은 2자 이상 10자 이하,영어 또는 숫자 또는 한글로 만들어주세요 .");
+			$("#nick_check").text("닉네임은 2자 이상 10자 이하,영어 또는 숫자 또는 한글로 만들어주세요.");
 			$("#nick_check").css('color','red');
 			$("#nickname").focus();
 			checkNickFlag = false;
@@ -540,7 +553,7 @@ function checkNick(){
 	
 				
 	if(emailVal == "") {
-		alert("이메일을 입력하세요");
+		alert("이메일을 입력하세요.");
 		return;
 	}
 	
@@ -629,7 +642,7 @@ $("#pwd").blur(function(){
 		} else {
 			//비밀번호가 형식에 맞지 않은 경우
 			//alert("비밀번호는 4자리 이상 8자리 소문자,숫자, 특수문자를 이용해 만들어주세요");
-			$('#pwd_check').text('비밀번호는 4자리 이상 8자리 소문자, 숫자, 특수문자를 이용해 만들어주세요.');
+			$('#pwd_check').text('비밀번호는 4~8자리 길이로 소문자, 숫자, 특수문자를 전부 이용해 만들어주세요.');
 			$('#pwd_check').css('color', 'red');
 			//$("#pwd").focus();
 			checkPwdFlag = false;
@@ -742,6 +755,7 @@ $("#phone").blur(function(){
 			return;
 		}
 	}
+	 
 
 });
 

@@ -93,6 +93,34 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
+	@Override
+	public MemberVo profile(int midx) {
+		// TODO Auto-generated method stub
+		return memberDAO.profile(midx);
+	}
+
+	@Override
+	public int profileModify(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return memberDAO.profileModify(vo);
+	}
+
+	@Override
+	public int fileUpdate(HashMap<String, Object> mfFile) {
+		// TODO Auto-generated method stub
+		return memberDAO.fileUpdate(mfFile);
+	}
+
+	@Override
+	public int unregister(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return memberDAO.unregister(vo);
+	}
+
+
+
+	
+	
 	
 	
 	

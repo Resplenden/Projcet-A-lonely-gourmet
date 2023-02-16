@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <link
@@ -63,7 +65,7 @@
           <!--end: #searchBar-->
         <div class="loginInfo">
           <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
-          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/myPage.do?midx=${login.midx}" class="myPage"><p>마이페이지</p></a>
           <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
         </div>
         <!--end:.loginInfo-->
@@ -78,7 +80,7 @@
           <!--end: #searchBar-->
         <div class="loginInfo">
           <span>${name}</span>&nbsp;님, 반갑습니다!</p>
-          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/myPage.do" class="myPage"><p>마이페이지</p></a>
           <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
         </div>
         <!--end:.loginInfo-->
