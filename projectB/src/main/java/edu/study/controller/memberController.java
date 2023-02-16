@@ -2,6 +2,8 @@ package edu.study.controller;
 
 
 import java.io.File;
+import java.io.PrintWriter;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,6 +91,10 @@ public class memberController {
 			System.out.println("vo2 : "+ loginVo2);
 			
 		}	
+
+		
+		model.addAttribute("vo", vo );
+
 		
 		String memberId = request.getParameter("id");
 		if(memberId != null){
@@ -153,7 +160,7 @@ public class memberController {
 		
 		int result = memberService.join(vo); 
 		
-		String path = "C:\\Users\\745\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+		String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 		
 		System.out.println(path);
 		
@@ -162,28 +169,47 @@ public class memberController {
 			dir.mkdirs();
 		}
 		
-		if(!profileImg.getOriginalFilename().isEmpty()) {
-			HashMap<String, Object> mfFile = new HashMap<String, Object>();
-			int pos = profileImg.getOriginalFilename().lastIndexOf(".");			
-			String ext = profileImg.getOriginalFilename().substring(pos + 1);
-			
-			Date now = new Date();
-			String today = new SimpleDateFormat("yyyyMMddHHmmss").format(now);
-			 
-			int random = (int) ((Math.random() * 100) + 1);			
-			String result1 = today + random;
-			String randomname = result1 + "." + ext;
-			String originname = profileImg.getOriginalFilename();
-						
+		String originname = "";
+		String randomname = "";
+		HashMap<String, Object> mfFile = new HashMap<String, Object>();
+		int pos = 0;
+		String ext = "";
+		Date now = new Date();
+		String today = new SimpleDateFormat("yyyyMMddHHmmss").format(now);
+		int random = (int) ((Math.random() * 100) + 1);			
+		String result1 = today + random;
+		
+		boolean flag = profileImg.getOriginalFilename().isEmpty();
+		
+		if(flag){
+			// 받은 파일이 없을 겨우
+			originname = "commonProfile.png";
+			randomname = "commonProfile.png";
+		}else {
+			// 파일이 있는 경우
+			originname = profileImg.getOriginalFilename();
+			pos = originname.lastIndexOf(".");			
+			ext = originname.substring(pos + 1);
+			randomname = result1 + "." + ext;
+		}
+		
+		
+//		pos = profileImg.getOriginalFilename().lastIndexOf(".");			
+//		ext = profileImg.getOriginalFilename().substring(pos + 1);
+		
+		// 파일이 있으면 upload 폴더에 넣는다
+		if(!flag){
 			profileImg.transferTo(new File(path,randomname));
-			
-			mfFile.put("orgfilename", originname);
-			mfFile.put("storedname", randomname);
-			mfFile.put("midx", vo.getMidx());
-			
-			memberService.fileInsert(mfFile);
-		}	
-				
+		}
+		
+		// DB에 넣을 파일 정보 설정
+		mfFile.put("orgfilename", originname);
+		mfFile.put("storedname", randomname);
+		mfFile.put("midx", vo.getMidx());
+		
+		// DB에 정보를 넣는다
+		memberService.fileInsert(mfFile);
+
 		return "redirect:/member/memberLogin.do";
 	}
 	
@@ -246,12 +272,117 @@ public class memberController {
 
 	
 	
+	/*마이페이지 이동*/
+	@RequestMapping(value="/myPage.do", method=RequestMethod.GET)
+	public String myPage(int midx, MemberVo vo, Model model, HttpSession session) {
+		
+		MemberVo loginVO = memberService.login(vo);	
+		MemberVo vo2 = memberService.profile(midx);
+		session.removeAttribute(vo.getNickname());
+		session.getAttribute("vo2");
+		model.addAttribute("vo2", vo2);
+		
+		
+		return "/member/myPage";
+	}
 	
 	
+	/*회원 정보 이동*/
+	@RequestMapping(value="/profile.do", method=RequestMethod.GET)
+	public String profile(int midx, MemberVo vo, Model model, HttpSession session) {
 	
+		MemberVo loginVO = memberService.login(vo);	
+		MemberVo vo2 = memberService.profile(midx);
+		session.removeAttribute(vo.getNickname());
+		session.removeAttribute(vo.getStname());
+		session.getAttribute("vo2");
+		model.addAttribute("vo2", vo2);
+		
+		return "/member/profile";
+	}
+	
+	
+	/*회원 정보 수정 이동*/
+	@RequestMapping(value="/profileModify.do", method=RequestMethod.GET)
+	public String profileModify(int midx, Model model) {
+
+		MemberVo vo = memberService.profile(midx);
+		model.addAttribute("vo", vo);
+		System.out.println("회원 정보 수정 전:"+ vo);
+
+		
+		return "/member/profileModify";
+	}
+	
+	/*회원 정보 수정하기*/
+	@RequestMapping(value="/profileModify.do", method=RequestMethod.POST)
+	public String profileModify(MemberVo vo, Model model, MultipartFile profileImg, HttpServletRequest req) throws IllegalStateException, IOException {
+	
+	String path = "C:\\Users\\759\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+		
+		System.out.println(path);
+		
+		File dir = new File(path);
+		if(!dir.exists()) {
+			dir.mkdirs();
+		}
+		
+		if(!profileImg.getOriginalFilename().isEmpty()) {
+			HashMap<String, Object> mfFile = new HashMap<String, Object>();
+			int pos = profileImg.getOriginalFilename().lastIndexOf(".");			
+			String ext = profileImg.getOriginalFilename().substring(pos + 1);
+			
+			Date now = new Date();
+			String today = new SimpleDateFormat("yyyyMMddHHmmss").format(now);
+			 
+			int random = (int) ((Math.random() * 100) + 1);			
+			String result1 = today + random;
+			String randomname = result1 + "." + ext;
+			String originname = profileImg.getOriginalFilename();
+						
+			profileImg.transferTo(new File(path,randomname));
+			
+			mfFile.put("orgfilename", originname);
+			mfFile.put("storedname", randomname);
+			mfFile.put("midx", vo.getMidx());
+			
+			memberService.fileUpdate(mfFile);
+		}
+		
+		
+		int result = memberService.profileModify(vo);
+		System.out.println("회원 정보 수정 후:"+ vo);
+
+		if(result>0) {
+			return "redirect:profile.do?midx="+vo.getMidx();
+		}else {
+			return "redirect:/";
+		}	
+
+	}
+	
+	
+	/*회원 탈퇴하기*/
+	@RequestMapping(value="/unregister.do", method=RequestMethod.POST)
+	public String unregister(int midx, MemberVo vo, HttpSession session) {
+		
+		int result = memberService.unregister(vo);
+		
+		if(result > 0) {
+			session.invalidate();
+			return "redirect:/";	
+		}else {
+			return "0";
+		}
+		
+		
+	}
+	
+
 	
 }
 	
+
 	
 	
 

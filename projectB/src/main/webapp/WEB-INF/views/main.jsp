@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
+
+<!DOCTYPE html>
 <html>
 <head>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.1.min.js"></script>
@@ -69,7 +71,7 @@
           <!--end: #searchBar-->
         <div class="loginInfo">
           <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
-          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/myPage.do?midx=${login.midx}" class="myPage"><p>마이페이지</p></a>
           <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
         </div>
         <!--end:.loginInfo-->
@@ -84,7 +86,7 @@
           <!--end: #searchBar-->
         <div class="loginInfo">
           <span>${name}</span>&nbsp;님, 반갑습니다!</p>
-          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/myPage.do" class="myPage"><p>마이페이지</p></a>
           <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
         </div>
         <!--end:.loginInfo-->
@@ -167,7 +169,7 @@
               <div class="text">
                 <h3>혼자 먹다 둘이 죽는 국밥 명소</h3>
                 <p>국밥엔 혼술이 국룰이지!</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
                 <a href="<%=request.getContextPath()%>/map/map.do" class="map"
@@ -179,7 +181,7 @@
               <div class="text">
                 <h3>고기 반찬, 남 주기 아깝다!</h3>
                 <p>혼자서도 당당히 먹으러 다닐 수 있는 고깃집 추천</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
                 <a href="<%=request.getContextPath()%>/map/map.do" class="map"
@@ -191,7 +193,7 @@
               <div class="text">
                 <h3>가볍고 빠른 식사는 어디서?</h3>
                 <p>이게 진짜 혼밥이지! 부담없이 갈 수 있는 혼밥집 모음</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
                 <a href="<%=request.getContextPath()%>/map/map.do" class="map"
@@ -237,7 +239,7 @@
         <div class="noticeList">
           <div class="listTitle">
             <h3>공지사항</h3>
-            <a href="<%=request.getContextPath()%>/board/noticeList.do" class="readMore"><p>READ MORE →</p></a>
+            <a href="#" class="readMore"><p>READ MORE →</p></a>
           </div>
           <!--end: .listTitle-->
           <table>

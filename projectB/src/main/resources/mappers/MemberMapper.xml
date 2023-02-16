@@ -13,10 +13,11 @@
 			,nickname
 			,stname
 	 		,orgname
-			,nickname
+			,email
 		FROM member
 		WHERE id = #{id}
 		AND pwd=#{pwd}
+		AND delyn = "N"
 	</select>
 		
 	<select id="loginCheck" resultType="int">
@@ -130,7 +131,27 @@
 		)
 	</insert>
 	
-	<select id="file" parameterType="int" resultType="mfileVo">
+	
+	 
+	 
+	 <!-- 회원 정보 조회 -->
+	 <select id="profile" parameterType="int" resultType="memberVo">
+	 SELECT midx
+	 , id
+	 , pwd
+	 , nickname
+	 , name
+	 , gender
+	 , birth
+	 , phone
+	 , wdate
+	 , stname
+	 , email
+	 FROM member
+	 WHERE midx = #{midx}
+	 </select>
+	 
+	 <select id="file" parameterType="int" resultType="mfileVo">
 	 	SELECT
 	 		mfidx 
 	 		, midx
@@ -140,4 +161,29 @@
 	 	WHERE midx=#{midx}
 	 </select> 
 	 
+	 <!-- 회원 정보 수정 -->
+	 <update id="profileModify" parameterType="memberVo">
+		UPDATE member
+		SET nickname = #{nickname}
+		, stname = #{stname}
+		, birth = #{birth}
+		, phone = #{phone}
+		, email = #{email}
+		WHERE midx = #{midx}	 
+	 </update>
+	 
+	 <!-- 회원 사진 수정 -->
+	 <update id="fileUpdate" parameterType="HashMap">
+		UPDATE memberfile 
+		SET orgfilename = #{orgfilename}
+			, storedname = #{storedname}
+		WHERE midx = #{midx}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="unregister" parameterType="memberVo">
+	UPDATE member
+	SET delyn = 'Y'
+	WHERE midx = #{midx}
+	</update>
 </mapper>
