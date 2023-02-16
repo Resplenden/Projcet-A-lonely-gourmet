@@ -223,10 +223,12 @@
 			</ul>
           </div>
           <!--end: .pager-->
+          <c:if test="${login != null}">
           <div class="btnBar">
             <a href="<%=request.getContextPath()%>/board/write.do">글쓰기</a>
           </div>
           <!--end:.bthBar-->
+          </c:if>
         </div>
         <!--end: #boardOption-->
       </div>

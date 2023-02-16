@@ -1,5 +1,11 @@
 package edu.study.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -7,17 +13,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import edu.study.vo.BoardVo;
-
+import edu.study.service.ReviewService;
 import edu.study.vo.MemberVo;
+import edu.study.vo.ReviewFileVo;
+import edu.study.vo.ReviewLikeVo;
+import edu.study.vo.ReviewPageMaker;
 import edu.study.vo.ReviewVo;
+import edu.study.vo.SearchVo;
 
 @RequestMapping(value="/food")
 @Controller 
 public class FoodController {
-
-	/*Ωƒ¥Á ∏Ò∑œ ∆‰¿Ã¡ˆ*/
+	
+	@Inject
+	private ReviewService reviewService;
+	
+	/*ÏãùÎãπ Î™©Î°ù ÌéòÏù¥ÏßÄ*/
 	@RequestMapping(value="/foodList.do",method=RequestMethod.GET)
 	public String list() {
 		
@@ -25,50 +40,120 @@ public class FoodController {
 	
 	}
 	
+	/*ÏãùÎãπ ÏÉÅÏÑ∏Î≥¥Í∏∞*/
 	@RequestMapping(value="/foodView.do",method=RequestMethod.GET)
-	   public String view(HttpServletRequest req, Model model) {
-	      System.out.println("session ∞™:" + req.getParameter("name"));
-	      System.out.println("session ∞™:" + req.getParameter("category"));
-	      String name= req.getParameter("name");
-	      String addr = req.getParameter("addr");
-	      String category = req.getParameter("category");
-	      String phone = req.getParameter("phone");
-	      req.setAttribute("title", name);
-	      req.setAttribute("addr", addr);
-	      req.setAttribute("category", category);
-	      req.setAttribute("phone", phone);
-	   return "food/foodView1";
+	public String view(HttpServletRequest req, Model model,ReviewVo reviewVo,SearchVo searchVo) {
+	      
+		System.out.println("session Í∞í:" + req.getParameter("name"));
+	    System.out.println("session Í∞í:" + req.getParameter("category"));
+	    
+	    String name= req.getParameter("name");
+	    String addr = req.getParameter("addr");
+	    String category = req.getParameter("category");
+	    String phone = req.getParameter("phone");
+	      
+	    req.setAttribute("title", name);
+	    req.setAttribute("addr", addr);
+	    req.setAttribute("category", category);
+	    req.setAttribute("phone", phone);
+	    
+	    //Î¶¨Î∑∞ Î≥¥Í∏∞
+	    List<ReviewVo> review = reviewService.reviewListPage(searchVo);
+	    model.addAttribute("review",review);
+	    
+	    //Î¶¨Î∑∞ ÌéòÏù¥Ïßï
+	    ReviewPageMaker reviewPageMaker = new ReviewPageMaker(reviewService.reviewCount(reviewVo),searchVo);
+	  	reviewPageMaker.setSearchVo(searchVo);
+	  	model.addAttribute("reviewPageMaker",reviewPageMaker);
+	  		
+	    return "food/foodView1";
 	}
 	
-	/*∏Æ∫‰ ªÛºº ∆‰¿Ã¡ˆ*/
+	/*Î¶¨Î∑∞ ÏÉÅÏÑ∏ ÌéòÏù¥ÏßÄ*/
 	@RequestMapping(value="/review.do",method=RequestMethod.GET)
-	public String review() {
+	public String review(HttpServletRequest req,Model model,int vidx) {
 		
-	return "food/review";
-	
+		String category = req.getParameter("category");
+		req.setAttribute("category", category);
+		
+		model.addAttribute("review", reviewService.selectByVidx(vidx));
+		
+		return "food/review";
 	}
 	
-	/*∏Æ∫‰ ¿€º∫ ∆‰¿Ã¡ˆ*/
+	/*Î¶¨Î∑∞ ÏûëÏÑ± ÌéòÏù¥ÏßÄ*/
 	@RequestMapping(value="/reviewWrite.do",method=RequestMethod.GET)
-	public String write() {
+	public String write(HttpServletRequest req, Model model) {
 		
-	return "food/reviewWrite";
+		System.out.println("session Í∞í:" + req.getParameter("name"));
+	    System.out.println("session Í∞í:" + req.getParameter("category"));
+	    
+	    String name= req.getParameter("name");
+	    String addr = req.getParameter("addr");
+	    String category = req.getParameter("category");
+	    String phone = req.getParameter("phone");
+	      
+	    req.setAttribute("title", name);
+	    req.setAttribute("addr", addr);
+	    req.setAttribute("category", category);
+	    req.setAttribute("phone", phone);
+	
+	    return "food/reviewWrite";
 	
 	}
 	
+	/*Î¶¨Î∑∞ÏûëÏÑ±*/
 	@RequestMapping(value="/reviewWrite.do",method=RequestMethod.POST)
-	public String write(ReviewVo vo, HttpSession session) {
+	public String write(ReviewVo vo,ReviewFileVo vo2,@RequestParam("file") MultipartFile file) {
 
-		//∑Œ±◊¿Œ »ƒ midx,nickname¿ª voø° ¥„¥¬¥Ÿ.
-		MemberVo login = (MemberVo)session.getAttribute("login");
-		vo.setMidx(login.getMidx());
-		vo.setWriter(login.getNickname());
-		System.out.println(login.getMidx());
-		System.out.println(login.getNickname());
-
+		if(!file.isEmpty()) {
+			String OriginalFilename = file.getOriginalFilename();
+			long size = file.getSize();
+			String ext = OriginalFilename.substring(OriginalFilename.lastIndexOf("."), OriginalFilename.length());
+			String path = "C:\\Users\\315\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 	
+			UUID uuid = UUID.randomUUID();
+			String[] uuids = uuid.toString().split("-");
+	
+			String uniqueName = uuids[0];
+	
+			File saveFile = new File(path + "\\" + uniqueName + ext);
 		
-		return "redirect:review.do";
+			try {
+				file.transferTo(saveFile);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			vo2.setOriginalfilename(OriginalFilename);
+			vo2.setSavefilename(uniqueName + ext);
+			reviewService.reviewFile(vo2);
+
+			vo.setFilename(uniqueName + ext);
+		}
+		
+		reviewService.writeReview(vo);
+
+		return "redirect:foodList.do";
 	}
 	
+	/*Î¶¨Î∑∞ Ï∂îÏ≤ú*/
+	@ResponseBody
+	@RequestMapping(value="/reviewLike.do", method = RequestMethod.GET)
+	public int reviewLike(int vidx,ReviewLikeVo vo, HttpSession session) {
+
+		MemberVo login = (MemberVo) session.getAttribute("login");
+		vo.setId(login.getId());
+		
+		int likeCheck = reviewService.likeCheck(vo);
+		if (likeCheck == 0) {
+			reviewService.updateLikeCnt(vidx); 
+			reviewService.insertReviewLiketb(vo); 
+			reviewService.updateByLikeCheck(vo); 
+		}
+
+		return likeCheck;
+	}
 }

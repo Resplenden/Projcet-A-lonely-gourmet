@@ -67,7 +67,7 @@
 	<select id="count" parameterType="searchVo" resultType="int">
 		select count(*)
 		  from board
-		  where 1=1
+		  where delyn = 'N'
 		  <include refid="search"></include>
 		  <include refid="category"></include>
 	</select>

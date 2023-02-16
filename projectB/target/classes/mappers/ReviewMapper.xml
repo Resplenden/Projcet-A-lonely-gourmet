@@ -5,9 +5,105 @@
 
 <mapper namespace="edu.study.mapper.reviewMapper">
 	
-	
+	<!-- 리뷰 목록(페이징) -->
+  	<select id="reviewListPage" parameterType="searchVo" resultType="reviewVo">
+		select * from review
+		where delyn='N'
+		  and name = #{name}
+		  and addr = #{addr}
+		order by vidx desc
+		limit #{reviewStart},#{reviewPerPageNum}
+ 	</select>
  	
- 	
+ 	<!-- 리뷰  개수 조회 -->
+	<select id="reviewCount" parameterType="reviewVo" resultType="int">
+		select count(*)
+		  from review
+		where delyn='N'
+		  and name = #{name}
+		  and addr = #{addr}
+	</select>
 	
+	<!-- 리뷰 작성 -->
+ 	<insert id="writeReview" parameterType="reviewVo">
+ 		insert into review(
+ 				title
+ 			,	content
+ 			,	writer
+ 			,	hit
+ 			,	likeCnt
+ 			,	filename
+ 			,	wdate
+ 			,	delyn
+ 			,	midx
+ 			,	name
+ 			,	addr
+ 		)values(
+ 				#{title}
+ 			,	#{content}
+ 			,	#{writer}
+ 			,	0
+ 			,	0
+ 			, 	#{filename}
+ 			,	now()
+ 			,	'N'
+ 			,	#{midx}
+ 			,	#{name}
+ 			,	#{addr}
+ 		)
+ 	</insert>
+ 	
+	<!-- 리뷰 선택하기 -->
+	<select id="selectByVidx" parameterType="int" resultType="reviewVo">
+		select *
+  		  from review
+  		 where vidx = #{vidx}
+	</select>
+	
+	<!-- 리뷰 추천 클릭시 review의 likeCnt 업데이트 -->
+	<update id="updateLikeCnt" parameterType="int">
+		update review
+		   set likeCnt = likeCnt+1
+		 where vidx = #{vidx}
+	</update>	
+ 	
+
+	<!-- 추천클릭시 reviewLiketb에 insert -->
+	<insert id="insertReviewLiketb" parameterType="reviewLikeVo">
+		insert into reviewlike(
+				id
+			,	vidx
+		)values(
+				#{id}
+			,	#{vidx}
+		)
+	</insert>
+
+	<!-- 추천 클릭시 likeCheck를 1로 만들어서 중복 방지 -->
+	<update id="updateByLikeCheck" parameterType="reviewLikeVo">
+		update reviewlike
+		   set likeCheck = 1
+		 where vidx = #{vidx}
+		   and id = #{id}
+ 	</update>
+ 	
+ 	<!-- 게시글 추천 중복방지 -->
+ 	<select id="likeCheck" parameterType="reviewLikeVo" resultType="int">
+ 		select count(*)
+ 		  from reviewlike
+ 		 where vidx = #{vidx}
+ 		   and id = #{id}
+ 	</select>
+	
+	<!-- 리뷰에서 파일업로드 시 -->
+	<insert id="reviewFile">
+		insert into reviewfile(
+				originalfilename
+			,	savefilename
+		)values(
+				#{originalfilename}
+			,	#{savefilename}
+		)
+	</insert>
 </mapper>
 	
