@@ -167,7 +167,7 @@
               <div class="text">
                 <h3>혼자 먹다 둘이 죽는 국밥 명소</h3>
                 <p>국밥엔 혼술이 국룰이지!</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
                 <a href="<%=request.getContextPath()%>/map/map.do" class="map"
@@ -179,7 +179,7 @@
               <div class="text">
                 <h3>고기 반찬, 남 주기 아깝다!</h3>
                 <p>혼자서도 당당히 먹으러 다닐 수 있는 고깃집 추천</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
                 <a href="<%=request.getContextPath()%>/map/map.do" class="map"
@@ -191,7 +191,7 @@
               <div class="text">
                 <h3>가볍고 빠른 식사는 어디서?</h3>
                 <p>이게 진짜 혼밥이지! 부담없이 갈 수 있는 혼밥집 모음</p>
-                <a href="#" class="board"
+                <a href="<%=request.getContextPath()%>/board/list.do" class="board"
                   ><i class="xi-list xi-1x"> 게시글 보기</i></a
                 >
                 <a href="<%=request.getContextPath()%>/map/map.do" class="map"
@@ -237,7 +237,7 @@
         <div class="noticeList">
           <div class="listTitle">
             <h3>공지사항</h3>
-            <a href="<%=request.getContextPath()%>/board/noticeList.do" class="readMore"><p>READ MORE →</p></a>
+            <a href="#" class="readMore"><p>READ MORE →</p></a>
           </div>
           <!--end: .listTitle-->
           <table>
