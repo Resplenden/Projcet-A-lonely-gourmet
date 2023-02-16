@@ -49,8 +49,7 @@
 				},
 				dataType : "json", 
 				 
-				success:function(json_data){
-							
+				success:function(json_data){							
 					
 					if(json_data.name == 0){
 						alert("등록되지 않은 이름입니다.");
@@ -64,9 +63,7 @@
 						
 						$("#id").focus();
 												
-					}
-					
-					
+					}				
 					
 					if(json_data.id == 0){
 						alert("등록되지 않은 아이디입니다.");
@@ -78,7 +75,6 @@
 						$("#email").focus();	
 						
 					}
-					
 					
 					
 					if(json_data.email == 0){

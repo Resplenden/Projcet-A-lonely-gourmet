@@ -160,7 +160,7 @@ public class memberController {
 		
 		int result = memberService.join(vo); 
 		
-		String path = "C:\\Users\\759\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+		String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 		
 		System.out.println(path);
 		
