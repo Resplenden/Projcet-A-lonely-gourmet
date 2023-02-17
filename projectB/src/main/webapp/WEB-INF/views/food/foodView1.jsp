@@ -311,6 +311,12 @@ String title = request.getParameter("title");
 	</script>
 
 <title>혼밥의 고수 식당 상세보기</title>
+
+	<script type="text/javascript">
+		function not(){
+			alert("서비스 준비중입니다.");
+		}
+	</script>
  
 </head>
 <body>
@@ -318,7 +324,7 @@ String title = request.getParameter("title");
 	<nav>
  <div id="topMenu">
         <div class="logo">
-          <a href="#">
+          <a href="<%=request.getContextPath()%>">
             <img
               src="../resources/img/사본 -혼밥의고수 로고 초안_대지 1 사본.png"
               width="200px"
@@ -377,8 +383,8 @@ String title = request.getParameter("title");
         <ul>
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-          <li><a href="<%=request.getContextPath()%>/event/list.do">식당</a></li>
+          <li><a href="#" onclick="not()">공지사항</a></li>
+          <li><a href="#" onclick="not()">이벤트</a></li>
         </ul>
       </div>
       <!--end: #bottMenu-->	
@@ -405,10 +411,18 @@ String title = request.getParameter("title");
             </li>
             </c:if>	
           </ul>
-          <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do'">
+           <!-- 로그인 시: 리뷰 작성 가능 -->
+          <c:if test="${login != null}">
+          <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do?name=${title}&category=${category}&addr=${addr}&phone=${phone}'">
             <i class="xi-pen xi-1x"></i>&nbsp;리뷰쓰기
           </button>
-          <button class="recommend">추천 0</button>
+          </c:if>
+        	<!-- 로그인 안했을 시: 리뷰 작성  불가능 -->
+   		<c:if test="${login == null}">
+          <p class="reviewWriteNull">
+            <i class="xi-lock xi-1x"></i>&nbsp;리뷰쓰기는 로그인 후에 가능합니다.
+          </p>
+          </c:if>
         </div>
         <!--end: .info-->
         <div class="menu">
@@ -422,142 +436,72 @@ String title = request.getParameter("title");
       <div id="board_2">
         <div class="reviewList">
           <h3>방문자 리뷰</h3>
-          <p class="count">5건</p>
+          <p class="count">${reviewPageMaker.reviewTotalCount}건</p>
           <ul>
-            <li>
-              <div class="review">
-                <div class="reviewImg"></div>
-                <div class="reviewContent">
-                  <a href="<%=request.getContextPath()%>/food/review.do"><h3>리뷰 제목입니다</h3></a>
-                  <p>
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                  </p>
-                </div>
-                <!--end: .reviewContent-->
-              </div>
-              <!--end: .review-->
-              <div class="profile">
-                <div class="profileImg">
-                  <img src="../resources/img/프로필이미지.png" width="60" />
-                </div>
-                <p class="nickname">닉네임</p>
-                <p class="date">2023.01.25</p>
-                <p class="reviewRecom">추천 0</p>
-              </div>
-              <!--end: .profile-->
-            </li>
-            <li>
-              <div class="review">
-                <div class="reviewImg"></div>
-                <div class="reviewContent">
-                  <a href="#"><h3>리뷰 제목입니다</h3></a>
-                  <p>
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                  </p>
-                </div>
-                <!--end: .reviewContent-->
-              </div>
-              <!--end: .review-->
-              <div class="profile">
-                <div class="profileImg">
-                  <img src="../resources/img/프로필이미지.png" width="60" />
-                </div>
-                <p class="nickname">닉네임</p>
-                <p class="date">2023.01.25</p>
-                <p class="reviewRecom">추천 0</p>
-              </div>
-              <!--end: .profile-->
-            </li>
-            <li>
-              <div class="review">
-                <div class="reviewImg"></div>
-                <div class="reviewContent">
-                  <a href="#"><h3>리뷰 제목입니다</h3></a>
-                  <p>
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                  </p>
-                </div>
-                <!--end: .reviewContent-->
-              </div>
-              <!--end: .review-->
-              <div class="profile">
-                <div class="profileImg">
-                  <img src="../resources/img/프로필이미지.png" width="60" />
-                </div>
-                <p class="nickname">닉네임</p>
-                <p class="date">2023.01.25</p>
-                <p class="reviewRecom">추천 0</p>
-              </div>
-              <!--end: .profile-->
-            </li>
-            <li>
-              <div class="review">
-                <div class="reviewImg"></div>
-                <div class="reviewContent">
-                  <a href="#"><h3>리뷰 제목입니다</h3></a>
-                  <p>
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                    리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다리뷰 내용입니다
-                  </p>
-                </div>
-                <!--end: .reviewContent-->
-              </div>
-              <!--end: .review-->
-              <div class="profile">
-                <div class="profileImg">
-                  <img src="../resources/img/프로필이미지.png" width="60" />
-                </div>
-                <p class="nickname">닉네임</p>
-                <p class="date">2023.01.25</p>
-                <p class="reviewRecom">추천 0</p>
-              </div>
-              <!--end: .profile-->
-            </li>
-            <li>
-              <div class="review">
-                <div class="reviewImg"></div>
-                <div class="reviewContent">
-                  <a href="#"><h3>리뷰 제목입니다</h3></a>
-                  <p>
-                    ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아
-                    ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아
-                    ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아
-                    ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아
-                    ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아
-                    ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아 ㅁㄴㅇㅁ니암니아
-                  </p>
-                </div>
-                <!--end: .reviewContent-->
-              </div>
-              <!--end: .review-->
-              <div class="profile">
-                <div class="profileImg">
-                  <img src="../resources/img/프로필이미지.png" width="60" />
-                </div>
-                <p class="nickname">수박이박수</p>
-                <p class="date">2023.01.25</p>
-                <p class="reviewRecom">추천 1358</p>
-              </div>
-              <!--end: .profile-->
-            </li>
+           <c:forEach items="${review}" var="review">
+          	<input type="hidden" id="vidx" name="vidx" value="${review.vidx}">
+	            <li>
+	              <div class="review">
+	                <div class="reviewImg">
+	                  <img src="<%=request.getContextPath()%>/resources/upload/${review.filename}" width="250" height="160"/>
+	                </div>
+	                <div class="reviewContent">
+	                  <a href="<%=request.getContextPath()%>/food/review.do?vidx=${review.vidx}&name=${title}&category=${category}">${review.title}</a>
+	                  <p>${review.content}</p>
+	                </div>
+	                <!--end: .reviewContent-->
+	              </div>
+	              <!--end: .review-->
+	              <div class="profile">
+	                <div class="profileImg">
+	                  <img src="../resources/img/프로필이미지.png" width="60" />
+	                </div>
+	                <p class="nickname">${review.writer}</p>
+	                <p class="date">${review.wdate.substring(0,16)}</p>
+	                <p class="reviewRecom">추천 ${review.likecnt}</p>
+	              </div>
+	              <!--end: .profile-->
+	            </li>
+            </c:forEach>
           </ul>
           <div id="boardOption">
-            <div class="pager"><p>◀ pager가 들어갈 자리입니다 ▶</p></div>
+            <div class="pager">
+            	<!-- 이전 페이지 -->	
+				<c:if test="${reviewPageMaker.prev}">
+					<a href="<%=request.getContextPath() %>/food/foodView.do?reviewPage=${reviewPageMaker.reviewStartPage-1}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">◀</a>
+				</c:if>
+				<!-- 현재 페이지 -->	
+				<c:forEach begin="${reviewPageMaker.reviewStartPage}" end="${reviewPageMaker.reviewEndPage}" var="num">
+					<c:choose>
+						<c:when test="${reviewPageMaker.reviewEndPage == 0}">
+							<p></p>
+						</c:when>
+						<c:when test="${num == searchVo.reviewPage}">
+							<b>${num}</b>
+						</c:when>
+						<c:when test="${num != searchVo.reviewPage}">
+							<a href="<%=request.getContextPath() %>/food/foodView.do?reviewPage=${num}&name=${title}&category=${category}&addr=${addr}&phone=${phone}">${num}</a>
+						</c:when>
+					</c:choose>
+				</c:forEach>
+				<!-- 다음 페이지 -->	
+				<c:if test="${reviewPageMaker.next}">
+					<a href="<%=request.getContextPath() %>/food/foodView.do?reviewPage=${reviewPageMaker.reviewEndPage+1}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">▶</a>
+				</c:if>
+            </div>
             <!--end: .pager-->
-            <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do'">
-              <i class="xi-pen xi-1x"></i>&nbsp;리뷰쓰기
-            </button>
+            <!-- 로그인 시: 리뷰 작성 가능 -->
+          <c:if test="${login != null}">
+          <button class="reviewWrite" onclick="location.href='<%=request.getContextPath()%>/food/reviewWrite.do?name=${title}&category=${category}&addr=${addr}&phone=${phone}'">
+            <i class="xi-pen xi-1x"></i>&nbsp;리뷰쓰기
+          </button>
+          </c:if>
+        	<!-- 로그인 안했을 시: 리뷰 작성  불가능 -->
+   		<c:if test="${login == null}">
+          <p class="reviewWriteNull">
+            <i class="xi-lock xi-1x"></i>&nbsp;리뷰쓰기는 로그인 후에 가능합니다.
+          </p>
+          </c:if>
           </div>
           <!--end: #boardOption-->
         </div>

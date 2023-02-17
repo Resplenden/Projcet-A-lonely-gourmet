@@ -35,6 +35,7 @@
 		San-serif ", "Arial";
 	-webkit-user-select: none;
 	-ms-use-select: none;
+	user-select: none;
 }
 
 ul {
@@ -288,21 +289,6 @@ main {
 	display: inline-block;
 }
 
-.recommend {
-	min-width: 70px;
-	max-width: 100px;
-	height: 40px;
-	border-radius: 5px;
-	font-size: 15px;
-	border: 1px solid salmon;
-	background-color: white;
-	color: salmon;
-	cursor: pointer;
-	font-weight: bold;
-	float: right;
-	margin-right: 10px;
-}
-
 .reviewWrite {
 	width: 95px;
 	height: 40px;
@@ -316,6 +302,20 @@ main {
 	cursor: pointer;
 	padding: 0 5px 0 5px;
 	margin-left: 6px;
+}
+
+.reviewWriteNull {
+	border-radius: 5px;
+	border: none;
+	font-size: 15px;
+	float: right;
+	font-weight: bold;
+	padding: 0 5px 0 5px;
+	margin-left: 6px;
+}
+
+.reviewWriteNull i {
+	color: salmon;
 }
 
 .recommend:hover {
@@ -406,20 +406,21 @@ main {
 	padding: 20px;
 }
 
-.reviewContent h3 {
+.reviewContent a {
 	font-size: 25px;
 	margin-top: 0;
 	margin-bottom: 20px;
 	display: inline-block;
+	color: rgb(70, 70, 70);
+	font-weight: bold;
 }
 
-.reviewContent a {
-	color: black;
-}
-
-.reviewContent h3:hover {
+.reviewContent a:hover {
 	text-decoration: underline;
-	color: black;
+}
+
+.reviewContent a:visited {
+	color: rgb(70, 70, 70);
 }
 
 .reviewContent p {
@@ -484,6 +485,19 @@ main {
 	text-align: center;
 	padding-top: 40px;
 }
+
+  .pager b {
+  color: salmon;
+  margin-left: 15px;
+  margin-right:15px;
+  }
+  
+  .pager a{
+  margin-left: 15px;
+  margin-right:15px;
+  color:rgb(70, 70, 70);
+  }
+ 
 
 #boardOption .reviewWrite {
 	margin-top: 20px;

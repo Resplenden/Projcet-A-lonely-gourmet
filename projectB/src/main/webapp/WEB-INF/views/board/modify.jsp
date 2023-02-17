@@ -96,6 +96,15 @@
         	
          });
         
+        $(".cancel").click(function(){	
+        	if(!confirm("이전 화면으로 돌아가시겠습니까? 작성하신 내용은 저장되지 않습니다.")){
+				return false;
+        	}else{
+        		location.href="<%=request.getContextPath()%>";
+        	}
+        	
+         });
+        
       });
     </script>
     <script>
@@ -135,9 +144,10 @@
           <h1>글수정 Editor</h1>
         </div>
         <!--end: .leftElement-->
-        <div class="rightElement">
+        <div class="rightElement">	
           <a href="#" class="cancel">취소</a>
-          <button type="submit" class="write">등록</button>
+          <button class="write">등록</button>
+		<p class="nickname"><span>${login.nickname}</span> 님</p><img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;">
         </div>
         <!--end: .rightElement-->
       </div>

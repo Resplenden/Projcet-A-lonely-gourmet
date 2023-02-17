@@ -25,7 +25,13 @@
     <!--css 연결-->
 
 	<title>혼밥의 고수 마이페이지</title>
-
+	<script>
+	
+	function not(){
+		alert("서비스 준비중입니다.");
+	}
+	
+	</script>
 </head>
 <body>
 	<nav>
@@ -90,12 +96,8 @@
         <ul>
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/review/list.do">이벤트</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/food/foodList.do">식당</a></li>
-
+          <li><a href="#" onclick="not()">공지사항</a></li>
+		    <li><a href="#" onclick="not()">이벤트</a></li>
         </ul>
       </div>
       <!--end: #bottMenu-->
@@ -121,14 +123,14 @@
                 </a>
               </td>
               <td>
-                <a class="gift" href="#">
+                <a class="gift" href="#" onclick="not()">
                   <img src="../resources/img/선물함.png" class="img" />
                   <h2 class="h2">GIFT</h2>
                   <p class="p">선물함</p>
                 </a>
               </td>
               <td>
-                <a class="messageSet" href="#">
+                <a class="messageSet" href="#" onclick="not()">
                   <img src="../resources/img/메세지.png" class="img" />
                   <h2 class="h2">MESSAGE</h2>
                   <p class="p">메시지 관리</p>
@@ -138,21 +140,21 @@
             <!--end: tr-->
             <tr>
               <td>
-                <a class="reviewSet" href="#">
+                <a class="reviewSet" href="#" onclick="not()">
                   <img src="../resources/img/리뷰.png" class="img" />
                   <h2 class="h2">REVIEW</h2>
                   <p class="p">리뷰 관리</p>
                 </a>
               </td>
               <td>
-                <a class="boardSet" href="#">
+                <a class="boardSet" href="#" onclick="not()">
                   <img src="../resources/img/게시판 (2).png" class="img" />
                   <h2 class="h2">BOARD</h2>
                   <p class="p">게시물 관리</p>
                 </a>
               </td>
               <td>
-                <a class="commentSet" href="#">
+                <a class="commentSet" href="#" onclick="not()">
                   <img src="../resources/img/댓글.png" class="img" />
                   <h2 class="h2">COMMENT</h2>
                   <p class="p">댓글 관리</p>

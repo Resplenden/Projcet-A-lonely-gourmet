@@ -33,14 +33,24 @@
     }
     
     
+    
+	function not(){
+			alert("서비스 준비중입니다.");
+		}
+  
+	
+    
     function unregister(){
     	
    		if(confirm("정말 탈퇴하시겠습니까?") == true) {
    			alert("탈퇴가 완료 되었습니다.");
    		} else {
-   			return false;
+   			return;
    		}
     }
+    
+
+   
     </script>
 
 <title>혼밥의 고수 회원 정보</title>
@@ -108,12 +118,8 @@
         <ul>
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/review/list.do">이벤트</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/food/foodList.do">식당</a></li>
-
+          <li><a href="#" onclick="not()">공지사항</a></li>
+		<li><a href="#" onclick="not()">이벤트</a></li>
         </ul>
       </div>
       <!--end: #bottMenu-->
@@ -124,11 +130,11 @@
         <h3>마이페이지</h3>		
         <ul>
           <li><a href="#">회원 정보</a></li>
-          <li><a href="#">선물함</a></li>
-          <li><a href="#">메시지 관리</a></li>
-          <li><a href="#">리뷰 관리</a></li>
-          <li><a href="#">게시물 관리</a></li>
-          <li><a href="#">댓글 관리</a></li>
+          <li><a href="#" onclick="not()">선물함</a></li>
+          <li><a href="#" onclick="not()">메시지 관리</a></li>
+          <li><a href="#" onclick="not()">리뷰 관리</a></li>
+          <li><a href="#" onclick="not()">게시물 관리</a></li>
+          <li><a href="#" onclick="not()">댓글 관리</a></li>
         </ul>
         <br />
         <br />

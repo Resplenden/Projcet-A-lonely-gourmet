@@ -63,10 +63,49 @@ h1 {
 }
 
 .rightElement {
-    width: 450px;
+    width: 380px;
     text-align: center;
     margin-right: 200px; 
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 }
+
+
+.nickname {
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	margin-right: 40px;
+	margin-bottom: 0px;
+	margin-left: 20px;
+}
+
+.nickname span{
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	font-style: italic;
+}
+
+.write {
+    font-size: 17px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 5px;
+    float: right;
+    color: white;
+    font-weight: bold;
+    background: none;
+    margin-right: 20px;
+}
+
+.write:hover {
+    background-color: white !important;
+    color: salmon;
+    transition: all 0.2s ease-in-out;
+}
+
 
 
 .cancel {
@@ -82,26 +121,6 @@ h1 {
 
 .cancel:hover {
     text-decoration: none !important;
-    background-color: white !important;
-    color: salmon;
-    transition: all 0.2s ease-in-out;
-}
-
-
-
-.write {
-    font-size: 17px;
-    padding: 10px 20px;
-    border: 1px solid white;
-    border-radius: 5px;
-    float: right;
-    color: white;
-    font-weight: bold;
-    background: none;
-    margin-right: 23px;
-}
-
-.write:hover {
     background-color: white !important;
     color: salmon;
     transition: all 0.2s ease-in-out;

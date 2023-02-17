@@ -15,6 +15,7 @@
 	rel="stylesheet">
 <!--css 연결 -->
 <title>혼밥의 고수 맛집지도</title>
+
 </head>
 <body>
 	<nav>
@@ -26,6 +27,7 @@
 				<h1>맛집지도</h1>
 			</div>
 			<!--end:.logo -->
+			<c:if test="${login == null && name == null}">
 			<div class="loginInfo">
 				<a href="<%=request.getContextPath()%>/member/memberLogin.do"
 					class="login"><p>로그인</p></a> <a
@@ -33,6 +35,15 @@
 					class="join"><p>회원가입</p></a>
 			</div>
 			<!--end:.loginInfo-->
+			</c:if>
+				<c:if test="${login != null && name == null}">
+			<div class="loginInfo">
+			   <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
+				<a href="<%=request.getContextPath()%>/member/myPage.do?midx=${login.midx}" class="myPage"><p>마이페이지</p></a>
+         	 	<a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+			</div>
+			<!--end:.loginInfo-->
+			</c:if>
 		</div>
 		<!--end: #topMenu-->
 	</nav>

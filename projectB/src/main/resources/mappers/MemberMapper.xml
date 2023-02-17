@@ -13,7 +13,6 @@
 			,nickname
 			,stname
 	 		,orgname
-			,nickname
 			,email
 		FROM member
 		WHERE id = #{id}
@@ -132,15 +131,7 @@
 		)
 	</insert>
 	
-	<select id="file" parameterType="int" resultType="mfileVo">
-	 	SELECT
-	 		mfidx 
-	 		, midx
-	 		, orgfilename
-	 		, storedname	 		
-	 	FROM memberfile	 
-	 	WHERE midx=#{midx}
-	 </select> 
+	
 	 
 	 
 	 <!-- 회원 정보 조회 -->
@@ -160,6 +151,15 @@
 	 WHERE midx = #{midx}
 	 </select>
 	 
+	 <select id="file" parameterType="int" resultType="mfileVo">
+	 	SELECT
+	 		mfidx 
+	 		, midx
+	 		, orgfilename
+	 		, storedname	 		
+	 	FROM memberfile	 
+	 	WHERE midx=#{midx}
+	 </select> 
 	 
 	 <!-- 회원 정보 수정 -->
 	 <update id="profileModify" parameterType="memberVo">

@@ -25,9 +25,7 @@
       </a>
       <h1>&nbsp;아이디 찾기</h1>
       <br/>
-      
-	
-	
+    		
 		<div id="findId">
 		<br/>
 			<label>'${name}'회원님이</label>

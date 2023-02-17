@@ -20,9 +20,41 @@
     <link href="${pageContext.request.contextPath}/resources/css/profileModify.css" rel="stylesheet" />
     <!--css 연결-->
 <title>혼밥의 고수 회원 정보 수정</title>
+	<script>
+	
+	$(function(){
+		
 
-</head>
-<body>
+        $(".logo").click(function(){	
+        	if(!confirm("메인으로 돌아가시겠습니까? 작성하신 내용은 저장되지 않습니다.")){
+				return false;
+        	}else{
+        		location.href="<%=request.getContextPath()%>";
+        	}
+        	
+         });
+        
+		
+		
+	})
+	
+	
+	  
+	function not(){
+			alert("서비스 준비중입니다.");
+		}
+	
+    function unregister(){
+    	
+   		if(confirm("정말 탈퇴하시겠습니까?") == true) {
+   			alert("탈퇴가 완료 되었습니다.");
+   		} else {
+   			return false;
+   		}
+    }
+	
+	</script>
+
 </head>
 <body>
 <nav>
@@ -85,14 +117,11 @@
       <hr />
       <div id="bottMenu">
         <ul>
-          <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/review/list.do">이벤트</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/food/foodList.do">식당</a></li>
-        </ul>
+				<li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
+				<li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
+				<li><a href="#" onclick="not()">공지사항</a></li>
+				<li><a href="#" onclick="not()">이벤트</a></li>
+			</ul>
       </div>
       <!--end: #bottMenu-->
     </nav>
@@ -102,15 +131,17 @@
         <h3>마이페이지</h3>
         <ul>
           <li><a href="#">회원 정보</a></li>
-          <li><a href="#">선물함</a></li>
-          <li><a href="#">메시지 관리</a></li>
-          <li><a href="#">리뷰 관리</a></li>
-          <li><a href="#">게시물 관리</a></li>
-          <li><a href="#">댓글 관리</a></li>
+         <li><a href="#" onclick="not()">선물함</a></li>
+          <li><a href="#" onclick="not()">메시지 관리</a></li>
+          <li><a href="#" onclick="not()">리뷰 관리</a></li>
+          <li><a href="#" onclick="not()">게시물 관리</a></li>
+          <li><a href="#" onclick="not()">댓글 관리</a></li>
         </ul>
         <br />
         <br />
-        <a href="#" class="unregister">회원 탈퇴</a>
+      <form action="unregister.do?midx=${login.midx}" method="post">
+        <button class="unregister" onclick="unregister()">회원 탈퇴</button>
+        </form>
       </div>
       <!--end: #myPageMenu-->
       <div id="inner">

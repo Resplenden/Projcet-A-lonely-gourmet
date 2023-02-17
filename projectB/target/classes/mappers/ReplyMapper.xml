@@ -11,7 +11,7 @@
 		WHERE bidx = #{bidx}
 		AND delYn = 'N'		
 		
-		limit #{replyStart} , #{replyEnd}
+		limit #{replyStart},#{replyPerPageNum}
  	</select>
 	
 	<!-- 댓글 총 갯수 조회 -->

@@ -48,6 +48,7 @@ body {
   flex-direction: column
 }
 
+
 nav {
   width: 1920px;
   height: 191px;
@@ -55,13 +56,13 @@ nav {
   box-shadow: 5px 5px 5px rgb(216, 216, 216);
 }
 
-
 #topMenu {
   display: flex;
   width: 1600px;
   height: 140px;
   background-color: white;
   align-content: center;
+  align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
@@ -79,7 +80,16 @@ nav {
   margin-right: 220px;
 }
 
-#searchBar input {
+#loginSearchBar {
+  display: flex;
+  width: 666px;
+  height: 49px;
+  border: 3px solid salmon;
+  margin-top: 10px;
+    margin-right: 50px;
+}
+
+#searchBar input, #loginSearchBar input {
   width: 597px;
   height: 47px;
   padding-left: 15px;
@@ -89,11 +99,11 @@ nav {
   font-family: "Pretendard-Regular";
 }
 
-#searchBar input:focus {
+#searchBar input:focus, #loginSearchBar input:focus {
   outline: none;
 }
 
-#searchBar input::placeholder {
+#searchBar input::placeholder, #loginSearchBar input::placeholder {
   font-size: 20px;
   color: rgb(182, 182, 182);
 }
@@ -114,44 +124,70 @@ nav {
   display: inline-block;
 }
 
+.loginInfo {
+	display: flex;
+	align-items: center;
+}
+
 .loginInfo a {
   text-decoration: none;
   color: black;
   margin-top: 14px;
 }
 
-.login {
+.login, .myPage {
   display: inline-block;
   padding: 10px 25px 10px 25px;
   margin-right: 10px;
   border-radius: 30px;
 }
-
-.login p {
+	
+.login p, .myPage p {
   color: salmon;
   font-weight: bold;
 }
 
-.login p:hover {
+.login p:hover, .myPage p:hover {
   color: rgb(250, 71, 48);
   font-weight: bold;
 }
 
-.join {
+.join, .logout {
   display: inline-block;
   padding: 10px 25px 10px 25px;
   background: salmon;
   border-radius: 5px;
 }
 
-.join:hover {
+.join:hover, .logout:hover {
   background-color: rgb(250, 71, 48);
 }
 
-.join p {
+.join p, .logout p {
   color: white;
 }
 
+.loginInfo {
+	min-width: 239px;
+	max-width: 700px;
+}
+
+.welcome {
+	font-size: 18px;
+	color: rgb(70, 70, 70);
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.loginInfo span{
+	font-weight: bold;
+	font-style: italic;
+	font-size: 20px;
+}
+
+/*end: .loginInfo*/
 hr {
   background: rgb(182, 182, 182);
   height: 1px;
@@ -190,7 +226,7 @@ hr {
 main {
   width: 1522.38px;
   min-height: 2940px;
-  max-height: 6000px;
+  max-height: 3248px;
   padding: 100px 0 150px 0;
 }
 
@@ -386,9 +422,23 @@ main {
 
 /*end: .like*/
 
+.Btn button {
+  float: right;
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: salmon;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin:0 2px;
+}
+
 #commentPage {
   width: 1200px;
-  height: 1380px;  
+  min-height: 100px;	
   padding: 120px 61px 61px;
 }
 
@@ -401,6 +451,14 @@ main {
 #commentPage h3 span {
   color: salmon;
 } 
+
+
+.commentList {
+  width: 1200px;
+  min-height: 100px;
+  max-height: 1290px;
+  padding: 0 18px 18px 18px;
+}
 
 .commentWrite {
   width: 1200px;
@@ -443,12 +501,6 @@ main {
   background-color: rgb(250, 71, 48);
 }
 
-
-.commentList {
-  width: 1200px;
-  height: 1290px;
-  padding: 0 18px 18px 18px;
-}
 
 .comment {
   width: 1200px;
@@ -517,7 +569,6 @@ main {
 .pager {
   width: 1300px;
   height: 64px;
-  background-color: rgb(192, 192, 192);
   text-align: center;
   padding-top: 40px;
 }

@@ -47,7 +47,7 @@
 		</table>
 		
 		<br/>
-		<c:if test="${login }">
+		<c:if test="${login != null}">
 		<a href="<%=request.getContextPath()%>/review/write.do">글쓰기</a>
 		</c:if>
 		<br/>

@@ -28,6 +28,13 @@
     });
     </script> -->
   	<script type="text/javascript">
+  	
+  	
+	function not(){
+		alert("서비스 준비중입니다.");
+	}
+	
+  	
   	$(function(){
   		
   		$(".listBtn").on("click", function(){
@@ -148,34 +155,8 @@
 				return true;
 		}
   	}
-
-  	//댓글의 비추천버튼 클릭시
-  	function replyHate(ridx,writer,nickname){
-  		
-  		if(${login == null}){
-			alert("로그인을 하셔야 비추천을 누르실 수 있습니다.");
-			location.href="/member/memberLogin.do";
-  		}else if(${nickname == writer}){
-			alert("본인 댓글은 비추천하실 수 없습니다.")
-			return false;
-  		}else{
-  		
-	  		$.ajax({
-	  			url:"../reply/replyHate.do",
-	  			data:{"ridx":ridx},
-	  			success:function(hateCheck){
-	  					
-	  				if(hateCheck == 0){
-	  					location.reload();
-	  				}else if(hateCheck == 1){
-	  					alert("이미 추천하거나 비추천한 글입니다.");
-	  					location.reload();
-	  				}
-	  			}	
-	  		})
-				return true;
-		}
-  	}
+  
+ 
 
   	//댓글 수정버튼 클릭시 수정 폼 생성
   	function modifyBtn(ridx,content){
@@ -250,7 +231,7 @@
             />
           </a>
         </div>
-        <!--end: #topMenu-->
+      <c:if test="${login == null && name == null}">
         <div id="searchBar">
           <input type="text" placeholder="검색어를 입력하세요" />
           <button class="searchBtn" type="submit">
@@ -259,19 +240,50 @@
         </div>
         <!--end: #searchBar-->
         <div class="loginInfo">
-	      <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
+          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
           <a href="<%=request.getContextPath()%>/member/memberJoin.do" class="join"><p>회원가입</p></a>
         </div>
         <!--end:.loginInfo-->
+        </c:if>
+        <c:if test="${login != null && name == null}">
+        <div id="loginSearchBar">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="searchBtn" type="submit">
+            <i class="xi-search xi-2x"></i>
+          </button>
+          </div>
+          <!--end: #searchBar-->
+        <div class="loginInfo">
+          <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
+          <a href="<%=request.getContextPath()%>/member/myPage.do?midx=${login.midx}" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+        </div>
+        <!--end:.loginInfo-->
+        </c:if>
+          <c:if test ="${login == null && name != null}">
+           	 <div id="loginSearchBar">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="searchBtn" type="submit">
+            <i class="xi-search xi-2x"></i>
+          </button>
+          </div>
+          <!--end: #searchBar-->
+        <div class="loginInfo">
+          <span>${name}</span>&nbsp;님, 반갑습니다!</p>
+          <a href="<%=request.getContextPath()%>/member/myPage.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+        </div>
+        <!--end:.loginInfo-->
+           </c:if>
       </div>
       <!--end: #topMenu-->
       <hr />
       <div id="bottMenu">
-   	  <ul>
+   	  <ul>	
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/eventList.do">이벤트</a></li>
+          <li><a href="#" onclick="not()">공지사항</a></li>
+          <li><a href="#" onclick="not()">이벤트</a></li>
         </ul>
       </div>
       <!--end: #bottMenu-->
@@ -285,7 +297,7 @@
           	<input type="hidden" id="bidx" name="bidx" value="${list.bidx}">
             <span>${list.category}</span>
             <h1>${list.title}</h1>
-            <h2>${list.wdate}</h2>
+            <h2>${list.wdate.substring(0,16)}</h2>
             <p>조회수 ${list.hit}회</p>
           </div>
           <!--end: .boardInfo-->
@@ -312,15 +324,17 @@
             <div class="likeCount">
               <span id="counter">추천&nbsp;&nbsp;&nbsp;${list.likeCnt}</span>
             </div>
-          </div>
           <!--end: #like-cnt-->
-          <c:if test="${login.midx == list.midx}">
-			<button type="button" class="modifyBtn">수정</button>	
-			<button type="button" class="deleteBtn">삭제</button>
-		  </c:if>
-		  	<button type="button" class="listBtn">목록</button>
-        </div>
+          </div>
         <!--end: .like-->
+      <div class="Btn">    
+		  	<button type="button" class="listBtn">목록</button>
+          <c:if test="${login.midx == list.midx}">
+			<button type="button" class="deleteBtn">삭제</button>
+			<button type="button" class="modifyBtn">수정</button>	
+		  </c:if>
+      </div>
+      <!-- end: .Btn -->
       </div>
       <!--end: #board-->
       <div id="commentPage">
@@ -330,6 +344,8 @@
           <button>등록</button>
         </div>
         <!--end: .commentWrite-->
+       </div>
+      <!--end: #commentPage-->
         <div class="commentList">
           <ul>
           	<c:forEach items="${replyList}" var="reply">
@@ -345,17 +361,16 @@
             <!--end: .member-->
             <div class="content"> 
               	${reply.content}
-                <button type="button" class="commentReply" onclick="replyLike(${reply.ridx},'${reply.writer}','${login.nickname}');"><small>추천</small></button> ${reply.likeCnt}
-				<button type="button" class="commentReply" onclick="replyHate(${reply.ridx},'${reply.writer}');"><small>비추천</small></button> ${reply.hateCnt}
 				<p id="reply_content${reply.ridx}" class="reply_content"></p>      
                 <div class="commentOption">
                   <p>${reply.wdate}</p>
+                  
                 <c:if test="${login.nickname == reply.writer}">
 				<button class="commentReply" onclick="modifyBtn(${reply.ridx},'${reply.content}')" class="buttons${reply.ridx}"><small>수정</small></button>
 				<button class="commentReply" onclick="deleteBtn(${reply.ridx})" class="buttons${reply.ridx}"><small>삭제</small></button>
 				</c:if>
+				 <button type="button" class="commentReply" onclick="replyLike(${reply.ridx},'${reply.writer}','${login.nickname}');"><small>추천</small></button> <small>${reply.likeCnt}</small>
                 <c:if test="${reply.depth == 0}">
-                <button type="button" class="commentReply" onclick="commentReply(${reply.ridx},${reply.originridx},'${reply.depth}','${reply.lvl}')"><i class="xi-share xi-1x"></i>답변</button>
 				<div id="rereplyForm${reply.ridx}"></div>
 				</c:if>
               </div>
@@ -366,11 +381,9 @@
           <!--end: .comment-->
         	</li>
         	</c:forEach>
-        </ul>
-    </div>
+       			 </ul>
+    		</div>
         <!--end: .commentList-->
-      </div>
-      <!--end: #commentPage-->
       <div id="listOption">
         <div class="pager">
 			<ul class="pagination">

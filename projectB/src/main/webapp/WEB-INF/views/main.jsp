@@ -31,7 +31,9 @@
 	<title>혼밥의 고수</title>
 	
 	<script type="text/javascript">
-	 
+		function not(){
+			alert("서비스 준비중입니다.");
+		}
 	</script>
 </head>
 <body>
@@ -98,12 +100,8 @@
         <ul>
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/review/list.do">이벤트</a></li>
-
-          <li><a href="<%=request.getContextPath()%>/food/foodList.do">식당</a></li>
-
+          <li><a href="#" onclick="not()">공지사항</a></li>
+          <li><a href="#" onclick="not()">이벤트</a></li>
         </ul>
       </div>
       <!--end: #bottMenu-->
@@ -212,7 +210,7 @@
         <div class="eventContent">
           <h3>가입 회원에게 주어지는 특별 혜택!</h3>
           <p>회원들을 대상으로 하는 쏠쏠한 상시 이벤트를 절대 놓치지 마세요!</p>
-          <a href="<%=request.getContextPath()%>/board/eventList.do" class="eventBtn">
+          <a href="#" onclick="not()" class="eventBtn">
             이벤트 보러가기&nbsp;&nbsp;&nbsp;&nbsp;<i
               class="xi-angle-right xi-1x"
             ></i

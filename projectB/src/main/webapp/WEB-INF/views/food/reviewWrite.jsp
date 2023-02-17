@@ -28,7 +28,7 @@
       type="text/css"
     />
     <!--dropzone 연결-->
-     <script>
+     <script type="text/javascript">
       $(document).ready(function () {
         $(".title").keyup(function (e) {
           var content = $(this).val();
@@ -67,14 +67,35 @@
             $(".errorMsg").html("");
           }
         });
-      });
+        
+    	$(".write").click(function(){
+    			
+    			var title = $(".title").val();		
+    			var content = $(".writezone").val();
+
+    			if(title == ""){
+    				alert("제목을 입력해주세요.");
+    				document.frm.title.focus();
+    				return false;
+    			}else if(content == ""){
+    				alert("내용을 입력해주세요.");
+    				document.frm.content.focus();
+    				return false;
+    			}
+    			
+    			return true;
+    		});
+    		
+        });
+        
+   
     </script>
 </head>
 <body>
 	<nav>
  <div id="topMenu">
         <div class="logo">
-          <a href="#">
+         <a href="<%=request.getContextPath()%>">
             <img
               src="../resources/img/사본 -혼밥의고수 로고 초안_대지 1 사본.png"
               width="200px"
@@ -142,16 +163,23 @@
     <!--end: nav-->
      <main>
       <h1 class="boardName">리뷰 작성</h1>
-      <form action="reviewWrite.do" method="post">
+      <form action="reviewWrite.do" method="post" enctype="multipart/form-data" name="frm">
+      <input type="hidden" name="writer" value="${login.nickname}">
+      <input type="hidden" name="midx" value="${login.midx}">
+      <input type="hidden" name="name" value="${title}">
+      <input type="hidden" name="addr" value="${addr}">
+      <input type="hidden" name="category" value="${category}">
+      <input type="hidden" name="phone" value="${phone}">
         <div id="board_1">
           <div class="reviewInfo">
             <span
-              >카테고리 &nbsp; &nbsp;<i class="xi-angle-right-min xi-1x"></i>
-              &nbsp;&nbsp;식당 이름</span
+              >${category} &nbsp; &nbsp;<i class="xi-angle-right-min xi-1x"></i>
+              &nbsp;&nbsp;${title}</span
             >
             <input
               type="text"
               class="title"
+              name="title"
               minlength="2"
               maxlength="35"
               placeholder="제목을 입력하세요"
@@ -163,25 +191,11 @@
             <span class="titleErrorMsg"></span>
           </div>
           <!--end: .reviewInfo-->
-          <div id="dropzone">
-            <p>
-              <i class="xi-file-add-o xi-3x"></i> 이미지를 드래그하거나 클릭하여
-              선택하세요
-            </p>
-          </div>
-          <script>
-            $(document).ready(function () {
-              $("#dropzone").dropzone({
-                url: "https://httpbin.org/post",
-                method: "post",
-              });
-            });
-          </script>
-          <!--end: #dropzone-->
           <div class="content">
             <textarea
               placeholder="내용을 입력하세요"
               class="writezone"
+              name="content"
             ></textarea>
             <span style="color: #aaa; font-size: 15.5px" id="contentCounter"
               >(0 / 1000)</span
@@ -190,6 +204,7 @@
             <span class="contentErrorMsg"></span>
           </div>
           <!--end: .content-->
+          <input type="file" name="file">
           <button type="submit" class="write">등록</button>
           <a href="#" class="cancel">취소</a>
         </div>

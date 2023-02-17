@@ -12,7 +12,11 @@ public class ReviewVo {
 	private String wdate;
 	private String delyn;
 	private int midx;
-	private int fidx;
+	private String name;
+	private String category;
+	private String addr;
+	private String phone;
+	
 	
 	public int getVidx() {
 		return vidx;
@@ -74,19 +78,38 @@ public class ReviewVo {
 	public void setMidx(int midx) {
 		this.midx = midx;
 	}
-	public int getFidx() {
-		return fidx;
+	public String getName() {
+		return name;
 	}
-	public void setFidx(int fidx) {
-		this.fidx = fidx;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getAddr() {
+		return addr;
+	}
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 	@Override
 	public String toString() {
 		return "ReviewVo [vidx=" + vidx + ", title=" + title + ", content=" + content + ", writer=" + writer + ", hit="
 				+ hit + ", likecnt=" + likecnt + ", filename=" + filename + ", wdate=" + wdate + ", delyn=" + delyn
-				+ ", midx=" + midx + ", fidx=" + fidx + "]";
+				+ ", midx=" + midx + " ]";
 	}
+	
 	
 	
 	

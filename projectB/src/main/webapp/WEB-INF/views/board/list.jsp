@@ -21,6 +21,23 @@
     <!--css 연결-->
     
   <script type="text/javascript">
+  /* 게시판 작성 시간 초 단위 지우기 */
+  
+  //window.onload = function(){
+	  		
+		//var wdate = document.getElementsByClassName("wdate");
+		
+		//for(i=0; i<wdate.length+1; i++){
+		//var text = wdate[i].innerText;
+		//var sut = text.substring(0,16);
+		//console.log(sut);
+		
+
+		
+		//}
+
+  //}
+  
   /* 카테고리 변경시 정렬 */
   function changeCategory(){
   	
@@ -97,6 +114,11 @@
 			searchForm.submit();
 		});
   });
+  
+	function not(){
+		alert("서비스 준비중입니다.");
+	}
+	
   </script>
 </head>
 <body>
@@ -110,7 +132,8 @@
             />
           </a>
         </div>
-        <!--end: #topMenu-->
+        <!--end: .logo-->
+       <c:if test="${login == null && name == null}">
         <div id="searchBar">
           <input type="text" placeholder="검색어를 입력하세요" />
           <button class="searchBtn" type="submit">
@@ -119,10 +142,41 @@
         </div>
         <!--end: #searchBar-->
         <div class="loginInfo">
-	      <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
+          <a href="<%=request.getContextPath()%>/member/memberLogin.do" class="login"><p>로그인</p></a>
           <a href="<%=request.getContextPath()%>/member/memberJoin.do" class="join"><p>회원가입</p></a>
         </div>
         <!--end:.loginInfo-->
+        </c:if>
+        <c:if test="${login != null && name == null}">
+        <div id="loginSearchBar">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="searchBtn" type="submit">
+            <i class="xi-search xi-2x"></i>
+          </button>
+          </div>
+          <!--end: #searchBar-->
+        <div class="loginInfo">
+          <img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;"> <p class="welcome"><span>${login.nickname}</span>&nbsp;님, 반갑습니다!</p>
+          <a href="<%=request.getContextPath()%>/member/myPage.do?midx=${login.midx}" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+        </div>
+        <!--end:.loginInfo-->
+        </c:if>
+          <c:if test ="${login == null && name != null}">
+           	 <div id="loginSearchBar">
+          <input type="text" placeholder="검색어를 입력하세요" />
+          <button class="searchBtn" type="submit">
+            <i class="xi-search xi-2x"></i>
+          </button>
+          </div>
+          <!--end: #searchBar-->
+        <div class="loginInfo">
+          <span>${name}</span>&nbsp;님, 반갑습니다!</p>
+          <a href="<%=request.getContextPath()%>/member/myPage.do" class="myPage"><p>마이페이지</p></a>
+          <a href="<%=request.getContextPath()%>/member/logout.do" class="logout"><p>로그아웃</p></a>
+        </div>
+        <!--end:.loginInfo-->
+           </c:if>
       </div>
       <!--end: #topMenu-->
       <hr />
@@ -130,8 +184,8 @@
    		<ul>
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/noticeList.do">공지사항</a></li>
-          <li><a href="<%=request.getContextPath()%>/board/eventList.do">이벤트</a></li>
+          <li><a href="#" onclick="not()">공지사항</a></li>
+          <li><a href="#" onclick="not()">이벤트</a></li>
         </ul>
       </div>
       <!--end: #bottMenu-->
@@ -182,12 +236,11 @@
 	              <a href="<%=request.getContextPath()%>/board/view.do?bidx=${vo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&perPageNum=${searchVo.perPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">${vo.title}</a>
 	              <div class="boardContent">
 	                <span>${vo.category}</span>
-	                <p>
-	                 ${vo.writer} &nbsp;&#124;&nbsp; 
-	                	${vo.wdate}
-	                 &nbsp;&#124;&nbsp; 조회수 ${vo.hit}
-	                 &nbsp;&#124;&nbsp; 댓글수 ${vo.replyCnt} &nbsp;&#124;&nbsp; 추천수 ${vo.likeCnt}
-	                </p>
+	                <p>${vo.writer} &nbsp;&#124;&nbsp;
+	               ${vo.wdate.substring(0,16)}
+	               &nbsp;&#124;&nbsp; 조회수 ${vo.hit}&nbsp;&#124;&nbsp;
+	                 댓글수 ${vo.replyCnt} &nbsp;&#124;&nbsp;
+	                추천수 ${vo.likeCnt}</p>
 	              </div>
 	              <!--end: boardContent-->
 	            </li>
@@ -223,10 +276,12 @@
 			</ul>
           </div>
           <!--end: .pager-->
+          <c:if test="${login != null}">
           <div class="btnBar">
             <a href="<%=request.getContextPath()%>/board/write.do">글쓰기</a>
           </div>
           <!--end:.bthBar-->
+          </c:if>
         </div>
         <!--end: #boardOption-->
       </div>

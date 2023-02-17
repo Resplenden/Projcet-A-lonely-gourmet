@@ -160,7 +160,7 @@ public class memberController {
 		
 		int result = memberService.join(vo); 
 		
-		String path = "C:\\Users\\759\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+		String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 		
 		System.out.println(path);
 		
@@ -367,12 +367,13 @@ public class memberController {
 	public String unregister(int midx, MemberVo vo, HttpSession session) {
 		
 		int result = memberService.unregister(vo);
+		System.out.println(result);
 		
-		if(result > 0) {
+		if(result == 1) {
 			session.invalidate();
 			return "redirect:/";	
 		}else {
-			return "0";
+			return "redirect:profile.do?midx="+vo.getMidx();
 		}
 		
 		

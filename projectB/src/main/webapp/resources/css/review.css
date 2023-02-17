@@ -224,7 +224,7 @@ hr {
 
 main {
     width: 1522.38px;
-    min-height: 2300px;
+    min-height: 1800px;
     max-height: 4000px;
     padding: 100px 0 150px 0;
   }
@@ -529,6 +529,7 @@ footer p {
 #sns a {
   padding: 25px 10px 10px 10px;
   border: 1px solid rgb(99, 99, 99);
+  color:rgb(99, 99, 99);
   border-radius: 25%;
 }
 

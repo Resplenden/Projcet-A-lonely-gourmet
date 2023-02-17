@@ -95,6 +95,15 @@
         	
          });
         
+        $(".cancel").click(function(){	
+        	if(!confirm("이전 화면으로 돌아가시겠습니까? 작성하신 내용은 저장되지 않습니다.")){
+				return false;
+        	}else{
+        		location.href="<%=request.getContextPath()%>";
+        	}
+        	
+         });
+        
       });
     </script>
     
@@ -136,7 +145,8 @@
   </head>
   <body>
     <form action="write.do" method="post" name="frm">
-    <input type="hidden" value="${login.nickname}" name="writer"><br>
+    <input type="hidden" value="${login.nickname}" name="writer">
+     <input type="hidden" value="${login.midx}">
       <div id="topMenu">
         <div class="leftElement">
           <a href="#" class="logo">
@@ -148,11 +158,10 @@
           <h1>글쓰기 Editor</h1>
         </div>
         <!--end: .leftElement-->
-        <div class="rightElement">
+        <div class="rightElement">	
           <a href="#" class="cancel">취소</a>
           <button class="write">등록</button>
-          ${login.nickname}님 반갑습니다.
-          ${login.midx}
+		<p class="nickname"><span>${login.nickname}</span> 님</p><img src="<%=request.getContextPath()%>/resources/upload/${login.stname}" class="memberImage" style="width:45px; height:45px; border-radius: 30px;">
         </div>
         <!--end: .rightElement-->
       </div>
