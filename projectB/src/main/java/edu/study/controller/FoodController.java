@@ -74,8 +74,15 @@ public class FoodController {
 	@RequestMapping(value="/review.do",method=RequestMethod.GET)
 	public String review(HttpServletRequest req,Model model,int vidx) {
 		
-		String category = req.getParameter("category");
-		req.setAttribute("category", category);
+			String name= req.getParameter("name");
+		    String addr = req.getParameter("addr");
+		    String category = req.getParameter("category");
+		    String phone = req.getParameter("phone");
+		      
+		    req.setAttribute("title", name);
+		    req.setAttribute("addr", addr);
+		    req.setAttribute("category", category);
+		    req.setAttribute("phone", phone);
 		
 		model.addAttribute("review", reviewService.selectByVidx(vidx));
 		
@@ -104,48 +111,46 @@ public class FoodController {
 	}
 	
 	/*리뷰작성*/
-	@RequestMapping(value="/reviewWrite.do",method=RequestMethod.POST)
-	public String write(ReviewVo vo,ReviewFileVo vo2,@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
-	
-		
-		if(!file.isEmpty()) {
-			String OriginalFilename = file.getOriginalFilename();
-			long size = file.getSize();
-			String ext = OriginalFilename.substring(OriginalFilename.lastIndexOf("."), OriginalFilename.length());
-			String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
-	
-			UUID uuid = UUID.randomUUID();
-			String[] uuids = uuid.toString().split("-");
-	
-			String uniqueName = uuids[0];
-	
-			File saveFile = new File(path + "\\" + uniqueName + ext);
-		
-			try {
-				file.transferTo(saveFile);
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+	   @RequestMapping(value="/reviewWrite.do",method=RequestMethod.POST)
+	   public String write(ReviewVo vo,ReviewFileVo vo2,@RequestParam("file") MultipartFile file,RedirectAttributes rttr) {
 
-			vo2.setOriginalfilename(OriginalFilename);
-			vo2.setSavefilename(uniqueName + ext);
-			reviewService.reviewFile(vo2);
+	      if(!file.isEmpty()) {
+	         String OriginalFilename = file.getOriginalFilename();
+	         long size = file.getSize();
+	         String ext = OriginalFilename.substring(OriginalFilename.lastIndexOf("."), OriginalFilename.length());
+	         String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+	   
+	         UUID uuid = UUID.randomUUID();
+	         String[] uuids = uuid.toString().split("-");
+	   
+	         String uniqueName = uuids[0];
+	   
+	         File saveFile = new File(path + "\\" + uniqueName + ext);
+	      
+	         try {
+	            file.transferTo(saveFile);
+	         } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
 
-			vo.setFilename(uniqueName + ext);
-		}
-		
-		reviewService.writeReview(vo);
-		
-		rttr.addAttribute("name",vo.getName());
-		rttr.addAttribute("category",vo.getCategory());
-		rttr.addAttribute("addr",vo.getAddr());
-		rttr.addAttribute("phone",vo.getPhone());
-		
-		
-		return "redirect:foodView.do";
-	}
+	         vo2.setOriginalfilename(OriginalFilename);
+	         vo2.setSavefilename(uniqueName + ext);
+	         reviewService.reviewFile(vo2);
+
+	         vo.setFilename(uniqueName + ext);
+	      }
+	      
+	      reviewService.writeReview(vo);
+	      
+	      rttr.addAttribute("name",vo.getName());
+	      rttr.addAttribute("category",vo.getCategory());
+	      rttr.addAttribute("addr",vo.getAddr());
+	      rttr.addAttribute("phone",vo.getPhone());   
+	   
+	      return "redirect:foodView.do";
+	   }
 	
 	/*리뷰 추천*/
 	@ResponseBody
@@ -164,4 +169,79 @@ public class FoodController {
 
 		return likeCheck;
 	}
+	
+	/* 리뷰 수정 페이지로 이동 */
+	   @RequestMapping(value="/reviewModify.do",method=RequestMethod.GET)
+	   public String modify(HttpServletRequest req,Model model,ReviewVo vo) {
+	   
+		   String name= req.getParameter("name");
+	       String addr = req.getParameter("addr");
+	       String category = req.getParameter("category");
+	       String phone = req.getParameter("phone");
+	         
+	       req.setAttribute("title", name);
+	       req.setAttribute("addr", addr);
+	       req.setAttribute("category", category);
+	       req.setAttribute("phone", phone);
+	       
+	      model.addAttribute("vo",reviewService.selectByVidx(vo.getVidx()));
+	      
+	      return "food/reviewModify";
+	   }
+	   
+	   /* 글 수정 실행 */
+	   @RequestMapping(value ="/reviewModify.do",method=RequestMethod.POST)
+	   public String modify(ReviewVo vo,ReviewFileVo vo2,@RequestParam("file") MultipartFile file,RedirectAttributes rttr) {
+	      
+	      if(!file.isEmpty()) {
+	         String OriginalFilename = file.getOriginalFilename();
+	         long size = file.getSize();
+	         String ext = OriginalFilename.substring(OriginalFilename.lastIndexOf("."), OriginalFilename.length());
+	         String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+	   
+	         UUID uuid = UUID.randomUUID();
+	         String[] uuids = uuid.toString().split("-");
+	   
+	         String uniqueName = uuids[0];
+	   
+	         File saveFile = new File(path + "\\" + uniqueName + ext);
+	      
+	         try {
+	            file.transferTo(saveFile);
+	         } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+
+	         vo2.setOriginalfilename(OriginalFilename);
+	         vo2.setSavefilename(uniqueName + ext);
+	         reviewService.reviewFile(vo2);
+
+	         vo.setFilename(uniqueName + ext);
+	         reviewService.updateReviewFile(vo);   //새로 업로드한 filename으로 수정
+	         reviewService.updateReview(vo);
+	         
+	      }else {
+	         vo.setFilename(vo.getFilename());
+	         reviewService.updateReview(vo);
+	      }
+	      
+	      rttr.addAttribute("name",vo.getName());
+	      rttr.addAttribute("category",vo.getCategory());
+	      rttr.addAttribute("addr",vo.getAddr());
+	      rttr.addAttribute("phone",vo.getPhone());
+	      
+
+	      return "redirect:foodView.do";   
+	   }
+	   
+	   
+	   /*리뷰 삭제*/
+	   @ResponseBody
+	   @RequestMapping(value="/deleteReview.do",method=RequestMethod.GET)
+	   public int deleteReview(int vidx) {
+	      
+	      return reviewService.deleteReview(vidx);
+	   }
 }

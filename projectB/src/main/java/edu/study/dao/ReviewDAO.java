@@ -68,4 +68,19 @@ public class ReviewDAO {
 
 		return sqlSession.insert("edu.study.mapper.reviewMapper.reviewFile",vo);
 	}
+	
+	public int updateReview(ReviewVo vo) {
+	      
+	      return sqlSession.update("edu.study.mapper.reviewMapper.updateReview",vo);
+	   }
+	   
+	public int updateReviewFile(ReviewVo vo) {
+	      
+	      return sqlSession.update("edu.study.mapper.reviewMapper.updateReviewFile",vo);
+	   }
+
+	public int deleteReview(int vidx) {
+	      
+	      return sqlSession.update("edu.study.mapper.reviewMapper.deleteReview",vidx);
+	   }
 }

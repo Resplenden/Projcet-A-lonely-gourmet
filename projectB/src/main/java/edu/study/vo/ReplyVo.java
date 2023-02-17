@@ -3,9 +3,8 @@ package edu.study.vo;
 public class ReplyVo {
 
 	private int ridx;
-	private int originridx;
-	private int depth;
-	private int lvl;
+	private String stname;
+	private int midx;
 	private String content;
 	private String writer;
 	private int bidx;
@@ -20,18 +19,7 @@ public class ReplyVo {
 	public void setRidx(int ridx) {
 		this.ridx = ridx;
 	}
-	public int getOriginridx() {
-		return originridx;
-	}
-	public void setOriginridx(int originridx) {
-		this.originridx = originridx;
-	}
-	public int getDepth() {
-		return depth;
-	}
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
+		
 	public String getContent() {
 		return content;
 	}
@@ -74,12 +62,19 @@ public class ReplyVo {
 	public void setHateCnt(int hateCnt) {
 		this.hateCnt = hateCnt;
 	}
-	public int getLvl() {
-		return lvl;
+	public String getStname() {
+		return stname;
 	}
-	public void setLvl(int lvl) {
-		this.lvl = lvl;
+	public void setStname(String stname) {
+		this.stname = stname;
 	}
+	public int getMidx() {
+		return midx;
+	}
+	public void setMidx(int midx) {
+		this.midx = midx;
+	}
+	
 	
 	
 }

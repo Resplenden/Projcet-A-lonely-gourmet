@@ -35,4 +35,13 @@ public interface ReviewService {
 	
 	/* 리뷰 파일업로드*/
 	int reviewFile(ReviewFileVo vo);
+	
+	/* 리뷰 수정 */
+    int updateReview(ReviewVo vo);
+   
+    /* 리뷰 파일 수정 */
+    int updateReviewFile(ReviewVo vo);
+   
+    /* 리뷰 삭제 */
+    int deleteReview(int vidx);
 }	

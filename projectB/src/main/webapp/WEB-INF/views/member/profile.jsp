@@ -18,30 +18,9 @@
     <!--검색 버튼 아이콘-->
     <link href="${pageContext.request.contextPath}/resources/css/profile.css" rel="stylesheet" />
     <!--css 연결-->
-    
-    <script>
-    window.onload = function(){
-    
-   	//날짜 시간 자르기 용
-   
-    var td = document.getElementsByTagName("td");
-    var wdate = td[11].innerHTML;
-    var w = wdate.substring(0,10);
-    
-    td[11].innerHTML = "<td>"+ w +"</td>"
-    
-    }
-    
-    
-    function unregister(){
-    	
-   		if(confirm("정말 탈퇴하시겠습니까?") == true) {
-   			alert("탈퇴가 완료 되었습니다.");
-   		} else {
-   			return false;
-   		}
-    }
-    </script>
+ <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>   
+ 
+ 
 
 <title>혼밥의 고수 회원 정보</title>
 </head>
@@ -132,8 +111,8 @@
         </ul>
         <br />
         <br />
-        <form action="unregister.do?midx=${login.midx}" method="post">
-        <button class="unregister" onclick="unregister()">회원 탈퇴</button>
+        <form action="unregister.do?midx=${login.midx}" name="frm" method="post" >
+        <input type = "button" name="btn" class="unregister" onclick="unregister()" value="회원탈퇴">
         </form>
       </div>
       <!--end: #myPageMenu-->
@@ -232,5 +211,31 @@
       <!--end: #sns-->
     </footer>
     <!--end: footer-->
+    
+<script type="text/javascript">  
+    window.onload = function(){
+        
+       	//날짜 시간 자르기 용
+       
+        var td = document.getElementsByTagName("td");
+        var wdate = td[11].innerHTML;
+        var w = wdate.substring(0,10);
+        
+        td[11].innerHTML = "<td>"+ w +"</td>"
+        
+        }
+        
+        
+        function unregister(){        	
+       		if(confirm("정말 탈퇴하시겠습니까?") == true) {
+       			alert("탈퇴가 완료 되었습니다.");
+       			frm.action ="<%=request.getContextPath()%>/member/unregister.do?midx=${login.midx}";
+	            frm.method="post"; 
+	            frm.submit();
+       		} else {
+       			return false;
+       		}
+    }
+</script>
 </body>
 </html>

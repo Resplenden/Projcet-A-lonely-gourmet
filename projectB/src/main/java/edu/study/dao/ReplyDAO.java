@@ -85,4 +85,6 @@ public class ReplyDAO {
 
 		return sqlSession.selectOne("edu.study.mapper.replyMapper.replyLikeCheck",vo);
 	}
+	
+	
 }

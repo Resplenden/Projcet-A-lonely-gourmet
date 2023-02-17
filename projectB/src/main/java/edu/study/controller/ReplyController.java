@@ -43,7 +43,9 @@ public class ReplyController{
 		
 		//로그인하면 닉네임을 vo에 담는다.
 		MemberVo login = (MemberVo)session.getAttribute("login");
+		vo.setMidx(login.getMidx());
 		vo.setWriter(login.getNickname());
+		vo.setStname(login.getStname());
 		int result = replyService.writeReply(vo);
 		
 		return result;	
@@ -74,19 +76,7 @@ public class ReplyController{
 		return replyService.deleteReply(ridx);
 	}
 	
-	/* 답글 쓰기 */
-	@ResponseBody
-	@RequestMapping(value="/writeRereply.do",method=RequestMethod.GET)
-	public int writeRereply(ReplyVo vo,HttpSession session) {
-		
-		//로그인하면 닉네임을 vo에 담는다.
-		MemberVo login = (MemberVo)session.getAttribute("login");
-		vo.setWriter(login.getNickname());
-		System.out.println(login.getNickname());
-		replyService.updateDepth(vo);
-
-		return replyService.writeRereply(vo);	
-	}
+	
 	
 	
 	/* 댓글의 추천 클릭 */

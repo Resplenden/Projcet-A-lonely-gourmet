@@ -318,7 +318,7 @@ public class memberController {
 	@RequestMapping(value="/profileModify.do", method=RequestMethod.POST)
 	public String profileModify(MemberVo vo, Model model, MultipartFile profileImg, HttpServletRequest req) throws IllegalStateException, IOException {
 	
-	String path = "C:\\Users\\759\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+		String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 		
 		System.out.println(path);
 		

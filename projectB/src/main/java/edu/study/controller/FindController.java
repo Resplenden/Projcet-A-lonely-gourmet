@@ -147,7 +147,7 @@ public class FindController {
 			else {
 				return "findPwd/findPwd-sec";
 			}
-	} //占싱몌옙占쏙옙 占쏙옙占쏙옙占쏙옙호 확占쏙옙
+	} 
 	
 	@RequestMapping(value = "/findPwd-thd.do", method = RequestMethod.POST)
 	public String pw_new(MemberVo vo, HttpSession session){

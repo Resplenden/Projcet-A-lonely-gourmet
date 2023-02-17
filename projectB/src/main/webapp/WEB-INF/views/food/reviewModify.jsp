@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>혼밥의 고수 리뷰 쓰기</title>
+<title>혼밥의 고수 리뷰 수정</title>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.1.min.js"></script>
 <!-- Jquery 연결 -->
 <link
@@ -19,15 +19,9 @@
       href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
     />
     <!--검색 버튼 아이콘-->
-    <link href="${pageContext.request.contextPath}/resources/css/reviewWrite.css?12" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/reviewModify.css?12" rel="stylesheet" />
     <!--css 연결-->
-        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
-      type="text/css"
-    />
-    <!--dropzone 연결-->
+  
      <script>
       $(document).ready(function () {
         $(".title").keyup(function (e) {
@@ -68,12 +62,17 @@
           }
         });
         
-    
+        $("#file").on('change',function(){
+  		  var fileName = $("#file").val();
+  		  $(".upload-name").val(fileName);
+  		});
+        
+        
     	$(".write").click(function(){
     		var title = $(".title").val();		
     		var content = $(".writezone").val();
 				
-    		if(${login == null}){
+    		if((${login == null})){
     			alert("로그인을 하셔야 글을 쓰실 수 있습니다.");
     			location.href="<%=request.getContextPath()%>/member/memberLogin.do";
     			return false;
@@ -89,18 +88,14 @@
     			return true;
     	});
     	
-    	$(".cancel").on("click", function(){
-      		location.href ="foodView.do?name=${title}"
+      	$(".cancel").on("click", function(){
+      		location.href ="review.do?vidx=${vo.vidx}"
+      					  +"&name=${title}"
 				  		  +"&category=${category}"
 				  		  +"&addr=${addr}"
 				  		  +"&phone=${phone}";
 		});
-    	
-    	$("#file").on('change',function(){
-    		  var fileName = $("#file").val();
-    		  $(".upload-name").val(fileName);
-    	});
-    });
+      })
     </script>
 </head>
 <body>
@@ -174,10 +169,11 @@
     </nav>
     <!--end: nav-->
      <main>
-      <h1 class="boardName">리뷰 작성</h1>
-      <form action="reviewWrite.do" method="post" enctype="multipart/form-data" name="frm">
+      <h1 class="boardName">리뷰 수정</h1>
+      <form action="reviewModify.do" method="post" enctype="multipart/form-data" name="frm">
       <input type="hidden" name="writer" value="${login.nickname}">
       <input type="hidden" name="midx" value="${login.midx}">
+      <input type="hidden" name="vidx" value="${vo.vidx}">
       <input type="hidden" name="name" value="${title}">
       <input type="hidden" name="addr" value="${addr}">
       <input type="hidden" name="category" value="${category}">
@@ -194,7 +190,7 @@
               name="title"
               minlength="2"
               maxlength="35"
-              placeholder="제목을 입력하세요"
+              value="${vo.title}"
             />
             <span style="color: #aaa; font-size: 15.5px" id="counter"
               >(0 / 35)</span
@@ -203,12 +199,21 @@
             <span class="titleErrorMsg"></span>
           </div>
           <!--end: .reviewInfo-->
+          <div class="foodImg">
+        	<img src="<%=request.getContextPath()%>/resources/upload/${vo.filename}" width="700" height="550"/>
+          </div>
+          <!--end: .foodImg-->
+          <div class="filebox">
+		    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+		    <label for="file">다른 사진으로 변경</label> 
+		    <input type="file" name="file" id="file">
+		  </div>
+		  <!-- end: .filebox -->
           <div class="content">
             <textarea
-              placeholder="내용을 입력하세요"
               class="writezone"
               name="content"
-            ></textarea>
+            >${vo.content}</textarea>
             <span style="color: #aaa; font-size: 15.5px" id="contentCounter"
               >(0 / 1000)</span
             >
@@ -216,12 +221,6 @@
             <span class="contentErrorMsg"></span>
           </div>
           <!--end: .content-->
-          <div class="filebox">
-		    <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-		    <label for="file">사진 업로드</label> 
-		    <input type="file" name="file" id="file">
-		  </div>
-		  <!-- end: .filebox -->
           <button type="submit" class="write">등록</button>
           <a href="#" class="cancel">취소</a>
         </div>

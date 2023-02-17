@@ -84,7 +84,7 @@
   			,	likeCnt
   			,	midx
   			,	filename
-  			
+  			, 	stname
   		)values(
   			
   			#{title}
@@ -95,7 +95,7 @@
   			,	#{likeCnt}
   			,	#{midx}
   			,	#{filename}
-  			
+  			,	#{stname}
   		)
   	</insert>
 

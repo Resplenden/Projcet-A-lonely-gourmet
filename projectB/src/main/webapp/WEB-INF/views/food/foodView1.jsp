@@ -432,7 +432,7 @@ String title = request.getParameter("title");
 	                  <img src="<%=request.getContextPath()%>/resources/upload/${review.filename}" width="250" height="160"/>
 	                </div>
 	                <div class="reviewContent">
-	                  <a href="<%=request.getContextPath()%>/food/review.do?vidx=${review.vidx}&name=${title}&category=${category}">${review.title}</a>
+	                  <a href="<%=request.getContextPath()%>/food/review.do?vidx=${review.vidx}&name=${title}&category=${category}&addr=${addr}&phone=${phone}">${review.title}</a>
 	                  <p>${review.content}</p>
 	                </div>
 	                <!--end: .reviewContent-->

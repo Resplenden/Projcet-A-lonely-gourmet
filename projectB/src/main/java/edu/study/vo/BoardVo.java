@@ -15,6 +15,7 @@ public class BoardVo {
 	private String filename;
 	private String wdate;
 	private String delyn;
+	private String stname;
 	
 	public int getBidx() {
 		return bidx;
@@ -93,6 +94,12 @@ public class BoardVo {
 	}
 	public void setDelyn(String delyn) {
 		this.delyn = delyn;
+	}
+	public String getStname() {
+		return stname;
+	}
+	public void setStname(String stname) {
+		this.stname = stname;
 	}
 
 	
