@@ -19,7 +19,7 @@
       href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"
     />
     <!--검색 버튼 아이콘-->
-    <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/review.css?12" rel="stylesheet" />
     <!--css 연결-->
     
     <script>
@@ -53,6 +53,7 @@
 				return true;
 			}
 	  	})
+<<<<<<< HEAD
     });		
     
     	
@@ -60,6 +61,47 @@
 		function not(){
 			alert("서비스 준비중입니다.");
 		}
+=======
+		
+	  	//뒤로 버튼 클릭 시
+  		$(".backBtn").on("click", function(){
+  			location.href ="foodView.do?name=${title}"
+  						  +"&category=${category}"
+  						  +"&addr=${addr}"
+  						  +"&phone=${phone}";
+  		});
+  		
+	    //수정 버튼 클릭 시
+  		$(".modifyBtn").on("click", function(){
+  			location.href ="reviewModify.do?vidx=${review.vidx}"
+  						  +"&name=${title}"
+  						  +"&category=${category}"
+				  		  +"&addr=${addr}"
+				  		  +"&phone=${phone}";
+  		});
+  		
+  		//삭제 버튼 클릭시
+  		$(".deleteBtn").on("click", function(){
+  		
+  			var deleteReview = confirm("정말 삭제하시겠습니까?");
+  	  		if(!deleteReview) return false;
+  	  		
+  	  		var vidx = $("#vidx").val();
+  	  		$.ajax({
+  	  			url:"deleteReview.do",
+  	  			data:{"vidx":vidx},
+  	  			success:function(data){
+  	  				if(data==1){
+  	  				location.href ="foodView.do?name=${title}"
+						  +"&category=${category}"
+						  +"&addr=${addr}"
+						  +"&phone=${phone}";	
+  	  				}
+  	  			}
+  	  		})
+  		});
+    });
+>>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 
   	</script> 
   	
@@ -189,9 +231,15 @@
           </div>
           <!--end: #like-cnt-->
         </div>
+        <div class="Btn">    
+		  	<button type="button" class="backBtn">뒤로</button>
+        	<c:if test="${login.midx == review.midx}">
+			<button type="button" class="deleteBtn">삭제</button>
+			<button type="button" class="modifyBtn">수정</button>	
+		  	</c:if>
+      	</div>
       </div>
       <!--end: board_1-->
-  </div>
     </main>
     <!--end: main-->
   <footer>

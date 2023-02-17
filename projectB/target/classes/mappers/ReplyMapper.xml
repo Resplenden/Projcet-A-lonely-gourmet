@@ -27,10 +27,12 @@
  		insert into reply(
  			content
  			,	writer
+ 			,	stname
  			,	bidx
  		)values(
  			#{content}
  			,	#{writer}
+ 			,	#{stname}
  			,	#{bidx}
  		)
  	</insert>

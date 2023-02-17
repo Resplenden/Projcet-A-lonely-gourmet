@@ -109,5 +109,28 @@
 			,	#{savefilename}
 		)
 	</insert>
+	
+	<!-- 리뷰 수정 -->
+   <update id="updateReview" parameterType="reviewVo">
+      update review
+         set title = #{title}
+          , content = #{content}
+       where vidx = #{vidx}
+   </update>
+   
+   <!-- 리뷰 파일 수정 -->
+   <update id="updateReviewFile" parameterType="reviewVo">
+      update review
+         set filename = #{filename}
+       where vidx = #{vidx}
+   </update>
+   
+   <!-- 리뷰 삭제 -->
+   <update id="deleteReview" parameterType="int">
+      update review
+         set delyn = 'Y'
+       where vidx = #{vidx}
+   </update>
+	
 </mapper>
 	
