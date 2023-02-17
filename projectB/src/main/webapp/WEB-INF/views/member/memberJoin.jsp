@@ -28,15 +28,14 @@
 				return false;
 			}
 		}
-<<<<<<< HEAD
+
 
 		function msg() {
 			alert("회원가입이 완료되었습니다. 로그인 해주세요.");
 		}
 		
 		
-=======
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 		
 	</script>
 </head>
@@ -213,7 +212,7 @@
     var checkNickVal = "";
     var checkEmailVal = "";
 
-<<<<<<< HEAD
+
 $(function(){
 		$("form").submit(function(){
 		
@@ -227,7 +226,7 @@ $(function(){
 				$("#id").focus();
 				checkIdFlag = false;
 				return false;
-=======
+
     $(function(){
     		$("form").submit(function(){
     			
@@ -239,7 +238,7 @@ $(function(){
     				$("#id").focus();
     				checkIdFlag = false;
     				return false;
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 
     			} else if(!checkIdFlag) {
     				$('#id_check').text("아이디 중복확인을 해주세요.");
@@ -266,7 +265,7 @@ $(function(){
     				$('#pwdCk_check').text('비밀번호 확인을 입력하세요.');
     				$('#pwdCk_check').css('color', 'red');
 
-<<<<<<< HEAD
+
 				$("#pwdCfm").focus();
 				checkpwdCfmFlag = false;
 				return false;
@@ -425,91 +424,90 @@ function checkDupl(){
        return false;
     }else{
        return true;
-=======
-    				$("#pwdCfm").focus();
-    				checkpwdCfmFlag = false;
-    				return false;
-    			}
-    		
-    			
-    			/* 이름 */
-    			var name = $("#name").val();
-    			if(name == "") {
-    				$('#name_check').text('이름을 입력하세요.');
-    				$('#name_check').css('color', 'red');
-    				$("#name").focus();
-    				checkNameFlag = false;
-    				return false;
-    			}
-    			
-    			/* 닉네임  */
-    			var nick = $("#nickname").val();
-    			if(nick == "") {
-    				$('#nickname_check').text('닉네임을 입력하세요.');
-    				$('#nickname_check').css('color', 'red');
-    				$("#nickname").focus();
-    				checkNickFlag = false;
-    				return false;
-    			} else if(!checkNickFlag) {
-    				$('#nickname_check').text('닉네임 중복확인을 해주세요.');
-    				$('#nickname_check').css('color', 'red');
-    				checkNickFlag = false;
-    				return false;
-    			} 
-    			
-    			/* 생일 */
-    			var birth = $("#birth").val();
-    			if(birth == "") {
-    				$('#birth_check').text('생일을 입력해주세요.');
-    				$('#birth_check').css('color', 'red');
-    				checkBirthFlag = false;
-    				return false;
-    			}
-    			
-    			/* 성별*/
-    			var gender = $("#gender").val();
-    			if(gender == "") {
-    				$('#gender_check').text('성별을 체크해주세요');
-    				$('#gender_check').css('color', 'red');
-    				checkGenderFlag = false;
-    				return false;
-    			} 
-    			
-    			/* 핸드폰번호 */
-    			var phone = $("#phone").val();
-    						
-    			if(phone == "") {
-    				$('#phone_check').text('핸드폰 번호를 해주세요.');
-    				$('#phone_check').css('color', 'red');
-    				checkPhoneFlag = false;
-    				return false;
-    			} 
-    			
-    			var phone2 = $("#phone2").val();
-    			
-    			if(phone2 == "") {
-    				$('#phone2_check').text('인증번호를 입력 해주세요.');
-    				$('#phone2_check').css('color', 'red');
-    				checkphChk2Flag = false;
-    				return false;
-    			} 
-    			
-    			/* 이메일 */
-    			var email = $("#email").val();
-    			if(email == "") {
-    				$('#email_check').text('이메일을 해주세요.');
-    				$('#email_check').css('color', 'red');
-    				$("#email").focus();
-    				checkEmailFlag = false;
-    				return false;
-    			} else if(!checkEmailFlag) {
-    				alert("이메일 중복확인을 해주세요.");
-    				checkEmailFlag = false;
-    				return false;
-    			} 
-    			
-    		});
-    	})
+       
+	$("#pwdCfm").focus();
+	checkpwdCfmFlag = false;
+		return false;
+	}
+    		    			
+	/* 이름 */
+	var name = $("#name").val();
+	if(name == "") {
+		$('#name_check').text('이름을 입력하세요.');
+		$('#name_check').css('color', 'red');
+		$("#name").focus();
+		checkNameFlag = false;
+		return false;
+	}
+	
+	/* 닉네임  */
+	var nick = $("#nickname").val();
+	if(nick == "") {
+		$('#nickname_check').text('닉네임을 입력하세요.');
+		$('#nickname_check').css('color', 'red');
+		$("#nickname").focus();
+		checkNickFlag = false;
+		return false;
+	} else if(!checkNickFlag) {
+		$('#nickname_check').text('닉네임 중복확인을 해주세요.');
+		$('#nickname_check').css('color', 'red');
+		checkNickFlag = false;
+		return false;
+	} 
+	
+	/* 생일 */
+	var birth = $("#birth").val();
+	if(birth == "") {
+		$('#birth_check').text('생일을 입력해주세요.');
+		$('#birth_check').css('color', 'red');
+		checkBirthFlag = false;
+		return false;
+	}
+	
+	/* 성별*/
+	var gender = $("#gender").val();
+	if(gender == "") {
+		$('#gender_check').text('성별을 체크해주세요');
+		$('#gender_check').css('color', 'red');
+		checkGenderFlag = false;
+		return false;
+	} 
+	
+	/* 핸드폰번호 */
+	var phone = $("#phone").val();
+				
+	if(phone == "") {
+		$('#phone_check').text('핸드폰 번호를 해주세요.');
+		$('#phone_check').css('color', 'red');
+		checkPhoneFlag = false;
+		return false;
+	} 
+	
+	var phone2 = $("#phone2").val();
+	
+	if(phone2 == "") {
+		$('#phone2_check').text('인증번호를 입력 해주세요.');
+		$('#phone2_check').css('color', 'red');
+		checkphChk2Flag = false;
+		return false;
+	} 
+	
+	/* 이메일 */
+	var email = $("#email").val();
+	if(email == "") {
+		$('#email_check').text('이메일을 해주세요.');
+		$('#email_check').css('color', 'red');
+		$("#email").focus();
+		checkEmailFlag = false;
+		return false;
+	} else if(!checkEmailFlag) {
+		alert("이메일 중복확인을 해주세요.");
+		checkEmailFlag = false;
+		return false;
+	} 
+		
+});
+	})
     	
     /*아이디 중복검사*/
     function checkId(){
@@ -569,10 +567,10 @@ function checkDupl(){
     			}
     		}
     	});	
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
     }
 
-<<<<<<< HEAD
+
 /* 휴대폰 문자 인증 */
  var code2="" 
 	function phChk(){
@@ -649,7 +647,7 @@ function checkDupl(){
 	}
  
  
-=======
+
     function checkDupl(){
         if(!checkIdFlag){
            
@@ -668,9 +666,9 @@ function checkDupl(){
           checkIdFlag = false;
         }  
      }
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 
-<<<<<<< HEAD
+
+
  /* 닉네임 중복검사 */
 function checkNick(){
 	var nickVal = $("#nickname").val();
@@ -690,7 +688,7 @@ function checkNick(){
 			$("#nickname").focus();
 			checkNickFlag = false;
 			return;
-=======
+
     /* 휴대폰 문자 인증 */
      var code2="" 
     	function phChk(){
@@ -767,7 +765,6 @@ function checkNick(){
     	}
      
      
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 
      /* 닉네임 중복검사 */
     function checkNick(){
@@ -789,7 +786,7 @@ function checkNick(){
     			checkNickFlag = false;
     			return;
 
-<<<<<<< HEAD
+
 				if(data == 1){
 					$('#nick_check').text("중복된 닉네임입니다.");
 					$('#nick_check').css('color', 'red');
@@ -856,7 +853,7 @@ function checkNick(){
 				}
 			}
 	});
-=======
+
     		}
     	}
     	
@@ -865,7 +862,7 @@ function checkNick(){
     			type: "post",
     			data: "nickname="+nickVal,
     			success:function(data){
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 
     				if(data == 1){
     					$('#nick_check').text("중복된 닉네임입니다.");
@@ -936,7 +933,7 @@ function checkNick(){
 
     }
 
-<<<<<<< HEAD
+D
 //비밀번호
 $("#pwd").blur(function(){
 	var pwd = $("#pwd").val();
@@ -964,7 +961,7 @@ $("#pwd").blur(function(){
 		} 
 		if (pwdReg.test($(this).val())) {
 			$('#pwd_check').text('');
-=======
+
     /*정규식 검사 */
     //아이디
     $("#id").on("input",function(){
@@ -994,7 +991,7 @@ $("#pwd").blur(function(){
     	}	
         
     });
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 
     //비밀번호
     $("#pwd").blur(function(){
@@ -1105,7 +1102,7 @@ $("#pwd").blur(function(){
     	var phone = $("#phone").val();
     	var phoneReg = /^01\d\d{3,4}\d{4}$/;
 
-<<<<<<< HEAD
+
 	if(phone == "") {
 		$('#phone_check').text('번호를 입력해주세요.');
 		$('#phone_check').css('color', 'red');
@@ -1125,8 +1122,7 @@ $("#pwd").blur(function(){
 			return;
 		}
 	}
-	 
-=======
+
     	if(phone == "") {
     		$('#phone_check').text('번호를 입력해주세요.');
     		$('#phone_check').css('color', 'red');
@@ -1146,7 +1142,7 @@ $("#pwd").blur(function(){
     			return;
     		}
     	}
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
 
     });
       

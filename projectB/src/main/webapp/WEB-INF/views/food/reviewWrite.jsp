@@ -162,50 +162,50 @@
      <main>
       <h1 class="boardName">리뷰 작성</h1>
       <form action="reviewWrite.do" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="writer" value="${login.nickname}">
-      <input type="hidden" name="midx" value="${login.midx}">
-      <input type="hidden" name="name" value="${title}">
-      <input type="hidden" name="addr" value="${addr}">
-      <input type="hidden" name="category" value="${category}">
-      <input type="hidden" name="phone" value="${phone}">
-        <div id="board_1">
-          <div class="reviewInfo">
-            <span
-              >${category} &nbsp; &nbsp;<i class="xi-angle-right-min xi-1x"></i>
-              &nbsp;&nbsp;${title} ${phone}</span
-            >
-            <input
-              type="text"
-              class="title"
-              name="title"
-              minlength="2"
-              maxlength="35"
-              placeholder="제목을 입력하세요"
-            />
-            <span style="color: #aaa; font-size: 15.5px" id="counter"
-              >(0 / 35)</span
-            >
-            <br />
-            <span class="titleErrorMsg"></span>
-          </div>
-          <!--end: .reviewInfo-->
-          <div class="content">
-            <textarea
-              placeholder="내용을 입력하세요"
-              class="writezone"
-              name="content"
-            ></textarea>
-            <span style="color: #aaa; font-size: 15.5px" id="contentCounter"
-              >(0 / 1000)</span
-            >
-            <br />
-            <span class="contentErrorMsg"></span>
-          </div>
-          <!--end: .content-->
-          <input type="file" name="file">
-          <button type="submit" class="write">등록</button>
-          <a href="#" class="cancel">취소</a>
-        </div>
+	      <input type="hidden" name="writer" value="${login.nickname}">
+	      <input type="hidden" name="midx" value="${login.midx}">
+	      <input type="hidden" name="name" value="${title}">
+	      <input type="hidden" name="addr" value="${addr}">
+	      <input type="hidden" name="category" value="${category}">
+	      <input type="hidden" name="phone" value="${phone}">
+	        <div id="board_1">
+	          <div class="reviewInfo">
+	            <span
+	              >${category} &nbsp; &nbsp;<i class="xi-angle-right-min xi-1x"></i>
+	              &nbsp;&nbsp;${title} ${phone}</span
+	            >
+	            <input
+	              type="text"
+	              class="title"
+	              name="title"
+	              minlength="2"
+	              maxlength="35"
+	              placeholder="제목을 입력하세요"
+	            />
+	            <span style="color: #aaa; font-size: 15.5px" id="counter"
+	              >(0 / 35)</span
+	            >
+	            <br />
+	            <span class="titleErrorMsg"></span>
+	          </div>
+	          <!--end: .reviewInfo-->
+	          <div class="content">
+	            <textarea
+	              placeholder="내용을 입력하세요"
+	              class="writezone"
+	              name="content"
+	            ></textarea>
+	            <span style="color: #aaa; font-size: 15.5px" id="contentCounter"
+	              >(0 / 1000)</span
+	            >
+	            <br />
+	            <span class="contentErrorMsg"></span>
+	          </div>
+	          <!--end: .content-->
+	          <input type="file" name="file">
+	          <button type="submit" class="write">등록</button>
+	          <a href="<%=request.getContextPath()%>/food/foodView.do?name=${title}&category=${category}&addr=${addr}&phone=${phone}" class="cancel">취소</a>
+	        </div>
         <!--end: #board_1-->
       </form>
       <!--end: form-->

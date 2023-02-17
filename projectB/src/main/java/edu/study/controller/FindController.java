@@ -25,7 +25,7 @@ import edu.study.vo.MemberVo;
 
 @RequestMapping(value="/find")
 @Controller
-public class findPwdController {
+public class FindController {
 	
 	@Autowired
 	private MemberService memberService;
@@ -34,8 +34,8 @@ public class findPwdController {
 	private JavaMailSender mailSender;
 	
 	
-	/* �븘�씠�뵒 李얘린 */
-	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) /*�븘�씠�뵒 李얘린 �솃�럹�씠吏�濡� �꽆�뼱媛�*/
+	
+	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) 
 	public String find_id() {
 
 		return "findPwd/find_id";
@@ -91,17 +91,17 @@ public class findPwdController {
 				
 		if(vo != null) {
 		Random r = new Random();
-		int num = r.nextInt(999999); // 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙
+		int num = r.nextInt(999999); 
 		
 		if (vo.getName().equals(name)&vo.getId().equals(id)) {
 			session.setAttribute("email", vo.getEmail());
 			session.setAttribute("id", vo.getId());
 			session.setAttribute("name", vo.getName());
-			String setfrom = "kbs5697@naver.com"; // naver 
-			String tomail = vo.getEmail(); //占쌨는삼옙占�
-			String title = "비밀번호변경 인증 이메일 입니다"; 
-			String content = System.getProperty("line.separator") + "안녕하세요 회원님" + System.getProperty("line.separator")
-					+ "비밀번호찾기(변경) 인증번호는 " + num + " 입니다" + System.getProperty("line.separator"); // 
+			String setfrom = "ksj56762@gmail.com";  
+			String tomail = vo.getEmail(); 
+			String title = "(혼밥의고수)비밀번호변경 인증 이메일 입니다"; 
+			String content = System.getProperty("line.separator") + "안녕하세요 회원님 혼밥의 고수입니다." + System.getProperty("line.separator")
+					+ "회원님의 비밀번호찾기(변경) 인증번호는 " + num + " 입니다" + System.getProperty("line.separator"); // 
 
 			try {
 				MimeMessage message = mailSender.createMimeMessage();
