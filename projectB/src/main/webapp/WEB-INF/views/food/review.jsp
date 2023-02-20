@@ -30,7 +30,7 @@
 	  		if(${login == null}){
 				alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
 				location.href="<%=request.getContextPath() %>/member/memberLogin.do";
-	  		}else if(${login.nickname == review.writer}){
+	  		}else if(${login.midx == review.midx}){
 				alert("본인 글은 추천하실 수 없습니다.")
 				return false;
 			}else{

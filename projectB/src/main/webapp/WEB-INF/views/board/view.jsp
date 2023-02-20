@@ -300,6 +300,11 @@
             <h2>${list.wdate.substring(0,16)}</h2>
             <p>조회수 ${list.hit}회</p>
           </div>
+          <c:if test="${list.filename != null}">
+           <div class="foodImg">
+              <img src="<%=request.getContextPath()%>/resources/upload/${list.filename}"/>
+           </div>
+        </c:if>
           <!--end: .boardInfo-->
           <div class="profile">
             <div class="profileImg">

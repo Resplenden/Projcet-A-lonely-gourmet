@@ -144,7 +144,7 @@
     <!--css 연결-->
   </head>
   <body>
-    <form action="write.do" method="post" name="frm">
+    <form action="write.do" method="post" name="frm" enctype="multipart/form-data">
     <input type="hidden" value="${login.nickname}" name="writer">
      <input type="hidden" value="${login.midx}">
       <div id="topMenu">
@@ -203,7 +203,7 @@
           이외의 게시판의 의도와 맞지 않은 게시글은 정리 될 수 있다는 점
           유의하시기 바랍니다.
         </textarea>
-        <input type="file" name="filename">
+        <input type="file" name="file">
       </main>
       <!--end: main-->
     </form>

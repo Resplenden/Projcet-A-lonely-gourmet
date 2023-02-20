@@ -1,7 +1,10 @@
 package edu.study.controller;
 
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -14,17 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.study.service.BoardService;
 import edu.study.service.ReplyService;
+import edu.study.service.ReviewService;
 import edu.study.vo.BoardVo;
 import edu.study.vo.LikeVo;
 import edu.study.vo.MemberVo;
 import edu.study.vo.PageMaker;
 import edu.study.vo.ReplyPageMaker;
 import edu.study.vo.ReplyVo;
+import edu.study.vo.ReviewFileVo;
 import edu.study.vo.SearchVo;
 
 
@@ -36,7 +41,8 @@ public class BoardController{
 	private BoardService boardService;
 	@Inject
 	private ReplyService replyService;
-	
+	@Inject
+	private ReviewService reviewService;
 	/* 글 목록 보기(검색,페이징) */
 	@RequestMapping(value="/list.do",method=RequestMethod.GET)
 	public String listPage(BoardVo vo,Model model,@ModelAttribute("searchVo") SearchVo searchVo) {
@@ -92,21 +98,49 @@ public class BoardController{
 	}
 	
 	/* 글 쓰기 실행 */
-	@RequestMapping(value="/write.do",method=RequestMethod.POST)
-	public String write(BoardVo vo, HttpSession session) {
+	   @RequestMapping(value="/write.do",method=RequestMethod.POST)
+	   public String write(BoardVo vo,ReviewFileVo vo2, HttpSession session,@RequestParam("file") MultipartFile file) {
 
-		//로그인 후 midx,nickname을 vo에 담는다.
-		MemberVo login = (MemberVo)session.getAttribute("login");
-		vo.setMidx(login.getMidx());
-		vo.setWriter(login.getNickname());
-		vo.setStname(login.getStname());
-		System.out.println(login.getMidx());
-		System.out.println(login.getNickname());
-
-		boardService.write(vo);
-		
-		return "redirect:list.do";
-	}
+	      //로그인 후 midx,nickname을 vo에 담는다.
+	      MemberVo login = (MemberVo)session.getAttribute("login");
+	      vo.setMidx(login.getMidx());
+	      vo.setWriter(login.getNickname());
+	      System.out.println(login.getMidx());
+	      System.out.println(login.getNickname());
+	      
+	      if(!file.isEmpty()) {
+	         String OriginalFilename = file.getOriginalFilename();
+	         long size = file.getSize();
+	         String ext = OriginalFilename.substring(OriginalFilename.lastIndexOf("."), OriginalFilename.length());
+	         String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+	   
+	         UUID uuid = UUID.randomUUID();
+	         String[] uuids = uuid.toString().split("-");
+	   
+	         String uniqueName = uuids[0];
+	   
+	         File saveFile = new File(path + "\\" + uniqueName + ext);
+	      
+	         try {
+	            file.transferTo(saveFile);
+	         } catch (IllegalStateException e) {
+	            e.printStackTrace();
+	         } catch (IOException e) {
+	            e.printStackTrace();
+	         }
+	         
+	         vo2.setOriginalfilename(OriginalFilename);
+	         vo2.setSavefilename(uniqueName + ext);
+	         reviewService.reviewFile(vo2);
+	         
+	         vo.setFilename(uniqueName + ext);
+	      
+	      }
+	      
+	      boardService.write(vo);
+	      
+	      return "redirect:list.do";
+	   }
 
 	
 	/* 글 수정 페이지로 이동 */
