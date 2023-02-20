@@ -225,9 +225,9 @@ hr {
 
 main {
   width: 1522.38px;
-  min-height: 2940px;
+  min-height: 1450px;
   max-height: 3248px;
-  padding: 100px 0 150px 0;
+  padding: 100px 0 100px 0;
 }
 
 .boardName {
@@ -433,7 +433,7 @@ main {
   color: white;
   cursor: pointer;
   font-weight: bold;
-  margin:0 2px;
+  margin:0 7px;
 }
 
 #commentPage {
@@ -573,9 +573,23 @@ main {
   padding-top: 40px;
 }
 
+
+  .pager b {
+  color: salmon;
+  margin-left: 15px;
+  margin-right:15px;
+  }
+  
+  .pager a{
+  margin-left: 15px;
+  margin-right:15px;
+  color:rgb(70, 70, 70);
+  }
+ 
+
 .btnBar {
   width: 1300px;
-  height: 64px;
+  height: 150px;
 }
 
 .btnBar a {

@@ -361,7 +361,7 @@
               	${reply.content}
 				<p id="reply_content${reply.ridx}" class="reply_content"></p>      
                 <div class="commentOption">
-                  <p>${reply.wdate}</p>
+                  <p>${reply.wdate.substring(0,16)}</p>
                   
                 <c:if test="${login.nickname == reply.writer}">
 				<button class="commentReply" onclick="modifyBtn(${reply.ridx},'${reply.content}')" class="buttons${reply.ridx}"><small>수정</small></button>
@@ -371,7 +371,7 @@
 				 <button type="button" class="commentReply" onclick="replyLike(${reply.ridx},'${reply.writer}','${login.nickname}');"><small>추천</small></button> <small>${reply.likeCnt}</small>
                
 
-                
+        
 
               </div>
               <!--end: .commentOption-->
@@ -384,7 +384,9 @@
        			 </ul>
     		</div>
         <!--end: .commentList-->
-      <div id="listOption">
+    </main>
+    <!--end: main-->
+          <div id="listOption">
         <div class="pager">
 			<ul class="pagination">
 			<!-- 이전 페이지 -->	
@@ -413,13 +415,11 @@
 		</div>
         <!--end: .pager-->
         <div class="btnBar">
-          <a href="#">홈으로</a>
+           <a href="<%=request.getContextPath()%>">홈으로</a>
         </div>
         <!--end:.bthBar-->
       </div>
-      <!--end: #boardOption-->
-    </main>
-    <!--end: main-->
+      <!--end: #listOption-->
     <footer>
       <div id="slogan">
         <img

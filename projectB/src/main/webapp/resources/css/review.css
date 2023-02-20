@@ -421,6 +421,22 @@ main {
   } 
   
   /*end: .like*/
+  
+  .Btn button {
+  float: right;
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: salmon;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin:0 7px;
+}
+
+/*end:s .Btn*/
 
   #topBtn {
     background-color: white;
