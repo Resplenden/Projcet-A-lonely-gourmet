@@ -18,46 +18,8 @@
     <!--검색 버튼 아이콘-->
     <link href="${pageContext.request.contextPath}/resources/css/profile.css" rel="stylesheet" />
     <!--css 연결-->
-<<<<<<< HEAD
-    
-    <script>
-    window.onload = function(){
-    
-   	//날짜 시간 자르기 용
-   
-    var td = document.getElementsByTagName("td");
-    var wdate = td[11].innerHTML;
-    var w = wdate.substring(0,10);
-    
-    td[11].innerHTML = "<td>"+ w +"</td>"
-    
-    }
-    
-    
-    
-	function not(){
-			alert("서비스 준비중입니다.");
-		}
-  
-	
-    
-    function unregister(){
-    	
-   		if(confirm("정말 탈퇴하시겠습니까?") == true) {
-   			alert("탈퇴가 완료 되었습니다.");
-   		} else {
-   			return;
-   		}
-    }
-    
+ 	<script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>   
 
-   
-    </script>
-=======
- <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>   
- 
- 
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
 
 <title>혼밥의 고수 회원 정보</title>
 </head>
@@ -257,6 +219,14 @@
         td[11].innerHTML = "<td>"+ w +"</td>"
         
         }
+    
+    
+    
+	function not(){
+		alert("서비스 준비중입니다.");
+	}
+
+
         
         
         function unregister(){        	

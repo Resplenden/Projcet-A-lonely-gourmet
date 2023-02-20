@@ -29,46 +29,46 @@
     />
     <!--dropzone 연결-->
      <script type="text/javascript">
-      $(document).ready(function () {
-        $(".title").keyup(function (e) {
-          var content = $(this).val();
-          $("#counter").html("(" + content.length + " / 35)"); //글자수 실시간 카운팅
+     $(document).ready(function () {
+         $(".title").keyup(function (e) {
+           var content = $(this).val();
+           $("#counter").html("(" + content.length + " / 35)"); //글자수 실시간 카운팅
 
-          if (content.length > 35) {
-            $(".titleErrorMsg").html("제목은 최대 35자까지 입력 가능합니다.");
-            $(".titleErrorMsg").css("float", "right");
-            $(".titleErrorMsg").css("color", "red");
-            $(".titleErrorMsg").css("font-size", "15px");
-            $(".titleErrorMsg").css("font-style", "italic");
+           if (content.length > 35) {
+             $(".titleErrorMsg").html("제목은 최대 35자까지 입력 가능합니다.");
+             $(".titleErrorMsg").css("float", "right");
+             $(".titleErrorMsg").css("color", "red");
+             $(".titleErrorMsg").css("font-size", "15px");
+             $(".titleErrorMsg").css("font-style", "italic");
 
-            $(this).val(content.substring(0, 35));
-            $("#counter").html("(35 / 35)");
-          } else {
-            $(".errorMsg").html("");
-          }
-        });
+             $(this).val(content.substring(0, 35));
+             $("#counter").html("(35 / 35)");
+           } else {
+             $(".errorMsg").html("");
+           }
+         });
 
-        $(".writezone").keyup(function (e) {
-          var content = $(this).val();
-          $("#contentCounter").html("(" + content.length + " / 1000)"); //글자수 실시간 카운팅
+         $(".writezone").keyup(function (e) {
+           var content = $(this).val();
+           $("#contentCounter").html("(" + content.length + " / 1000)"); //글자수 실시간 카운팅
 
-          if (content.length > 1000) {
-            $(".contentErrorMsg").html(
-              "본문은 최대 1000자까지 입력 가능합니다."
-            );
-            $(".contentErrorMsg").css("float", "right");
-            $(".contentErrorMsg").css("color", "red");
-            $(".contentErrorMsg").css("font-size", "15px");
-            $(".contentErrorMsg").css("font-style", "italic");
+           if (content.length > 1000) {
+             $(".contentErrorMsg").html(
+               "본문은 최대 1000자까지 입력 가능합니다."
+             );
+             $(".contentErrorMsg").css("float", "right");
+             $(".contentErrorMsg").css("color", "red");
+             $(".contentErrorMsg").css("font-size", "15px");
+             $(".contentErrorMsg").css("font-style", "italic");
 
-            $(this).val(content.substring(0, 1000));
-            $("#contentCounter").html("(1000 / 1000)");
-          } else {
-            $(".errorMsg").html("");
-          }
-        });
+             $(this).val(content.substring(0, 1000));
+             $("#contentCounter").html("(1000 / 1000)");
+           } else {
+             $(".errorMsg").html("");
+           }
+         });
         
-<<<<<<< HEAD
+
     	$(".write").click(function(){
     			
     			var title = $(".title").val();		
@@ -84,8 +84,7 @@
     				return false;
     			}
     			
-=======
-    
+
     	$(".write").click(function(){
     		var title = $(".title").val();		
     		var content = $(".writezone").val();
@@ -103,16 +102,16 @@
     			document.frm.content.focus();
     			return false;
     		}
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
     			return true;
-<<<<<<< HEAD
+
     		});
     		
         });
         
    
-=======
-    	});
+
+ 
     	
     	$(".cancel").on("click", function(){
       		location.href ="foodView.do?name=${title}"
@@ -126,7 +125,7 @@
     		  $(".upload-name").val(fileName);
     	});
     });
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
     </script>
 </head>
 <body>

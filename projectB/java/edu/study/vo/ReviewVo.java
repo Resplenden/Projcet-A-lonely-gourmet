@@ -16,7 +16,7 @@ public class ReviewVo {
 	private String category;
 	private String addr;
 	private String phone;
-	
+	private String stname;
 	
 	public int getVidx() {
 		return vidx;
@@ -102,14 +102,22 @@ public class ReviewVo {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String getStname() {
+		return stname;
+	}
+	public void setStname(String stname) {
+		this.stname = stname;
+	}
 	
 	@Override
 	public String toString() {
 		return "ReviewVo [vidx=" + vidx + ", title=" + title + ", content=" + content + ", writer=" + writer + ", hit="
 				+ hit + ", likecnt=" + likecnt + ", filename=" + filename + ", wdate=" + wdate + ", delyn=" + delyn
-				+ ", midx=" + midx + " ]";
+				+ ", midx=" + midx + ", name=" + name + ", category=" + category + ", addr=" + addr + ", phone=" + phone
+				+ ", stname=" + stname + "]";
 	}
 	
+
 	
 	
 	

@@ -16,7 +16,7 @@ public interface ReviewService {
 	List<ReviewVo> reviewListPage(SearchVo searchVo);
 	
 	/* 리뷰 개수 카운트*/
-	int reviewCount(ReviewVo reviewVo);
+	int reviewCount(ReviewVo reviewVo);	
 	
 	/* 리뷰 상세보기 */
 	ReviewVo selectByVidx(int vidx);
@@ -35,4 +35,13 @@ public interface ReviewService {
 	
 	/* 리뷰 파일업로드*/
 	int reviewFile(ReviewFileVo vo);
+	
+	/* 리뷰 수정 */
+    int updateReview(ReviewVo vo);
+   
+    /* 리뷰 파일 수정 */
+    int updateReviewFile(ReviewVo vo);
+   
+    /* 리뷰 삭제 */
+    int deleteReview(int vidx);
 }	

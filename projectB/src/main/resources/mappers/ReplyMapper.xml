@@ -45,11 +45,11 @@
  	</update>
  	
  	<!-- 댓글 삭제 -->
-	<delete id="deleteReply" parameterType="int">
+	<update id="deleteReply" parameterType="int">
 		update reply
 			set delYn = 'Y'
 		 where ridx = #{ridx}
-	</delete>
+	</update>
 	
 	<!-- 댓글 조회 -->
 	<select id="selectReply" parameterType="int">

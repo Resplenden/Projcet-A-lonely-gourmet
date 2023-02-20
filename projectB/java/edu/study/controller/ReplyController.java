@@ -43,7 +43,9 @@ public class ReplyController{
 		
 		//로그인하면 닉네임을 vo에 담는다.
 		MemberVo login = (MemberVo)session.getAttribute("login");
+		vo.setMidx(login.getMidx());
 		vo.setWriter(login.getNickname());
+		vo.setStname(login.getStname());
 		int result = replyService.writeReply(vo);
 		
 		return result;	

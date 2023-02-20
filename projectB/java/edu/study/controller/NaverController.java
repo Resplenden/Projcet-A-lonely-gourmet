@@ -40,19 +40,7 @@ public class NaverController {
 	// 로그인페이지
 	//로그인 첫 화면 요청 메소드
 	
-	@RequestMapping(value = "/login.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
-		
-		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-		String naverAuthUrl = naverLoginBo.getAuthorizationUrl(session);
-		/* 인증요청문 확인 */
-		System.out.println("네이버:" + naverAuthUrl);
-		/* 객체 바인딩 */
-		model.addAttribute("urlNaver", naverAuthUrl);
-
-		/* 생성한 인증 URL을 View로 전달 */
-		return "naver/login";
-	}
+	
 	
 	//네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })

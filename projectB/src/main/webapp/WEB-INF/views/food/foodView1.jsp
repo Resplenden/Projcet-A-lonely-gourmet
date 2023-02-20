@@ -454,7 +454,7 @@ String title = request.getParameter("title");
 	              <!--end: .review-->
 	              <div class="profile">
 	                <div class="profileImg">
-	                  <img src="../resources/img/프로필이미지.png" width="60" />
+	                  <img src="<%=request.getContextPath()%>/resources/upload/${review.stname}" width="60" />
 	                </div>
 	                <p class="nickname">${review.writer}</p>
 	                <p class="date">${review.wdate.substring(0,16)}</p>

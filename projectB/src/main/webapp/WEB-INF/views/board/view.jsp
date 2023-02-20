@@ -303,7 +303,7 @@
           <!--end: .boardInfo-->
           <div class="profile">
             <div class="profileImg">
-              <img src="../resources/img/${vo.stname}" width="60" />
+              <img src="<%=request.getContextPath()%>/resources/upload/${list.stname}" width="60" />
             </div>
             <p>${list.writer}</p>
           </div>
@@ -367,14 +367,12 @@
 				<button class="commentReply" onclick="modifyBtn(${reply.ridx},'${reply.content}')" class="buttons${reply.ridx}"><small>수정</small></button>
 				<button class="commentReply" onclick="deleteBtn(${reply.ridx})" class="buttons${reply.ridx}"><small>삭제</small></button>
 				</c:if>
-<<<<<<< HEAD
+
 				 <button type="button" class="commentReply" onclick="replyLike(${reply.ridx},'${reply.writer}','${login.nickname}');"><small>추천</small></button> <small>${reply.likeCnt}</small>
-                <c:if test="${reply.depth == 0}">
-				<div id="rereplyForm${reply.ridx}"></div>
-				</c:if>
-=======
+               
+
                 
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+
               </div>
               <!--end: .commentOption-->
             </div>

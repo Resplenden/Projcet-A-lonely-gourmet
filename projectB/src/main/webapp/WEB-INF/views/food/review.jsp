@@ -22,7 +22,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/review.css?12" rel="stylesheet" />
     <!--css 연결-->
     
-    <script>
+	<script type="text/javascript">
     $(function(){
 	    //게시물의 추천 버튼 클릭 시
 	  	$(".like").on("click", function(){
@@ -53,15 +53,15 @@
 				return true;
 			}
 	  	})
-<<<<<<< HEAD
-    });		
+
+	
     
     	
 
 		function not(){
 			alert("서비스 준비중입니다.");
 		}
-=======
+
 		
 	  	//뒤로 버튼 클릭 시
   		$(".backBtn").on("click", function(){
@@ -99,9 +99,10 @@
   	  				}
   	  			}
   	  		})
-  		});
+  		
     });
->>>>>>> branch 'master' of https://github.com/Resplenden/Projcet-A-lonely-gourmet.git
+});
+    
 
   	</script> 
   	
@@ -186,7 +187,7 @@
           >
           <h2>${review.title}</h2>
           <div class="profileImg">
-            <img src="../resources/img/프로필이미지.png" width="50" />
+            <img src="<%=request.getContextPath()%>/resources/upload/${review.stname}" width="50" />
           </div>
           <p class="writer">${review.writer}</p>
           <br />
