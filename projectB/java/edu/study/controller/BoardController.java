@@ -105,6 +105,7 @@ public class BoardController{
 	      MemberVo login = (MemberVo)session.getAttribute("login");
 	      vo.setMidx(login.getMidx());
 	      vo.setWriter(login.getNickname());
+	      vo.setStname(login.getStname());
 	      System.out.println(login.getMidx());
 	      System.out.println(login.getNickname());
 	      
