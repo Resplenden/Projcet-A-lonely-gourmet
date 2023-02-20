@@ -33,7 +33,7 @@ function loginCheck(){
        {
         	if(data == 0)
         	{
-        		alert("아이디나 비밀번호가 일치하지 않습니다.");
+        		alert("아이디나 비밀번호가 일치하지 않거나 이미 탈퇴한 회원입니다.");
         		id = "";
         		pwd = "";
         	} else if(data == 1)

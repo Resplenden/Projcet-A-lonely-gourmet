@@ -17,27 +17,26 @@
 </head>
 <body>
 <div id="inner">
-<a href="#"
+<a href="${pageContext.request.contextPath}"
         ><img
           src="../resources/img/사본_-혼밥의고수_로고_초안_대지_1_사본-removebg-preview.png"
-          width="350px"
+          width="350px"	
         />
       </a>
-      <h1>&nbsp;아이디 찾기</h1>
+      <h1>&nbsp;아이디 찾기 결과</h1>
       <br/>
     		
 		<div id="findId">
 		<br/>
-			<label>'${name}'회원님이</label>
-			<label>찾으시는 아이디는 '${id }' 입니다.</label>
-		
+			<h3><label>${name}&nbsp;</label>님이 찾으시는 아이디는 </br>
+			<label>${id}&nbsp;</label>입니다.</h3>
 		<br/>
 		<br/>
 		<br/>
 
 		
-		<button class="findId"><a href="<%= request.getContextPath() %>/find/findPwd-fir.do">비밀번호 찾기</a></button>
-		<button class="findId"><a href="<%= request.getContextPath() %>/member/memberLogin.do">로그인</a></button>
+		<button class="findpwd"><a href="<%= request.getContextPath() %>/find/findPwd-fir.do">비밀번호 찾기</a></button>
+		<button class="login"><a href="<%= request.getContextPath() %>/member/memberLogin.do">로그인</a></button>
 	
 
 </div>

@@ -34,7 +34,7 @@ public class findPwdController {
 	private JavaMailSender mailSender;
 	
 	
-	/* �븘�씠�뵒 李얘린 */
+	
 	@RequestMapping(value="/find_id.do", method=RequestMethod.GET) /*�븘�씠�뵒 李얘린 �솃�럹�씠吏�濡� �꽆�뼱媛�*/
 	public String find_id() {
 
@@ -147,7 +147,7 @@ public class findPwdController {
 			else {
 				return "findPwd/findPwd-sec";
 			}
-	} //占싱몌옙占쏙옙 占쏙옙占쏙옙占쏙옙호 확占쏙옙
+	} 
 	
 	@RequestMapping(value = "/findPwd-thd.do", method = RequestMethod.POST)
 	public String pw_new(MemberVo vo, HttpSession session){

@@ -13,7 +13,7 @@
     text-decoration: none;
     font-family: "Pretendard-Regular", "GongGothicMedium", "ONE-Mobile-POP", San-serif",
       "Arial";
-    -webkit-user-select: none;
+    -webkit-user-select: none;	
     -ms-use-select: none;
   }
   
@@ -43,7 +43,7 @@ img {
     font-size: 44px;
     color: salmon;
     display: inline-block;
-    margin-left: 190px;
+    margin-left: 10px;
   }
 
   p {
@@ -52,6 +52,17 @@ img {
     display: inline-block;
   }
   
+  h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  color: rgb(70, 70, 70);
+   	line-height: 30px;
+  }
+  
+  label {
+  color: salmon;
+  }
   
     #findId{
     width: 350px;
@@ -72,13 +83,13 @@ img {
   }
 
   .name{
-    border-bottom: 0px solid rgb(160, 160, 160);
+    border-bottom: 0px solid rgb(160, 160, 160);	
     border-radius: 8px 8px 0 0;
   }
 
 
   .email{
-    border-top: 0px solid rgb(160, 160, 160);
+    border-top: 1px solid rgb(160, 160, 160);
     border-radius: 0 0  8px 8px ;
   }
 
@@ -87,11 +98,7 @@ img {
     border: 1.5px solid rgb(250, 71, 48);
     border-radius: 8px 8px 0 0;
   }
-
-  .id:focus {
-    outline: none;
-    border: 1.5px solid rgb(250, 71, 48);
-  }
+ 
 
   .email:focus  {
     outline: none;
@@ -108,8 +115,49 @@ img {
     cursor: pointer;
     border: none;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+  }
+  
+   .findpwd  {
+    background-color: salmon;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 350px;
+    height: 54px;
+  }
+  
+  .findId a, .findpwd a {
+  color: white;
+  }
+  
+  .findId a:visited, .findpwd a:visited {
+  color: white;
+  }
+
+  
+.findId:hover {
+    background-color:#ff523e;}	
+    
+ .cancel, .login  {
+    background-color: salmon;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    margin-top: 5px;
+	margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
     width: 350px;
@@ -117,8 +165,19 @@ img {
   }
 
   
-.findId:hover {
-    background-color:#ff523e;}
+.cancel:hover, .login:hover{
+    background-color:#ff523e;
+    }
+
+  .login a {
+  color: white;
+  }
+  
+  .login a:visited {
+  color: white;
+  }
+
+  
 
  .pwdInit {
     background-color: salmon;
@@ -147,4 +206,4 @@ img {
     color: rgb(109, 109, 109);
     text-align: center;
     margin-top: 50px;
-  }
+  }	

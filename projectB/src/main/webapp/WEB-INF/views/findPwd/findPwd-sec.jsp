@@ -40,7 +40,7 @@
 </head>
 <body>
 <div id="inner">
-      <a href="#"
+      <a href="${pageContext.request.contextPath}"
         ><img
           src="../resources/img/사본_-혼밥의고수_로고_초안_대지_1_사본-removebg-preview.png"
           width="350px"

@@ -25,6 +25,7 @@
 		 	FROM member
 		 	WHERE id=#{id}
 		 	AND pwd=#{pwd}
+		 	AND delyn = "N"
 	</select>
 	
 

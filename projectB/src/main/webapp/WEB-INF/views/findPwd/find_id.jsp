@@ -15,7 +15,7 @@
 
 <link href="${pageContext.request.contextPath}/resources/css/find_id.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/resources/js/jquery-3.6.1.min.js"></script>
-<script>
+<script type="text/javascript">
 
 	function findingID(){
 		var name = $("#name").val();
@@ -62,19 +62,20 @@
 	
 	}
 
-</script>
 
+</script>
+	
 </head>
 <body>
 <div id="inner">
-      <a href="#"
-        ><img
-          src="../resources/img/사본_-혼밥의고수_로고_초안_대지_1_사본-removebg-preview.png"
-          width="350px"
-        />
-      </a>
+        <a href="${pageContext.request.contextPath}">
+            <img
+              src="../resources/img/사본 -혼밥의고수 로고 초안_대지 1 사본.png"
+             width="350px">
+          </a>
       <h1>&nbsp;아이디 찾기</h1>
-
+		 &nbsp;&nbsp;&nbsp;&nbsp;
+      <p>정보를 입력하세요.</p>
 	
 
 		<form action="find_id.do" name ="findId" id="findId" method="post" >
@@ -85,7 +86,7 @@
 			<br /> 
 			<button type="button" id="btn" class="findId" onclick="findingID()">아이디확인</button>
 			<br/>
-			<button class="findId" onclick="reset()">취소</button>
+			<input type="button" class="cancel" value="취소" onclick="location.href='<%=request.getContextPath()%>'"/>
 			<br/>
 		</form>
 		
@@ -100,6 +101,5 @@
       </div>
       <!--end: .companyInfo-->
 	<!-- inner -->
-
 </body>
 </html>
