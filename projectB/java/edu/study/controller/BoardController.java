@@ -113,7 +113,7 @@ public class BoardController{
 	         String OriginalFilename = file.getOriginalFilename();
 	         long size = file.getSize();
 	         String ext = OriginalFilename.substring(OriginalFilename.lastIndexOf("."), OriginalFilename.length());
-	         String path = "C:\\Users\\MYCOM\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
+	         String path = "C:\\Users\\745\\git\\Projcet-A-lonely-gourmet\\projectB\\src\\main\\webapp\\resources\\upload";
 	   
 	         UUID uuid = UUID.randomUUID();
 	         String[] uuids = uuid.toString().split("-");

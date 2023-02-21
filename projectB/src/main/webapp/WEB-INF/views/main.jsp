@@ -307,8 +307,8 @@
 	            <c:forEach items="${list}" var="vo">
 	              <tr>
 	                <td><a href="<%=request.getContextPath()%>/board/view.do?bidx=${vo.bidx}">${vo.title}</a></td>
-	                <td>${vo.writer}</td>
-	                <td>${vo.wdate}</td>
+	                <td>${vo.writer.substring(0,3)}</td>
+	                <td>${vo.wdate.substring(0,10)}</td>
 	              </tr>
 	            </c:forEach>              
             </tbody>

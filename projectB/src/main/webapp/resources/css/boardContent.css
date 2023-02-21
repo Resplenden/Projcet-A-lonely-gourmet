@@ -125,8 +125,8 @@ nav {
 }
 
 .loginInfo {
-	display: flex;
-	align-items: center;
+   display: flex;
+   align-items: center;
 }
 
 .loginInfo a {
@@ -141,7 +141,7 @@ nav {
   margin-right: 10px;
   border-radius: 30px;
 }
-	
+   
 .login p, .myPage p {
   color: salmon;
   font-weight: bold;
@@ -168,23 +168,23 @@ nav {
 }
 
 .loginInfo {
-	min-width: 239px;
-	max-width: 700px;
+   min-width: 239px;
+   max-width: 700px;
 }
 
 .welcome {
-	font-size: 18px;
-	color: rgb(70, 70, 70);
-	text-align: left;
-	margin-top: 5px;
-	margin-left: 15px;
-	margin-right: 15px;
+   font-size: 18px;
+   color: rgb(70, 70, 70);
+   text-align: left;
+   margin-top: 5px;
+   margin-left: 15px;
+   margin-right: 15px;
 }
 
 .loginInfo span{
-	font-weight: bold;
-	font-style: italic;
-	font-size: 20px;
+   font-weight: bold;
+   font-style: italic;
+   font-size: 20px;
 }
 
 /*end: .loginInfo*/
@@ -313,11 +313,11 @@ main {
 #boardContent {
     width: 1050px;
     min-height: 400px;
-    max-height: 2000px;
+    max-height: 3000px;
     padding: 70px 30px 70px 30px;
     margin-top: 50px;
-
 }
+
 
 
 #boardContent p {
@@ -438,7 +438,7 @@ main {
 
 #commentPage {
   width: 1200px;
-  min-height: 100px;	
+  min-height: 100px;   
   padding: 120px 61px 61px;
 }
 

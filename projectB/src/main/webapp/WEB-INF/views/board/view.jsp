@@ -27,198 +27,198 @@
        });
     });
     </script> -->
-  	<script type="text/javascript">
-  	
-  	
-	function not(){
-		alert("서비스 준비중입니다.");
-	}
-	
-  	
-  	$(function(){
-  		
-  		$(".listBtn").on("click", function(){
-  		
-  			location.href ="list.do?page=${searchVo.page}"
-  						  +"&category=${searchVo.category}"
-  						  +"&order=${searchVo.order}"
-  					 	  +"&perPageNum=${searchVo.perPageNum}" 
-  					  	  +"&searchType=${searchVo.searchType}"
-  					 	  +"&searchVal=${searchVo.searchVal}"; 
-  		});
-  		
-  		$(".modifyBtn").on("click", function(){
-  		
-  			location.href ="modify.do?bidx=${list.bidx}"
-  						  +"&page=${searchVo.page}"
-  						  +"&category=${searchVo.category}"
-  						  +"&order=${searchVo.order}"
-  					 	  +"&perPageNum=${searchVo.perPageNum}"
-  					  	  +"&searchType=${searchVo.searchType}"
-  					  	  +"&searchVal=${searchVo.searchVal}"; 
-  		});
-  		
-  		$(".deleteBtn").on("click", function(){
-  		
-  			location.href ="delete.do?bidx=${list.bidx}"
-  						  +"&page=${searchVo.page}"
-  						  +"&category=${searchVo.category}"
-  						  +"&order=${searchVo.order}"
-  					 	  +"&perPageNum=${searchVo.perPageNum}" 
-  					  	  +"&searchType=${searchVo.searchType}"
-  					  	  +"&searchVal=${searchVo.searchVal}"; 
-  		});
+     <script type="text/javascript">
+     
+     
+   function not(){
+      alert("서비스 준비중입니다.");
+   }
+   
+     
+     $(function(){
+        
+        $(".listBtn").on("click", function(){
+        
+           location.href ="list.do?page=${searchVo.page}"
+                      +"&category=${searchVo.category}"
+                      +"&order=${searchVo.order}"
+                       +"&perPageNum=${searchVo.perPageNum}" 
+                        +"&searchType=${searchVo.searchType}"
+                       +"&searchVal=${searchVo.searchVal}"; 
+        });
+        
+        $(".modifyBtn").on("click", function(){
+        
+           location.href ="modify.do?bidx=${list.bidx}"
+                      +"&page=${searchVo.page}"
+                      +"&category=${searchVo.category}"
+                      +"&order=${searchVo.order}"
+                       +"&perPageNum=${searchVo.perPageNum}"
+                        +"&searchType=${searchVo.searchType}"
+                        +"&searchVal=${searchVo.searchVal}"; 
+        });
+        
+        $(".deleteBtn").on("click", function(){
+        
+           location.href ="delete.do?bidx=${list.bidx}"
+                      +"&page=${searchVo.page}"
+                      +"&category=${searchVo.category}"
+                      +"&order=${searchVo.order}"
+                       +"&perPageNum=${searchVo.perPageNum}" 
+                        +"&searchType=${searchVo.searchType}"
+                        +"&searchVal=${searchVo.searchVal}"; 
+        });
   
-  		//댓글 등록을 누를시
-  		$(".commentWrite button").on("click", function(){
+        //댓글 등록을 누를시
+        $(".commentWrite button").on("click", function(){
   
-  			if(${login == null}){
-  				alert("로그인을 하셔야 댓글을 다실 수 있습니다.");
-  				location.href="../member/memberLogin.do";
-  			}else{
-  			
-  			var bidx = $("#bidx").val();
-  	  		var content = $("[name=content]").val();
-			console.log(bidx);
-			console.log(content);
-  	  		$.ajax({
-  	  			url:"../reply/write.do",
-  	  			data:{"bidx":bidx,
-  	  				  "content":content},
-  	  			success:function(result){
-  	  				if(result==1){
-  	  					location.reload();	
-  	  				}
-  	  			}
-  	  		})
-  				return true;
-  			}
-  		});
-  	
-	})
+           if(${login == null}){
+              alert("로그인을 하셔야 댓글을 다실 수 있습니다.");
+              location.href="../member/memberLogin.do";
+           }else{
+           
+           var bidx = $("#bidx").val();
+             var content = $("[name=content]").val();
+         console.log(bidx);
+         console.log(content);
+             $.ajax({
+                url:"../reply/write.do",
+                data:{"bidx":bidx,
+                     "content":content},
+                success:function(result){
+                   if(result==1){
+                      location.reload();   
+                   }
+                }
+             })
+              return true;
+           }
+        });
+     
+   })
 
-  	//게시물의 추천 버튼 클릭 시
-  	function like(){
-  		
-  		if(${login == null}){
-			alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
-			location.href="<%=request.getContextPath()%>/member/memberLogin.do";
-  		}else if(${login.nickname == list.writer}){
-			alert("본인 글은 추천하실 수 없습니다.")
-			return false;
-		}else{
-	  		
-			var bidx = $("#bidx").val();
-	  			
-	  		$.ajax({
-	  			url:"like.do",
-	  			data:{"bidx":bidx},
-	  			success:function(likeCheck){
-	  					
-	  				if(likeCheck == 0){
-	  					location.reload();
-	  				}else if(likeCheck == 1){
-	  					alert("이미 추천하신 글입니다.");
-	  					location.reload();
-	  				}
-	  			}	
-	  		})
-				return true;
-		}
-  		
-  	}
+     //게시물의 추천 버튼 클릭 시
+     function like(){
+        
+        if(${login == null}){
+         alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
+         location.href="<%=request.getContextPath()%>/member/memberLogin.do";
+        }else if(${login.nickname == list.writer}){
+         alert("본인 글은 추천하실 수 없습니다.")
+         return false;
+      }else{
+           
+         var bidx = $("#bidx").val();
+              
+           $.ajax({
+              url:"like.do",
+              data:{"bidx":bidx},
+              success:function(likeCheck){
+                    
+                 if(likeCheck == 0){
+                    location.reload();
+                 }else if(likeCheck == 1){
+                    alert("이미 추천하신 글입니다.");
+                    location.reload();
+                 }
+              }   
+           })
+            return true;
+      }
+        
+     }
 
-  	//댓글의 추천버튼 클릭시
-  	function replyLike(ridx,writer,nickname){
+     //댓글의 추천버튼 클릭시
+     function replyLike(ridx,writer,nickname){
  
-  		if(${login == null}){
-			alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
-			location.href="../member/memberLogin.do";
-  		}else if(nickname == writer){
-			alert("본인 댓글은 추천하실 수 없습니다.")
-			return false;
-  		}else{
-  		
-	  		$.ajax({
-	  			url:"../reply/replyLike.do",
-	  			data:{"ridx":ridx},
-	  			success:function(likeCheck){
-	  					
-	  			if(likeCheck == 0){
-	  				location.reload();
-	  			}else if(likeCheck == 1){
-	  				alert("이미 추천하거나 비추천한 댓글입니다.");
-	  				location.reload();
-	  			}
-	  			}	
-	  		})
-				return true;
-		}
-  	}
+        if(${login == null}){
+         alert("로그인을 하셔야 추천을 누르실 수 있습니다.");
+         location.href="../member/memberLogin.do";
+        }else if(nickname == writer){
+         alert("본인 댓글은 추천하실 수 없습니다.")
+         return false;
+        }else{
+        
+           $.ajax({
+              url:"../reply/replyLike.do",
+              data:{"ridx":ridx},
+              success:function(likeCheck){
+                    
+              if(likeCheck == 0){
+                 location.reload();
+              }else if(likeCheck == 1){
+                 alert("이미 추천하거나 비추천한 댓글입니다.");
+                 location.reload();
+              }
+              }   
+           })
+            return true;
+      }
+     }
   
  
 
-  	//댓글 수정버튼 클릭시 수정 폼 생성
-  	function modifyBtn(ridx,content){
+     //댓글 수정버튼 클릭시 수정 폼 생성
+     function modifyBtn(ridx,content){
 
-  		var reply = "";
-  		reply += "<textarea rows='3' cols='30' name='replyContent' class='commentWrite reply'>";
-  		reply += content;
-  		reply += "</textarea><br>";
-  		reply += "<button type='button' class='reply' onclick='modifyReply(";
-  		reply += ridx;
-  		reply += ")'><small>등록</small></button>";
-  		reply += "<button type='button' class='reply' onclick='cancelReply()'><small>취소</small></button>";
-  	
-  		$(".buttons"+ridx).remove();
-  		$(".reply").remove();
-  		$("#reply_content"+ridx).html(reply);
-  	}
+        var reply = "";
+        reply += "<textarea rows='3' cols='30' name='replyContent' class='commentWrite reply'>";
+        reply += content;
+        reply += "</textarea><br>";
+        reply += "<button type='button' class='reply' onclick='modifyReply(";
+        reply += ridx;
+        reply += ")'><small>등록</small></button>";
+        reply += "<button type='button' class='reply' onclick='cancelReply()'><small>취소</small></button>";
+     
+        $(".buttons"+ridx).remove();
+        $(".reply").remove();
+        $("#reply_content"+ridx).html(reply);
+     }
 
-  	//댓글 수정 폼에서 등록 클릭
-  	function modifyReply(ridx){
-  		
-  		var content = $("[name=replyContent]").val();
-  		
-  		$.ajax({
-  			url:"../reply/modify.do",
-  			data:{"ridx":ridx,
-  				  "content":content},
-  			success:function(result){
-  				if(result==1){
-  					location.reload();
-  				}
-  			}
-  		})
-  	}
+     //댓글 수정 폼에서 등록 클릭
+     function modifyReply(ridx){
+        
+        var content = $("[name=replyContent]").val();
+        
+        $.ajax({
+           url:"../reply/modify.do",
+           data:{"ridx":ridx,
+                "content":content},
+           success:function(result){
+              if(result==1){
+                 location.reload();
+              }
+           }
+        })
+     }
 
-  	//댓글 수정 폼에서 취소 클릭
-  	function cancelReply(){
-  		
-  		location.reload();
-  	}
+     //댓글 수정 폼에서 취소 클릭
+     function cancelReply(){
+        
+        location.reload();
+     }
 
-  	//댓글 삭제
-  	function deleteBtn(ridx){
-  		
-  		var deleteReply = confirm("정말 삭제하시겠습니까?");
-  		if(!deleteReply) return false;
-  		
-  		$.ajax({
-  			url:"<%=request.getContextPath()%>/reply/delete.do",
-  			data:{"ridx":ridx},
-  			success:function(data){
-  				if(data==1){
-  					location.reload();	
-  				}
-  			}
-  		})
-  	}
+     //댓글 삭제
+     function deleteBtn(ridx){
+        
+        var deleteReply = confirm("정말 삭제하시겠습니까?");
+        if(!deleteReply) return false;
+        
+        $.ajax({
+           url:"<%=request.getContextPath()%>/reply/delete.do",
+           data:{"ridx":ridx},
+           success:function(data){
+              if(data==1){
+                 location.reload();   
+              }
+           }
+        })
+     }
 
-  	
-  	</script>
-  	
-  	
+     
+     </script>
+     
+     
   </head>
   <body>
     <nav>
@@ -261,7 +261,7 @@
         <!--end:.loginInfo-->
         </c:if>
           <c:if test ="${login == null && name != null}">
-           	 <div id="loginSearchBar">
+               <div id="loginSearchBar">
           <input type="text" placeholder="검색어를 입력하세요" />
           <button class="searchBtn" type="submit">
             <i class="xi-search xi-2x"></i>
@@ -279,7 +279,7 @@
       <!--end: #topMenu-->
       <hr />
       <div id="bottMenu">
-   	  <ul>	
+        <ul>   
           <li><a href="<%=request.getContextPath()%>/map/map.do">맛집지도</a></li>
           <li><a href="<%=request.getContextPath()%>/board/list.do">자유게시판</a></li>
           <li><a href="#" onclick="not()">공지사항</a></li>
@@ -294,17 +294,12 @@
       <div id="board">
         <div id="boardTitle">
           <div class="boardInfo">
-          	<input type="hidden" id="bidx" name="bidx" value="${list.bidx}">
+             <input type="hidden" id="bidx" name="bidx" value="${list.bidx}">
             <span>${list.category}</span>
             <h1>${list.title}</h1>
             <h2>${list.wdate.substring(0,16)}</h2>
             <p>조회수 ${list.hit}회</p>
           </div>
-          <c:if test="${list.filename != null}">
-           <div class="foodImg">
-              <img src="<%=request.getContextPath()%>/resources/upload/${list.filename}"/>
-           </div>
-        </c:if>
           <!--end: .boardInfo-->
           <div class="profile">
             <div class="profileImg">
@@ -316,6 +311,11 @@
         </div>
         <!--end: #boardTitle-->
         <div id="boardContent">
+        <c:if test="${list.filename != null}">
+           <div class="foodImg">
+              <img src="<%=request.getContextPath()%>/resources/upload/${list.filename}" width="1050px"/>
+           </div>
+        </c:if>
           <p>
           ${list.content}
           </p>
@@ -333,11 +333,11 @@
           </div>
         <!--end: .like-->
       <div class="Btn">    
-		  	<button type="button" class="listBtn">목록</button>
+           <button type="button" class="listBtn">목록</button>
           <c:if test="${login.midx == list.midx}">
-			<button type="button" class="deleteBtn">삭제</button>
-			<button type="button" class="modifyBtn">수정</button>	
-		  </c:if>
+         <button type="button" class="deleteBtn">삭제</button>
+         <button type="button" class="modifyBtn">수정</button>   
+        </c:if>
       </div>
       <!-- end: .Btn -->
       </div>
@@ -353,27 +353,27 @@
       <!--end: #commentPage-->
         <div class="commentList">
           <ul>
-          	<c:forEach items="${replyList}" var="reply">
-          	<input type="hidden" id="ridx" name="ridx" value="${reply.ridx}">						
+             <c:forEach items="${replyList}" var="reply">
+             <input type="hidden" id="ridx" name="ridx" value="${reply.ridx}">                  
             <li>
           <div class="comment">
-          	
+             
             <div class="member"><img src="<%=request.getContextPath()%>/resources/upload/${reply.stname}" width="42.5" />
             <p class="nickname">${reply.writer}</p>
             </div>
             <!--end: .member-->
             <div class="content"> 
-              	${reply.content}
-				<p id="reply_content${reply.ridx}" class="reply_content"></p>      
+                 ${reply.content}
+            <p id="reply_content${reply.ridx}" class="reply_content"></p>      
                 <div class="commentOption">
                   <p>${reply.wdate.substring(0,16)}</p>
                   
                 <c:if test="${login.nickname == reply.writer}">
-				<button class="commentReply" onclick="modifyBtn(${reply.ridx},'${reply.content}')" class="buttons${reply.ridx}"><small>수정</small></button>
-				<button class="commentReply" onclick="deleteBtn(${reply.ridx})" class="buttons${reply.ridx}"><small>삭제</small></button>
-				</c:if>
+            <button class="commentReply" onclick="modifyBtn(${reply.ridx},'${reply.content}')" class="buttons${reply.ridx}"><small>수정</small></button>
+            <button class="commentReply" onclick="deleteBtn(${reply.ridx})" class="buttons${reply.ridx}"><small>삭제</small></button>
+            </c:if>
 
-				 <button type="button" class="commentReply" onclick="replyLike(${reply.ridx},'${reply.writer}','${login.nickname}');"><small>추천</small></button> <small>${reply.likeCnt}</small>
+             <button type="button" class="commentReply" onclick="replyLike(${reply.ridx},'${reply.writer}','${login.nickname}');"><small>추천</small></button> <small>${reply.likeCnt}</small>
                
 
         
@@ -384,40 +384,40 @@
               <!--end: content-->
           </div>
           <!--end: .comment-->
-        	</li>
-        	</c:forEach>
-       			 </ul>
-    		</div>
+           </li>
+           </c:forEach>
+                 </ul>
+          </div>
         <!--end: .commentList-->
     </main>
     <!--end: main-->
           <div id="listOption">
         <div class="pager">
-			<ul class="pagination">
-			<!-- 이전 페이지 -->	
-			<c:if test="${replyPageMaker.prev}">
-				<a href="<%=request.getContextPath() %>/board/view.do?replyPage=${replyPageMaker.replyStartPage-1}&bidx=${searchVo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&replyPerPageNum=${searchVo.replyPerPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">◀</a>
-			</c:if>
-			<!-- 현재 페이지 -->	
-			<c:forEach begin="${replyPageMaker.replyStartPage}" end="${replyPageMaker.replyEndPage}" var="num">
-				<c:choose>
-					<c:when test="${replyPageMaker.replyEndPage == 0}">
-						<p></p>
-					</c:when>
-					<c:when test="${num == searchVo.replyPage}">
-						<b>${num}</b>
-					</c:when>
-					<c:when test="${num != searchVo.replyPage}">
-						<a href="<%=request.getContextPath() %>/board/view.do?replyPage=${num}&bidx=${searchVo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&replyPerPageNum=${searchVo.replyPerPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">${num}</a>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-			<!-- 다음 페이지 -->	
-			<c:if test="${replyPageMaker.next}">
-				<a href="<%=request.getContextPath() %>/board/view.do?replyPage=${replyPageMaker.replyEndPage+1}&bidx=${searchVo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&replyPerPageNum=${searchVo.replyPerPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">▶</a>
-			</c:if>
-			</ul>
-		</div>
+         <ul class="pagination">
+         <!-- 이전 페이지 -->   
+         <c:if test="${replyPageMaker.prev}">
+            <a href="<%=request.getContextPath() %>/board/view.do?replyPage=${replyPageMaker.replyStartPage-1}&bidx=${searchVo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&replyPerPageNum=${searchVo.replyPerPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">◀</a>
+         </c:if>
+         <!-- 현재 페이지 -->   
+         <c:forEach begin="${replyPageMaker.replyStartPage}" end="${replyPageMaker.replyEndPage}" var="num">
+            <c:choose>
+               <c:when test="${replyPageMaker.replyEndPage == 0}">
+                  <p></p>
+               </c:when>
+               <c:when test="${num == searchVo.replyPage}">
+                  <b>${num}</b>
+               </c:when>
+               <c:when test="${num != searchVo.replyPage}">
+                  <a href="<%=request.getContextPath() %>/board/view.do?replyPage=${num}&bidx=${searchVo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&replyPerPageNum=${searchVo.replyPerPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">${num}</a>
+               </c:when>
+            </c:choose>
+         </c:forEach>
+         <!-- 다음 페이지 -->   
+         <c:if test="${replyPageMaker.next}">
+            <a href="<%=request.getContextPath() %>/board/view.do?replyPage=${replyPageMaker.replyEndPage+1}&bidx=${searchVo.bidx}&page=${searchVo.page}&category=${searchVo.category}&order=${searchVo.order}&replyPerPageNum=${searchVo.replyPerPageNum}&searchType=${searchVo.searchType}&searchVal=${searchVo.searchVal}">▶</a>
+         </c:if>
+         </ul>
+      </div>
         <!--end: .pager-->
         <div class="btnBar">
            <a href="<%=request.getContextPath()%>">홈으로</a>
